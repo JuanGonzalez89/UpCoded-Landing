@@ -4,9 +4,37 @@ import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'UpCoded | Tu negocio merece un equipo técnico de verdad.',
-  description: 'Agencia de desarrollo web en Argentina. React, Next.js y Spring Boot. Entregamos rápido, construimos bien.'
-};
+  title: 'UpCoded | Agencia de Desarrollo Web — React, Next.js y Spring Boot',
+  description:
+    'Agencia de desarrollo web en Argentina. Construimos sitios, apps y automatizaciones con React, Next.js y Spring Boot. Rápido, limpio y sin los precios de una agencia grande.',
+  keywords: [
+    'agencia desarrollo web argentina',
+    'desarrollo web react nextjs',
+    'aplicaciones web a medida',
+    'automatización whatsapp instagram',
+    'diseño web profesional argentina',
+    'upcoded',
+  ],
+  metadataBase: new URL('https://upcoded.dev'),
+  openGraph: {
+    title: 'UpCoded | Agencia de Desarrollo Web',
+    description:
+      'Sitios, apps y automatizaciones con React y Next.js. Entrega real, precio justo.',
+    url: 'https://upcoded.dev',
+    siteName: 'UpCoded',
+    locale: 'es_AR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'UpCoded | Agencia de Desarrollo Web',
+    description: 'Sitios, apps y automatizaciones con React y Next.js.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
