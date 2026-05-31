@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+.glow-hover:hover {
+  box-shadow: 0 0 15px rgba(0, 217, 255, 0.4);
+  border-color: rgba(0, 217, 255, 0.8);
+}
+
+.text-glow {
+  text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+}
+
+.code-pattern {
+  background-image: radial-gradient(#3c494d 1px, transparent 1px);
+  background-size: 20px 20px;
+}
