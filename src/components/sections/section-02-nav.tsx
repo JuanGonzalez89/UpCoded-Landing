@@ -1,11 +1,17 @@
+import Image from 'next/image';
+
 export default function NavSection() {
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-outline-variant/30 bg-surface/80 transition-all duration-300 backdrop-blur-md">
       <div className="mx-auto flex h-20 max-w-container-max items-center justify-between px-margin-mobile md:px-margin-desktop">
         <a className="font-display-lg text-headline-md font-bold text-primary flex items-center gap-2 text-glow" href="#">
-          <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>
-            terminal
-          </span>
+          <Image 
+            src="/portfolio/logo_upcoded/Logo_Upcoded_192x192.png" 
+            alt="UpCoded Logo" 
+            width={48} 
+            height={48} 
+            className="object-contain"
+          />
           UpCoded
         </a>
 
