@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { FaInstagram, FaLinkedin, FaGithub, FaXTwitter } from 'react-icons/fa6';
 
 export default function FooterSection() {
   return (
@@ -16,19 +17,21 @@ export default function FooterSection() {
         </div>
 
         <div className="flex gap-4 font-code-sm text-code-sm">
-          <a className="text-on-surface-variant transition-colors hover:text-primary" href="#">
-            Privacidad
+          <a className="flex items-center gap-1.5 text-on-surface-variant transition-colors hover:text-primary" href="https://www.instagram.com/upcoded/" target="_blank" rel="noopener noreferrer">
+            <FaInstagram className="text-base" />
+            Instagram
           </a>
-          <a className="text-on-surface-variant transition-colors hover:text-primary" href="#">
-            Términos
-          </a>
-          {/* TODO: Reemplazar # con URL real de LinkedIn */}
-          <a className="text-on-surface-variant transition-colors hover:text-primary" href="#">
+          <a className="flex items-center gap-1.5 text-on-surface-variant transition-colors hover:text-primary" href="https://www.linkedin.com/company/upcoded-desarrollo-web-y-apps-para-negocios/?viewAsMember=true" target="_blank" rel="noopener noreferrer">
+            <FaLinkedin className="text-base" />
             LinkedIn
           </a>
-          {/* TODO: Reemplazar # con URL real de GitHub */}
-          <a className="text-on-surface-variant transition-colors hover:text-primary" href="#">
+          <a className="flex items-center gap-1.5 text-on-surface-variant transition-colors hover:text-primary" href="#">
+            <FaGithub className="text-base" />
             GitHub
+          </a>
+          <a className="flex items-center gap-1.5 text-on-surface-variant transition-colors hover:text-primary" href="https://x.com/upcodednow" target="_blank" rel="noopener noreferrer">
+            <FaXTwitter className="text-base" />
+            X
           </a>
         </div>
 
