@@ -5,16 +5,16 @@ import FooterSection from '@/components/sections/section-12-footer';
 import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
 
 export const metadata: Metadata = {
-  title: 'Automatizaciones Web para Empresas en Argentina | UpCoded',
+  title: 'Automatización de Procesos para Empresas en Argentina | UpCoded',
   description:
-    'Automatizamos procesos de negocio en Argentina: integraciones de APIs, workflows, WhatsApp Business, webhooks y conexión entre herramientas. Ahorrá tiempo y escalá.',
+    'Automatizamos procesos de tu negocio en Argentina: conectamos herramientas, eliminamos tareas manuales y mejoramos tu productividad. Ahorrá tiempo y recursos.',
   alternates: {
     canonical: 'https://upcoded.dev/servicios/automatizaciones',
   },
   openGraph: {
-    title: 'Automatizaciones Web para Empresas en Argentina | UpCoded',
+    title: 'Automatización de Procesos en Argentina | UpCoded',
     description:
-      'Integraciones de APIs, workflows, WhatsApp Business y webhooks. Menos trabajo manual, más escala.',
+      'Conectamos tus herramientas y eliminamos tareas manuales. Menos trabajo repetitivo, más productividad.',
     url: 'https://upcoded.dev/servicios/automatizaciones',
   },
 };
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Automatizaciones Web para Empresas',
+  name: 'Automatización de Procesos',
   description:
-    'Servicio de automatización de procesos de negocio en Argentina: integraciones de APIs, workflows automatizados y webhooks personalizados.',
+    'Servicio de automatización de procesos de negocio en Argentina: conexión entre herramientas y eliminación de tareas manuales repetitivas.',
   provider: {
     '@type': 'Organization',
     name: 'UpCoded',
@@ -43,30 +43,30 @@ const jsonLd = {
 };
 
 const useCases = [
-  { icon: 'whatsapp', title: 'WhatsApp Business API', description: 'Notificaciones automáticas, respuestas programadas y flujos de atención al cliente sin intervención manual.' },
-  { icon: 'sync_alt', title: 'Integración entre herramientas', description: 'Conectamos tu CRM, tu tienda online, tu sistema contable y tu equipo en un solo flujo sin trabajo duplicado.' },
-  { icon: 'mail', title: 'Email marketing automatizado', description: 'Secuencias de emails disparadas por comportamiento del usuario, integradas con tu stack actual.' },
-  { icon: 'webhook', title: 'Webhooks personalizados', description: 'Conectamos cualquier sistema que tenga API. Si tiene endpoints, lo conectamos.' },
-  { icon: 'notifications_active', title: 'Alertas y monitoreo', description: 'Notificaciones en Slack, email o Telegram cuando sucede algo importante en tu negocio.' },
-  { icon: 'table_chart', title: 'Reportes automáticos', description: 'Datos de tu negocio consolidados y enviados automáticamente en el formato que necesitás.' },
+  { icon: 'chat', title: 'WhatsApp automático', description: 'Que tus clientes reciban respuestas al instante, sin que nadie tenga que escribir. Atención 24/7 sin esfuerzo.' },
+  { icon: 'sync_alt', title: 'Conexión entre herramientas', description: 'Conectamos tu WhatsApp, tu correo, tus redes y tus sistemas para que compartan información automáticamente.' },
+  { icon: 'mail', title: 'Emails que se disparan solos', description: 'Cuando un cliente hace algo —completa un formulario, compra, se registra— recibe el mensaje justo sin que toques nada.' },
+  { icon: 'tonality', title: 'Sistemas que hablan entre sí', description: 'Si tenés varias herramientas que no se comunican, las conectamos para que trabajen juntas sin que intervengas.' },
+  { icon: 'notifications_active', title: 'Alertas inteligentes', description: 'Recibí una notificación en tu celular o mail cuando pase algo importante: una venta, un reclamo, un vencimiento.' },
+  { icon: 'table_chart', title: 'Reportes automáticos', description: 'Todos los números de tu negocio llegan a tu mail o WhatsApp sin que nadie los tenga que armar a mano.' },
 ];
 
 const faqs = [
   {
-    q: '¿Qué tipo de automatizaciones pueden implementar?',
-    a: 'Cualquier proceso que se repita manualmente y tenga una API disponible. Notificaciones por WhatsApp, sincronización entre sistemas, disparadores por eventos, reportes automáticos y más.',
+    q: '¿Qué procesos se pueden automatizar?',
+    a: 'Cualquier tarea que se repita seguido: responder consultas, enviar presupuestos, pasar datos de un sistema a otro, generar reportes, enviar recordatorios. Si lo hacés a mano más de una vez por semana, se puede automatizar.',
   },
   {
     q: '¿Cuánto cuesta una automatización?',
-    a: 'Nuestros proyectos de automatización arrancan desde USD 400. El precio depende de la cantidad de integraciones, la complejidad del flujo y si se requiere infraestructura propia.',
+    a: 'Desde USD 400. El precio depende de cuántas herramientas conectemos y la complejidad de lo que necesitás que hagan.',
   },
   {
-    q: '¿Necesito tener conocimientos técnicos para usar las automatizaciones?',
-    a: 'No. Entregamos todo configurado y probado. Si hay un panel de control, lo hacemos simple para que lo puedas operar sin ayuda técnica.',
+    q: '¿Necesito saber de tecnología para usarlo?',
+    a: 'No. Nosotros lo dejamos todo configurado y funcionando. Si hay algo que tengas que revisar, lo hacemos simple para que lo uses sin ayuda.',
   },
   {
-    q: '¿Pueden automatizar procesos con herramientas como HubSpot, Notion o Google Sheets?',
-    a: 'Sí. Trabajamos con las APIs de HubSpot, Notion, Google Sheets, Airtable, Slack, Stripe, MercadoPago y cualquier herramienta que tenga integración disponible.',
+    q: '¿Funciona con las herramientas que ya uso?',
+    a: 'Sí. Conectamos WhatsApp, Instagram, Google Sheets, MercadoPago, redes sociales, sistemas de facturación y prácticamente cualquier herramienta que uses en tu negocio.',
   },
 ];
 
@@ -90,14 +90,11 @@ export default function AutomatizacionesPage() {
             <span className="text-primary">Automatizaciones</span>
           </nav>
           <div className="max-w-3xl">
-            <span className="mb-4 inline-block font-label-caps text-label-caps uppercase text-primary">
-              Servicio — Automatizaciones
-            </span>
             <h1 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-6 md:font-display-lg md:text-display-lg">
-              Automatizaciones que le ahorran tiempo a tu equipo
+              Automaticá las tareas repetitivas de tu negocio
             </h1>
             <p className="mb-8 font-body-md text-body-md text-on-surface-variant max-w-2xl">
-              Conectamos tus herramientas, eliminamos el trabajo manual repetitivo y construimos flujos que funcionan solos. Más tiempo para lo que importa, menos errores humanos.
+              Conectamos tus herramientas para que el trabajo manual desaparezca. Más tiempo para lo importante, menos errores, menos estrés.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -115,7 +112,7 @@ export default function AutomatizacionesPage() {
         <section className="bg-surface-container-low py-24">
           <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
             <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-16 md:font-display-lg md:text-display-lg">
-              Qué podemos automatizar
+              Así podemos ayudarte
             </h2>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {useCases.map((uc) => (
@@ -154,7 +151,7 @@ export default function AutomatizacionesPage() {
               ¿Qué proceso querés dejar de hacer a mano?
             </h2>
             <p className="mx-auto mb-8 max-w-xl font-body-md text-body-md text-on-surface-variant">
-              Contanos el proceso y te mostramos cómo automatizarlo.
+              Contanos qué tarea se repite y te mostramos cómo automatizarla.
             </p>
             <Link
               href="/#contacto"

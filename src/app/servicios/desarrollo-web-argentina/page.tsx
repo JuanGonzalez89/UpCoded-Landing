@@ -5,16 +5,16 @@ import FooterSection from '@/components/sections/section-12-footer';
 import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
 
 export const metadata: Metadata = {
-  title: 'Desarrollo Web en Argentina | React & Next.js — UpCoded',
+  title: 'Desarrollo Web en Argentina | Agencia Profesional — UpCoded',
   description:
-    'Agencia de desarrollo web en Argentina especializada en React y Next.js. Sitios rápidos, escalables y optimizados para conversión. Entrega en semanas, no meses.',
+    'Agencia de desarrollo web en Argentina. Creamos sitios rápidos, modernos y optimizados para que tu negocio aparezca en Google. Entrega en semanas, no meses.',
   alternates: {
     canonical: 'https://upcoded.dev/servicios/desarrollo-web-argentina',
   },
   openGraph: {
     title: 'Desarrollo Web en Argentina | UpCoded',
     description:
-      'Agencia de desarrollo web en Argentina especializada en React y Next.js. Sitios rápidos, escalables y optimizados.',
+      'Creamos sitios rápidos, modernos y optimizados para que tu negocio aparezca en Google.',
     url: 'https://upcoded.dev/servicios/desarrollo-web-argentina',
   },
 };
@@ -24,7 +24,7 @@ const jsonLd = {
   '@type': 'Service',
   name: 'Desarrollo Web en Argentina',
   description:
-    'Servicio de desarrollo web profesional en Argentina con React, Next.js y Spring Boot. Sitios rápidos, escalables y optimizados para conversión.',
+    'Servicio profesional de desarrollo web en Argentina. Sitios rápidos, modernos y optimizados para buscadores.',
   provider: {
     '@type': 'Organization',
     name: 'UpCoded',
@@ -46,51 +46,49 @@ const jsonLd = {
   },
 };
 
-const stack = ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'];
-
 const features = [
   {
     icon: 'speed',
-    title: 'Performance real',
+    title: 'Velocidad que tus clientes notan',
     description:
-      'Sitios con Core Web Vitals en verde. Carga rápida = mejor SEO y más conversiones.',
+      'Un sitio lento hace que la gente se vaya antes de verte. Los nuestros cargan al instante, en cualquier dispositivo.',
   },
   {
     icon: 'devices',
-    title: 'Responsive de verdad',
+    title: 'Se ve bien en todos lados',
     description:
-      'Diseño adaptado a mobile, tablet y desktop desde el primer commit. Sin parches.',
+      'Diseñamos para que se vea perfecto en celular, tablet y computadora. Sin sorpresas, sin pantallas rotas.',
   },
   {
     icon: 'search',
-    title: 'SEO técnico incluido',
+    title: 'Listo para aparecer en Google',
     description:
-      'Metadata, schema JSON-LD, sitemap y canonical configurados en cada entrega.',
+      'Configuramos todo lo necesario para que Google encuentre tu sitio y lo muestre cuando alguien busca lo que hacés.',
   },
   {
     icon: 'lock',
-    title: 'Seguro y escalable',
+    title: 'Seguro y sin complicaciones',
     description:
-      'Stack moderno con TypeScript estricto. Código que podés mantener y escalar.',
+      'Código limpio y moderno. Olvidate de mantener plugins, actualizaciones de emergencia o sitios que se caen.',
   },
 ];
 
 const faqs = [
   {
-    q: '¿Cuánto tarda el desarrollo de un sitio web en Argentina?',
-    a: 'Para una landing page o sitio institucional, entregamos en 2 a 3 semanas. Una aplicación web completa puede tomar entre 4 y 8 semanas dependiendo del alcance.',
+    q: '¿Cuánto tarda tener mi sitio web listo?',
+    a: 'Para una landing page o sitio institucional, lo tenés en 2 a 3 semanas. Un sistema más complejo puede llevar entre 4 y 8 semanas. Te damos fechas concretas desde el primer día.',
   },
   {
     q: '¿Cuánto cuesta hacer un sitio web en Argentina?',
-    a: 'Nuestros proyectos arrancan desde USD 300 para una landing page optimizada. El precio final depende del alcance, funcionalidades y nivel de diseño requerido.',
+    a: 'Nuestros proyectos arrancan desde USD 300 para una landing page optimizada. El precio final depende de lo que necesite tu negocio: páginas, funcionalidades y nivel de diseño.',
   },
   {
-    q: '¿Trabajan con clientes de todo Argentina o solo Buenos Aires?',
-    a: 'Trabajamos 100% de forma remota con clientes de todo el país y también del exterior. El trato es siempre directo con el equipo técnico.',
+    q: '¿Trabajan con clientes de todo el país?',
+    a: 'Sí, trabajamos 100% remoto con clientes de toda Argentina y también del exterior. Te respondemos siempre directo, sin intermediarios.',
   },
   {
-    q: '¿Qué tecnologías usan para el desarrollo web?',
-    a: 'Usamos React y Next.js para el frontend, Spring Boot para backends complejos, y desplegamos en Vercel. El mismo stack que usan empresas como Vercel, Airbnb o Netflix.',
+    q: '¿Qué tecnología usan?',
+    a: 'Usamos tecnología moderna que hace que tu sitio sea rápido, seguro y fácil de mantener. El mismo tipo de tecnología que usan empresas como Nike, Airbnb y TikTok para sus sitios web.',
   },
 ];
 
@@ -115,14 +113,11 @@ export default function DesarrolloWebArgentinaPage() {
           </nav>
 
           <div className="max-w-3xl">
-            <span className="mb-4 inline-block font-label-caps text-label-caps uppercase text-primary">
-              Agencia de Desarrollo Web — Argentina
-            </span>
             <h1 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-6 md:font-display-lg md:text-display-lg">
-              Desarrollo web en Argentina con React y Next.js
+              Creamos el sitio web que tu negocio merece
             </h1>
             <p className="mb-8 font-body-md text-body-md text-on-surface-variant max-w-2xl">
-              Construimos sitios web y aplicaciones rápidas, limpias y optimizadas para búsqueda. Sin templates genéricos, sin WordPress. Código a medida con el stack que usan las empresas de tecnología más grandes del mundo.
+              Tu sitio web es la puerta de entrada a nuevos clientes. Nosotros lo construimos rápido, moderno y optimizado para que te encuentren en Google. Sin plantillas genéricas, sin vueltas.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -142,90 +137,73 @@ export default function DesarrolloWebArgentinaPage() {
           </div>
         </section>
 
-        {/* Stack */}
-        <section className="border-y border-outline-variant/30 bg-surface-container-low py-8">
+        {/* Features */}
+        <section className="border-y border-outline-variant/30 bg-surface-container-low py-16">
           <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
-            <p className="mb-4 text-center font-label-caps text-label-caps uppercase text-on-surface-variant">
-              Stack tecnológico
+            <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-4 md:font-display-lg md:text-display-lg">
+              Por qué elegirnos para tu proyecto web
+            </h2>
+            <p className="mb-16 max-w-2xl font-body-md text-body-md text-on-surface-variant">
+              No usamos plantillas ni tercerizamos el trabajo. Cada proyecto lo construimos desde cero pensando en tu negocio.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              {stack.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded border border-outline-variant/30 bg-surface-container px-4 py-2 font-label-caps text-label-caps uppercase text-primary"
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {features.map((f) => (
+                <div
+                  key={f.title}
+                  className="glow-hover flex gap-4 rounded-lg border border-outline-variant/30 bg-surface-container p-6 transition-colors hover:border-primary/50"
                 >
-                  {tech}
-                </span>
+                  <span className="material-symbols-outlined mt-1 text-2xl text-primary shrink-0">
+                    {f.icon}
+                  </span>
+                  <div>
+                    <h3 className="font-headline-md text-headline-md mb-2 text-on-surface">
+                      {f.title}
+                    </h3>
+                    <p className="font-body-md text-on-surface-variant">{f.description}</p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Features */}
+        {/* FAQ */}
         <section className="mx-auto max-w-container-max px-margin-mobile py-24 md:px-margin-desktop">
-          <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-4 md:font-display-lg md:text-display-lg">
-            Por qué elegir UpCoded para tu proyecto web
+          <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-16 md:font-display-lg md:text-display-lg">
+            Preguntas frecuentes
           </h2>
-          <p className="mb-16 max-w-2xl font-body-md text-body-md text-on-surface-variant">
-            No somos una agencia que terceriza o usa templates. Cada proyecto lo construimos desde cero con el stack correcto para tu negocio.
-          </p>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {features.map((f) => (
+            {faqs.map((faq) => (
               <div
-                key={f.title}
-                className="glow-hover flex gap-4 rounded-lg border border-outline-variant/30 bg-surface-container p-6 transition-colors hover:border-primary/50"
+                key={faq.q}
+                className="rounded-lg border border-outline-variant/30 bg-surface p-6"
               >
-                <span className="material-symbols-outlined mt-1 text-2xl text-primary shrink-0">
-                  {f.icon}
-                </span>
-                <div>
-                  <h3 className="font-headline-md text-headline-md mb-2 text-on-surface">
-                    {f.title}
-                  </h3>
-                  <p className="font-body-md text-on-surface-variant">{f.description}</p>
-                </div>
+                <h3 className="font-headline-md text-headline-md mb-3 text-on-surface">
+                  {faq.q}
+                </h3>
+                <p className="font-body-md text-on-surface-variant">{faq.a}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* FAQ */}
-        <section className="bg-surface-container-low py-24">
-          <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
-            <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-16 md:font-display-lg md:text-display-lg">
-              Preguntas frecuentes
-            </h2>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {faqs.map((faq) => (
-                <div
-                  key={faq.q}
-                  className="rounded-lg border border-outline-variant/30 bg-surface p-6"
-                >
-                  <h3 className="font-headline-md text-headline-md mb-3 text-on-surface">
-                    {faq.q}
-                  </h3>
-                  <p className="font-body-md text-on-surface-variant">{faq.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* CTA final */}
-        <section className="mx-auto max-w-container-max px-margin-mobile py-24 text-center md:px-margin-desktop">
-          <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-4 md:font-display-lg md:text-display-lg">
-            ¿Tenés un proyecto en mente?
-          </h2>
-          <p className="mx-auto mb-8 max-w-xl font-body-md text-body-md text-on-surface-variant">
-            Contanos qué necesitás y te respondemos en menos de 24 horas con una propuesta concreta.
-          </p>
-          <Link
-            href="/#contacto"
-            className="inline-flex items-center gap-2 rounded bg-primary px-8 py-4 font-label-caps text-label-caps uppercase text-on-primary transition-colors hover:bg-primary-fixed-dim"
-          >
-            Quiero una propuesta gratuita
-            <span className="material-symbols-outlined text-sm">arrow_forward</span>
-          </Link>
+        <section className="bg-surface-container-low py-24">
+          <div className="mx-auto max-w-container-max px-margin-mobile text-center md:px-margin-desktop">
+            <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-4 md:font-display-lg md:text-display-lg">
+              ¿Tenés un proyecto en mente?
+            </h2>
+            <p className="mx-auto mb-8 max-w-xl font-body-md text-body-md text-on-surface-variant">
+              Contanos qué necesitás y te respondemos en menos de 24 horas con una propuesta concreta.
+            </p>
+            <Link
+              href="/#contacto"
+              className="inline-flex items-center gap-2 rounded bg-primary px-8 py-4 font-label-caps text-label-caps uppercase text-on-primary transition-colors hover:bg-primary-fixed-dim"
+            >
+              Quiero una propuesta gratuita
+              <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </Link>
+          </div>
         </section>
 
       </main>

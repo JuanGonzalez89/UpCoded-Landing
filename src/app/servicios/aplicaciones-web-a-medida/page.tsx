@@ -5,16 +5,16 @@ import FooterSection from '@/components/sections/section-12-footer';
 import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
 
 export const metadata: Metadata = {
-  title: 'Aplicaciones Web a Medida en Argentina | UpCoded',
+  title: 'Sistemas Web a Medida en Argentina | UpCoded',
   description:
-    'Desarrollo de aplicaciones web a medida en Argentina con React, Next.js y Spring Boot. Plataformas completas con backend, base de datos y panel de administración.',
+    'Desarrollamos plataformas web completas para tu negocio en Argentina. Con panel de administración, usuarios, base de datos y las funcionalidades que necesites.',
   alternates: {
     canonical: 'https://upcoded.dev/servicios/aplicaciones-web-a-medida',
   },
   openGraph: {
-    title: 'Aplicaciones Web a Medida en Argentina | UpCoded',
+    title: 'Sistemas Web a Medida en Argentina | UpCoded',
     description:
-      'Plataformas completas con backend, base de datos y panel de administración. Stack: React, Next.js y Spring Boot.',
+      'Plataformas web completas con panel de administración, usuarios y base de datos. Hechas a la medida de tu negocio.',
     url: 'https://upcoded.dev/servicios/aplicaciones-web-a-medida',
   },
 };
@@ -22,16 +22,16 @@ export const metadata: Metadata = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Aplicaciones Web a Medida',
+  name: 'Sistemas Web a Medida',
   description:
-    'Desarrollo de aplicaciones web complejas en Argentina con React, Next.js y Spring Boot. Incluye backend, base de datos y panel de administración.',
+    'Desarrollo de plataformas web completas en Argentina con panel de administración, usuarios y base de datos.',
   provider: {
     '@type': 'Organization',
     name: 'UpCoded',
     url: 'https://upcoded.dev',
   },
   areaServed: { '@type': 'Country', name: 'Argentina' },
-  serviceType: 'Aplicación Web',
+  serviceType: 'Plataforma Web',
   offers: {
     '@type': 'Offer',
     priceSpecification: {
@@ -43,30 +43,30 @@ const jsonLd = {
 };
 
 const capabilities = [
-  { icon: 'storage', title: 'Backend & Base de datos', description: 'APIs REST con Spring Boot, bases de datos relacionales y no relacionales, autenticación JWT.' },
-  { icon: 'admin_panel_settings', title: 'Panel de administración', description: 'Dashboard a medida para gestionar tu plataforma sin depender de un técnico.' },
-  { icon: 'people', title: 'Autenticación de usuarios', description: 'Login, registro, roles y permisos. OAuth con Google, GitHub o tu propio sistema.' },
-  { icon: 'integration_instructions', title: 'Integraciones externas', description: 'Conectamos con Stripe, MercadoPago, WhatsApp Business, HubSpot, Slack y más.' },
-  { icon: 'cloud_upload', title: 'Deploy en la nube', description: 'Frontend en Vercel, backend en contenedores Docker. Escalable desde el día 1.' },
-  { icon: 'trending_up', title: 'Arquitectura escalable', description: 'Código modular con principios SOLID. Preparado para crecer sin reescribir todo.' },
+  { icon: 'storage', title: 'Tu propia base de datos', description: 'Guardamos y organizamos la información de tu negocio para que la tengas siempre disponible y ordenada.' },
+  { icon: 'admin_panel_settings', title: 'Panel de administración', description: 'Un escritorio a medida para que puedas gestionar tu plataforma sin depender de nadie.' },
+  { icon: 'people', title: 'Usuarios y permisos', description: 'Creá cuentas para tu equipo, asigná roles y controlá quién ve y hace qué dentro del sistema.' },
+  { icon: 'integration_instructions', title: 'Conexiones con otras herramientas', description: 'Conectamos tu plataforma con MercadoPago, WhatsApp, redes sociales y los sistemas que ya usás.' },
+  { icon: 'cloud_upload', title: 'Publicado en la nube', description: 'Lo dejamos funcionando en internet, accesible desde cualquier dispositivo, listo para usar.' },
+  { icon: 'trending_up', title: 'Preparado para crecer', description: 'El sistema se adapta a medida que tu negocio crece. Más usuarios, más datos, más funcionalidades.' },
 ];
 
 const faqs = [
   {
-    q: '¿Qué diferencia hay entre una landing page y una aplicación web?',
-    a: 'Una landing page es un sitio estático o semi-estático para presentar tu negocio. Una aplicación web tiene lógica de negocio, usuarios, datos en tiempo real y paneles de administración.',
+    q: '¿Cuál es la diferencia entre una landing page y un sistema web?',
+    a: 'Una landing page es una página para presentar tu negocio. Un sistema web tiene panel de administración, usuarios, datos que se guardan y funcionalidades como cobros, reportes o gestión de clientes.',
   },
   {
-    q: '¿Cuánto cuesta desarrollar una aplicación web en Argentina?',
-    a: 'Nuestras aplicaciones web arrancan desde USD 1.200 para un MVP funcional. El precio final depende de la complejidad del backend, cantidad de integraciones y funcionalidades requeridas.',
+    q: '¿Cuánto cuesta desarrollar un sistema web en Argentina?',
+    a: 'Desde USD 1.200 para una primera versión funcional. El precio depende de la cantidad de funcionalidades, integraciones y la complejidad del proyecto.',
   },
   {
-    q: '¿Usan React o Next.js para aplicaciones web complejas?',
-    a: 'Sí. Next.js es ideal tanto para sitios de marketing como para aplicaciones complejas gracias a su arquitectura híbrida. Para el backend usamos Spring Boot con Java cuando se requiere robustez empresarial.',
+    q: '¿Me entregan el sistema funcionando o necesito hacer algo después?',
+    a: 'Lo entregamos funcionando y publicado en internet. También te damos acceso al panel de administración y te explicamos cómo usarlo.',
   },
   {
-    q: '¿Me entregan el código fuente?',
-    a: 'Sí, el código es tuyo al 100%. Te entregamos el repositorio completo con documentación técnica y acceso a todos los servicios configurados.',
+    q: '¿El código es mío?',
+    a: 'Sí, es 100% tuyo. Te entregamos todo listo para que puedas seguir trabajando con nosotros o con quien elijas en el futuro.',
   },
 ];
 
@@ -87,17 +87,14 @@ export default function AplicacionesWebPage() {
             <span>/</span>
             <Link href="/#servicios" className="hover:text-primary transition-colors">Servicios</Link>
             <span>/</span>
-            <span className="text-primary">Aplicaciones Web</span>
+            <span className="text-primary">Sistemas Web</span>
           </nav>
           <div className="max-w-3xl">
-            <span className="mb-4 inline-block font-label-caps text-label-caps uppercase text-primary">
-              Servicio — Aplicaciones Web
-            </span>
             <h1 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-6 md:font-display-lg md:text-display-lg">
-              Aplicaciones web a medida con React y Spring Boot
+              Sistemas web completos para tu negocio
             </h1>
             <p className="mb-8 font-body-md text-body-md text-on-surface-variant max-w-2xl">
-              Plataformas completas con frontend moderno, backend robusto y base de datos. Si tu negocio necesita más que un sitio web, acá construimos la solución técnica exacta que necesitás.
+              Si tu negocio necesita algo más que un sitio web —una plataforma con usuarios, datos, cobros y panel de gestión— construimos la solución exacta que necesitás.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -157,10 +154,10 @@ export default function AplicacionesWebPage() {
         <section className="bg-surface-container-low py-24">
           <div className="mx-auto max-w-container-max px-margin-mobile py-8 text-center md:px-margin-desktop">
             <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-4 md:font-display-lg md:text-display-lg">
-              ¿Tenés una idea que necesita backend?
+              ¿Tenés una idea que necesite un sistema?
             </h2>
             <p className="mx-auto mb-8 max-w-xl font-body-md text-body-md text-on-surface-variant">
-              Contanos qué necesitás construir. Te damos una propuesta técnica concreta en menos de 24 horas.
+              Contanos qué necesitás construir. Te damos una propuesta concreta en menos de 24 horas.
             </p>
             <Link
               href="/#contacto"

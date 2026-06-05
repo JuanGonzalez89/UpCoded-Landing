@@ -1,10 +1,11 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function NavSection() {
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-outline-variant/30 bg-surface/80 transition-all duration-300 backdrop-blur-md">
       <div className="mx-auto flex h-20 max-w-container-max items-center justify-between px-margin-mobile md:px-margin-desktop">
-        <a className="font-display-lg text-headline-md font-bold text-primary flex items-center gap-2 text-glow" href="#">
+        <Link className="font-display-lg text-headline-md font-bold text-primary flex items-center gap-2 text-glow" href="/">
           <Image 
             src="/portfolio/logo_upcoded/Logo_Upcoded_192x192.png" 
             alt="UpCoded Logo" 
@@ -13,7 +14,7 @@ export default function NavSection() {
             className="object-contain"
           />
           UpCoded
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-gutter font-body-md text-body-md md:flex">
           <a className="text-on-surface-variant transition-colors hover:text-primary" href="#servicios">

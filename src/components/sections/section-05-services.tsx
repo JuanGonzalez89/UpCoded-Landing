@@ -35,7 +35,7 @@ export default function ServicesSection() {
           Lo que construimos para vos
         </h2>
         <p className="mx-auto max-w-2xl font-body-md text-body-md text-on-surface-variant">
-          Desde una landing que convierte hasta una aplicación completa con backend. Sin templates. Sin letra chica.
+          Desde una landing que convierte hasta una plataforma completa con panel de gestión. Sin plantillas genéricas. Sin letra chica.
         </p>
       </div>
 

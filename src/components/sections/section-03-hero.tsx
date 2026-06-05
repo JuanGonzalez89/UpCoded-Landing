@@ -12,9 +12,8 @@ export default function HeroSection() {
             Agencia de desarrollo web en Argentina que entrega resultados reales.
           </h1>
 
-          {/* TODO: Subtítulo hero — mantener bajo 2 líneas */}
           <p className="font-body-md text-body-md max-w-xl text-on-surface-variant">
-            Construimos sitios web, aplicaciones y automatizaciones con React, Next.js y Spring Boot. El equipo técnico que tu negocio necesita, sin los precios de una agencia grande.
+            Creamos sitios web, sistemas a medida y automatizaciones para tu negocio. El equipo técnico que necesitás, sin los precios de una agencia grande.
           </p>
 
           <div className="mt-4 flex flex-wrap gap-4">
@@ -29,27 +28,36 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* TODO: Personalizar el objeto JS con proyectos reales si se desea */}
+        {/* Indicador visual de resultados */}
         <div className="relative hidden rounded-lg border border-outline-variant/30 bg-surface-container-high p-6 shadow-2xl md:block">
           <div className="absolute left-0 top-0 flex h-8 w-full items-center gap-2 rounded-t-lg border-b border-outline-variant/30 bg-surface-container-highest px-4">
             <div className="h-3 w-3 rounded-full bg-error" />
             <div className="h-3 w-3 rounded-full bg-primary-container" />
             <div className="h-3 w-3 rounded-full bg-primary" />
           </div>
-          <pre className="mt-8 overflow-hidden font-code-sm text-code-sm text-primary">
-            <code>{`const UpCoded = {
-  stack: ["React", "Next.js", "Spring Boot"],
-  quality: "High-Performance",
-  speed: "Fast",
-  pricing: "Fair",
-  build: function(project) {
-    return \`Deploying ${'{'}project.name{'}'}...\`;
-  }
-};
-
-UpCoded.build({ name: "Tu Próximo Éxito" });
-// Output: Deploying Tu Próximo Éxito 🚀`}</code>
-          </pre>
+          <div className="mt-8 space-y-4">
+            <div className="flex items-center gap-3 rounded bg-surface-container-lowest p-4">
+              <span className="material-symbols-outlined text-2xl text-primary">check_circle</span>
+              <div>
+                <p className="font-body-md font-semibold text-on-surface">Sitio web entregado en 2 semanas</p>
+                <p className="font-code-sm text-code-sm text-on-surface-variant">Landing page optimizada para conversión</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 rounded bg-surface-container-lowest p-4">
+              <span className="material-symbols-outlined text-2xl text-primary">check_circle</span>
+              <div>
+                <p className="font-body-md font-semibold text-on-surface">+40% más consultas desde Google</p>
+                <p className="font-code-sm text-code-sm text-on-surface-variant">SEO técnico y velocidad optimizada</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 rounded bg-surface-container-lowest p-4">
+              <span className="material-symbols-outlined text-2xl text-primary">check_circle</span>
+              <div>
+                <p className="font-body-md font-semibold text-on-surface">Soporte directo con el equipo técnico</p>
+                <p className="font-code-sm text-code-sm text-on-surface-variant">Sin intermediarios, sin vueltas</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

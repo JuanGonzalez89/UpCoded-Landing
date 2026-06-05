@@ -7,14 +7,14 @@ import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
 export const metadata: Metadata = {
   title: 'Landing Pages Profesionales en Argentina | UpCoded',
   description:
-    'Diseño y desarrollo de landing pages profesionales en Argentina. Optimizadas para conversión, velocidad y SEO. Entrega en 2 semanas con React y Next.js.',
+    'Diseño y desarrollo de landing pages profesionales en Argentina. Optimizadas para convertir visitas en clientes. Rápidas, únicas y listas en 2 semanas.',
   alternates: {
     canonical: 'https://upcoded.dev/servicios/landing-pages-profesionales',
   },
   openGraph: {
     title: 'Landing Pages Profesionales en Argentina | UpCoded',
     description:
-      'Landing pages optimizadas para conversión, velocidad y SEO. Entrega en 2 semanas.',
+      'Landing pages diseñadas para convertir visitas en clientes. Entrega en 2 semanas.',
     url: 'https://upcoded.dev/servicios/landing-pages-profesionales',
   },
 };
@@ -24,7 +24,7 @@ const jsonLd = {
   '@type': 'Service',
   name: 'Landing Pages Profesionales',
   description:
-    'Diseño y desarrollo de landing pages profesionales en Argentina, optimizadas para conversión y SEO con React y Next.js.',
+    'Diseño y desarrollo de landing pages profesionales en Argentina, optimizadas para conversión y posicionamiento en Google.',
   provider: {
     '@type': 'Organization',
     name: 'UpCoded',
@@ -43,30 +43,30 @@ const jsonLd = {
 };
 
 const benefits = [
-  { icon: 'trending_up', title: 'Optimizada para conversión', description: 'Estructura, copy y CTAs diseñados para convertir visitantes en leads o clientes.' },
-  { icon: 'bolt', title: 'Carga en menos de 1 segundo', description: 'Next.js + Vercel Edge Network. Puntuación 90+ en Google PageSpeed garantizada.' },
-  { icon: 'palette', title: 'Diseño único a medida', description: 'Sin templates de Wix o WordPress. Tu marca, tu identidad, código limpio.' },
-  { icon: 'phone_iphone', title: 'Mobile-first', description: 'Más del 70% del tráfico viene de mobile. Diseñamos para ese usuario primero.' },
-  { icon: 'search', title: 'SEO desde el día 1', description: 'Schema, meta tags, canonical y sitemap configurados en la entrega.' },
-  { icon: 'support_agent', title: 'Soporte post-lanzamiento', description: 'Te acompañamos después del deploy. Ajustes rápidos incluidos el primer mes.' },
+  { icon: 'trending_up', title: 'Diseñada para vender', description: 'Cada sección, cada botón y cada texto está pensado para que quien entre quiera contactarte.' },
+  { icon: 'bolt', title: 'Carga en un abrir y cerrar de ojos', description: 'Un sitio rápido no es un lujo: es lo que Google premia y los usuarios esperan. El nuestro carga en menos de 1 segundo.' },
+  { icon: 'palette', title: 'Diseño único, hecho a tu medida', description: 'Nada de plantillas genéricas. Tu identidad, tus colores, tu estilo. Código limpio desde cero.' },
+  { icon: 'phone_iphone', title: 'Pensado para celulares primero', description: 'Más del 70% de las visitas llegan desde el teléfono. Diseñamos para que se vea impecable ahí.' },
+  { icon: 'search', title: 'Optimizada para Google desde el día 1', description: 'Configuramos todo para que aparezcas en los resultados de búsqueda. Sin pasos extra después.' },
+  { icon: 'support_agent', title: 'Acompañamiento post-lanzamiento', description: 'Después de publicar, seguimos ahí. Ajustes rápidos incluidos durante el primer mes.' },
 ];
 
 const faqs = [
   {
     q: '¿Cuánto cuesta una landing page profesional en Argentina?',
-    a: 'Nuestras landing pages arrancan desde USD 300. El precio varía según la cantidad de secciones, integraciones (formularios, CRM, analytics) y nivel de diseño requerido.',
+    a: 'Desde USD 300. El precio varía según las secciones, si necesita formularios, integraciones con otras herramientas y el nivel de diseño que quieras.',
   },
   {
-    q: '¿En cuánto tiempo entregan una landing page?',
-    a: 'El tiempo promedio de entrega es de 2 semanas desde el kickoff. Proyectos más complejos con integraciones pueden tomar hasta 3 semanas.',
+    q: '¿En cuánto tiempo la tienen lista?',
+    a: 'En promedio 2 semanas desde que arrancamos. Si es más compleja, hasta 3 semanas. Te damos una fecha clara desde el principio.',
   },
   {
-    q: '¿La landing page va a aparecer en Google?',
-    a: 'Sí. Configuramos SEO técnico completo: metadata, schema JSON-LD, sitemap y velocidad optimizada, que son los factores técnicos más importantes para posicionarse.',
+    q: '¿Mi landing page va a aparecer en Google?',
+    a: 'Sí. Configuramos todo lo necesario para que Google la encuentre y la muestre: estructura, etiquetas, velocidad y contenido optimizado.',
   },
   {
-    q: '¿Pueden integrar el formulario con mi CRM o WhatsApp?',
-    a: 'Sí, integramos formularios con Resend, HubSpot, Notion, Google Sheets o redirigimos directamente a WhatsApp Business según lo que necesites.',
+    q: '¿Pueden conectar el formulario con mi WhatsApp o mail?',
+    a: 'Sí, podemos enviar los datos del formulario directo a tu WhatsApp, a tu correo, a un Google Sheets o al sistema que uses. Lo configuramos a tu medida.',
   },
 ];
 
@@ -90,14 +90,11 @@ export default function LandingPagesProfesionalesPage() {
             <span className="text-primary">Landing Pages</span>
           </nav>
           <div className="max-w-3xl">
-            <span className="mb-4 inline-block font-label-caps text-label-caps uppercase text-primary">
-              Servicio — Landing Pages
-            </span>
             <h1 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-6 md:font-display-lg md:text-display-lg">
               Landing pages que convierten visitas en clientes
             </h1>
             <p className="mb-8 font-body-md text-body-md text-on-surface-variant max-w-2xl">
-              Diseñamos y desarrollamos landing pages profesionales en Argentina con React y Next.js. Rápidas, únicas y optimizadas para que Google las encuentre y los usuarios actúen.
+              Una landing page bien hecha es la diferencia entre un visitante que se va y uno que te escribe. Las nuestras son rápidas, únicas y optimizadas para que Google las encuentre.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -124,7 +121,7 @@ export default function LandingPagesProfesionalesPage() {
             <p className="font-display-lg text-display-lg text-primary">
               Desde USD 300
             </p>
-            <p className="mt-2 font-body-md text-on-surface-variant">Entrega promedio: 2 semanas — Incluye SEO técnico</p>
+            <p className="mt-2 font-body-md text-on-surface-variant">Entrega promedio: 2 semanas — Incluye optimización para Google</p>
           </div>
         </section>
 
