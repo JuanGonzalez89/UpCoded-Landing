@@ -28,13 +28,24 @@ export async function generateMetadata({ params }: PortfolioPageProps): Promise<
   if (!project) {
     return {
       title: 'Portfolio | UpCoded',
-      description: 'Proyecto no encontrado.'
+      description: 'Proyecto no encontrado.',
     };
   }
 
   return {
-    title: `${project.title} | Portfolio UpCoded`,
-    description: project.summary
+    title: `${project.title} — Caso de Estudio | UpCoded`,
+    description: `${project.summary} Desarrollado por UpCoded, agencia de desarrollo web en Argentina.`,
+    alternates: {
+      canonical: `https://upcoded.dev/portfolio/${project.slug}`,
+    },
+    openGraph: {
+      title: `${project.title} | UpCoded Portfolio`,
+      description: project.summary,
+      url: `https://upcoded.dev/portfolio/${project.slug}`,
+      images: project.previewImage
+        ? [{ url: project.previewImage, width: 1200, height: 630 }]
+        : [],
+    },
   };
 }
 
@@ -45,8 +56,26 @@ export default function PortfolioCaseStudyPage({ params }: PortfolioPageProps) {
     notFound();
   }
 
+  const caseStudySchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: project.title,
+    description: project.summary,
+    creator: {
+      '@type': 'Organization',
+      name: 'UpCoded',
+      url: 'https://upcoded.dev',
+    },
+    url: `https://upcoded.dev/portfolio/${project.slug}`,
+    ...(project.liveUrl && { sameAs: project.liveUrl }),
+  };
+
   return (
     <main className="bg-background py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }}
+      />
       <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
         <Link className="mb-10 inline-flex font-label-caps text-label-caps uppercase text-primary transition-colors hover:text-primary-fixed" href="/#portfolio">
           ← Volver al portfolio

@@ -3,3 +3,5 @@ node_modules/
 .env*
 coverage/
 *.log
+.agents/
+Seo phase1 upcoded.md

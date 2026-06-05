@@ -9,12 +9,12 @@ export default function HeroSection() {
         <div className="flex flex-col gap-6">
           {/* TODO: H1 — ajustar si cambian el copy principal */}
           <h1 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow md:font-display-lg md:text-display-lg">
-            Tu negocio merece un equipo técnico de verdad.
+            Agencia de desarrollo web en Argentina que entrega resultados reales.
           </h1>
 
           {/* TODO: Subtítulo hero — mantener bajo 2 líneas */}
           <p className="font-body-md text-body-md max-w-xl text-on-surface-variant">
-            Construimos sitios web, aplicaciones y automatizaciones con React, Next.js y Spring Boot. Rápido, limpio y sin los precios de una agencia grande.
+            Construimos sitios web, aplicaciones y automatizaciones con React, Next.js y Spring Boot. El equipo técnico que tu negocio necesita, sin los precios de una agencia grande.
           </p>
 
           <div className="mt-4 flex flex-wrap gap-4">
