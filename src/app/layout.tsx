@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
+// @ts-ignore: global CSS is handled by Next.js
 import './globals.css';
 
 export const metadata: Metadata = {
