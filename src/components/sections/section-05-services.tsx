@@ -1,24 +1,30 @@
+import Link from 'next/link';
+
 const services = [
   {
     title: 'Sitios y Landings',
     icon: 'web',
-    description: 'Páginas ultrarrápidas optimizadas para conversión. Diseño único, nada de WordPress aburridos.'
+    description: 'Páginas ultrarrápidas optimizadas para conversión. Diseño único, nada de WordPress aburridos.',
+    href: '/servicios/landing-pages-profesionales',
   },
   {
     title: 'Aplicaciones Web',
     icon: 'apps',
-    description: 'Plataformas completas con lógica compleja, bases de datos y paneles de administración a medida.'
+    description: 'Plataformas completas con lógica compleja, bases de datos y paneles de administración a medida.',
+    href: '/servicios/aplicaciones-web-a-medida',
   },
   {
     title: 'Automatizaciones',
     icon: 'autorenew',
-    description: 'Conectamos tus herramientas. Menos trabajo manual, más tiempo para hacer crecer tu negocio.'
+    description: 'Conectamos tus herramientas. Menos trabajo manual, más tiempo para hacer crecer tu negocio.',
+    href: '/servicios/automatizaciones',
   },
   {
     title: 'Soporte y SEO',
     icon: 'support_agent',
-    description: 'Mantenimiento técnico continuo y optimización para que te encuentren primero en Google.'
-  }
+    description: 'Mantenimiento técnico continuo y optimización para que te encuentren primero en Google.',
+    href: '/servicios/desarrollo-web-argentina',
+  },
 ] as const;
 
 export default function ServicesSection() {
@@ -41,9 +47,9 @@ export default function ServicesSection() {
             <p className="mb-6 flex-grow font-body-md text-on-surface-variant">{service.description}</p>
             {/* TODO: Actualizar los href de "Saber más" cuando haya páginas de detalle */}
             {/* TODO: Cambiar íconos si se reemplaza Material Symbols por otra librería */}
-            <a className="mt-auto flex items-center gap-2 font-label-caps text-label-caps uppercase text-primary transition-colors hover:text-primary-fixed" href="#">
+            <Link className="mt-auto flex items-center gap-2 font-label-caps text-label-caps uppercase text-primary transition-colors hover:text-primary-fixed" href={service.href}>
               Saber más <span className="material-symbols-outlined text-sm">arrow_forward</span>
-            </a>
+            </Link>
           </div>
         ))}
       </div>
