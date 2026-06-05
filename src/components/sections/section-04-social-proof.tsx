@@ -9,7 +9,7 @@ export default function SocialProofSection() {
         <div className="flex flex-wrap items-center justify-center gap-6 font-body-md text-on-surface md:gap-12">
           {/* TODO: Actualizar estas métricas con datos reales */}
           <span className="flex items-center gap-2"><span className="text-primary text-xl">⚡</span> +10 proyectos entregados</span>
-          <span className="flex items-center gap-2"><span className="text-primary text-xl">🌎</span> Clientes en Argentina, España</span>
+          <span className="flex items-center gap-2"><span className="text-primary text-xl">🌎</span> Clientes en Argentina y España</span>
           <span className="flex items-center gap-2"><span className="text-primary text-xl">⏱</span> Tiempo promedio de entrega: 3 semanas</span>
         </div>
       </div>

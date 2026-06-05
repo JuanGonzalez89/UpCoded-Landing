@@ -1,7 +1,12 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function NavSection() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-outline-variant/30 bg-surface/80 transition-all duration-300 backdrop-blur-md">
       <div className="mx-auto flex h-20 max-w-container-max items-center justify-between px-margin-mobile md:px-margin-desktop">
@@ -29,7 +34,6 @@ export default function NavSection() {
           <a className="text-on-surface-variant transition-colors hover:text-primary" href="#precios">
             Precios
           </a>
-          {/* CTA nav */}
           <a
             className="rounded bg-primary px-6 py-2 font-label-caps text-label-caps uppercase text-on-primary transition-all duration-200 hover:scale-95"
             href="#contacto"
@@ -38,11 +42,32 @@ export default function NavSection() {
           </a>
         </div>
 
-        {/* Hamburger mobile (TODO: agregar JS toggle para menú móvil) */}
-        <button className="text-primary md:hidden" type="button" aria-label="Abrir menú">
-          <span className="material-symbols-outlined">menu</span>
+        <button className="text-primary md:hidden" type="button" aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'} onClick={() => setMenuOpen(!menuOpen)}>
+          <span className="material-symbols-outlined">{menuOpen ? 'close' : 'menu'}</span>
         </button>
       </div>
+
+      {menuOpen && (
+        <div className="border-t border-outline-variant/30 bg-surface px-margin-mobile pb-6 pt-4 md:hidden">
+          <div className="flex flex-col gap-4">
+            <a className="font-body-md text-on-surface-variant transition-colors hover:text-primary" href="#servicios" onClick={() => setMenuOpen(false)}>
+              Servicios
+            </a>
+            <a className="font-body-md text-on-surface-variant transition-colors hover:text-primary" href="#proceso" onClick={() => setMenuOpen(false)}>
+              Proceso
+            </a>
+            <a className="font-body-md text-on-surface-variant transition-colors hover:text-primary" href="#portfolio" onClick={() => setMenuOpen(false)}>
+              Portfolio
+            </a>
+            <a className="font-body-md text-on-surface-variant transition-colors hover:text-primary" href="#precios" onClick={() => setMenuOpen(false)}>
+              Precios
+            </a>
+            <a className="mt-2 block rounded bg-primary px-6 py-3 text-center font-label-caps text-label-caps uppercase text-on-primary transition-all duration-200" href="#contacto" onClick={() => setMenuOpen(false)}>
+              Hablemos
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

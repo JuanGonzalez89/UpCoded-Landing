@@ -8,14 +8,14 @@ import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
 export const metadata: Metadata = {
   title: 'Blog de Desarrollo Web en Argentina | UpCoded',
   description:
-    'Artículos sobre desarrollo web, Next.js, React y estrategia digital para empresas argentinas. Tips, costos, comparativas y guías prácticas.',
+    'Artículos sobre desarrollo web y estrategia digital para empresas argentinas. Tips, costos, comparativas y guías prácticas.',
   alternates: {
     canonical: 'https://upcoded.dev/blog',
   },
   openGraph: {
     title: 'Blog de Desarrollo Web en Argentina | UpCoded',
     description:
-      'Artículos sobre desarrollo web, Next.js, React y estrategia digital para empresas argentinas.',
+      'Artículos sobre desarrollo web y estrategia digital para empresas argentinas.',
     url: 'https://upcoded.dev/blog',
   },
 };

@@ -125,7 +125,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
               ¿Necesitás un equipo de desarrollo web en Argentina?
             </h2>
             <p className="mb-6 font-body-md text-on-surface-variant">
-              En UpCoded construimos sitios, apps y automatizaciones con React y Next.js. Contanos tu proyecto.
+              En UpCoded construimos sitios, apps y automatizaciones con lo último en tecnología web. Contanos tu proyecto.
             </p>
             <Link
               href="/#contacto"

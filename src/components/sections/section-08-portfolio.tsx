@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { FadeInView } from '@/components/ui/fade-in-view';
 
 import { projects } from '@/data/projects';
 
@@ -14,8 +15,8 @@ export default function PortfolioSection() {
         </div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {projects.map((project) => (
-            <div key={project.slug} className="group relative overflow-hidden rounded-lg border border-outline-variant/30 bg-surface">
+          {projects.map((project, i) => (
+            <FadeInView key={project.slug} delay={i * 80} className="group relative overflow-hidden rounded-lg border border-outline-variant/30 bg-surface">
               <div className="relative overflow-hidden border-b border-outline-variant/30 bg-surface-container-high">
                 {project.previewImage || project.images[0] ? (
                   <div className="relative aspect-video">
@@ -55,7 +56,7 @@ export default function PortfolioSection() {
                 </div>
                 <p className="font-body-md text-on-surface-variant">{project.result}</p>
               </div>
-            </div>
+            </FadeInView>
           ))}
         </div>
       </div>

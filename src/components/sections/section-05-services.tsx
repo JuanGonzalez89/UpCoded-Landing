@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FadeInView } from '@/components/ui/fade-in-view';
 
 const services = [
   {
@@ -10,7 +11,7 @@ const services = [
   {
     title: 'Aplicaciones Web',
     icon: 'apps',
-    description: 'Plataformas completas con lógica compleja, bases de datos y paneles de administración a medida.',
+    description: 'Sistemas completos que manejan usuarios, datos y procesos complejos para tu negocio.',
     href: '/servicios/aplicaciones-web-a-medida',
   },
   {
@@ -40,8 +41,8 @@ export default function ServicesSection() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {services.map((service) => (
-          <div key={service.title} className="glow-hover flex h-full flex-col rounded-lg border border-outline-variant/30 bg-surface-container p-6 transition-colors hover:border-primary/50">
+        {services.map((service, i) => (
+          <FadeInView key={service.title} delay={i * 80} className="glow-hover flex h-full flex-col rounded-lg border border-outline-variant/30 bg-surface-container p-6 transition-colors hover:border-primary/50">
             <span className="material-symbols-outlined mb-4 text-4xl text-primary">{service.icon}</span>
             <h3 className="font-headline-md text-headline-md mb-2 text-on-surface">{service.title}</h3>
             <p className="mb-6 flex-grow font-body-md text-on-surface-variant">{service.description}</p>
@@ -50,7 +51,7 @@ export default function ServicesSection() {
             <Link className="mt-auto flex items-center gap-2 font-label-caps text-label-caps uppercase text-primary transition-colors hover:text-primary-fixed" href={service.href}>
               Saber más <span className="material-symbols-outlined text-sm">arrow_forward</span>
             </Link>
-          </div>
+          </FadeInView>
         ))}
       </div>
     </section>

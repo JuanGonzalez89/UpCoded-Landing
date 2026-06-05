@@ -1,52 +1,89 @@
-"use client"
+'use client';
 
-import { TestimonialCarousel } from "@/components/ui/testimonial"
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { Card, CardContent } from '@/components/ui/card';
+import { Marquee } from '@/components/ui/marquee';
 
-const TESTIMONIALS = [
-  {
-    id: 1,
-    name: "Martín C.",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-    description:
-      "Necesitábamos una solución robusta y rápida. UpCoded entregó a tiempo y la calidad del código nos permitió escalar sin problemas.",
-  },
-  {
-    id: 2,
-    name: "Gonzalo Ferragina",
-    description:
-      "Llevó adelante la creación de la página de onboarding con gran autonomía, manteniendo al equipo informado sobre los avances y coordinando con distintas áreas para lograr un resultado sólido, claro y alineado con el ritmo de UpCoded.",
-  },
-  {
-    id: 3,
-    name: "Diego M.",
-    avatar: "https://randomuser.me/api/portraits/men/15.jpg",
-    description:
-      "Lanzamos en 2 semanas. El sitio carga increíble y las consultas por WhatsApp se triplicaron desde el día uno.",
-  },
-]
+const t = [
+  { name: 'Martín C.', avatar: 'https://randomuser.me/api/portraits/men/32.jpg', body: 'Necesitábamos una solución robusta y rápida. UpCoded entregó a tiempo y la calidad nos permitió escalar sin problemas.' },
+  { name: 'Gonzalo Ferragina', avatar: 'https://randomuser.me/api/portraits/men/44.jpg', body: 'Llevó adelante la creación de la página de onboarding con gran autonomía, manteniendo al equipo informado y coordinando con distintas áreas para lograr un resultado sólido.' },
+  { name: 'Diego M.', avatar: 'https://randomuser.me/api/portraits/men/15.jpg', body: 'Lanzamos en 2 semanas. El sitio carga increíble y las consultas por WhatsApp se triplicaron desde el día uno.' },
+  { name: 'Sofía L.', avatar: 'https://randomuser.me/api/portraits/women/33.jpg', body: 'Mi estudio de diseño necesitaba una web rápida y profesional. Quedé fascinada con la velocidad de carga y lo fácil que es actualizarla.' },
+  { name: 'Federico R.', avatar: 'https://randomuser.me/api/portraits/men/52.jpg', body: 'Automatizamos todo el sistema de pedidos de mi restaurante. Ahora los pedidos llegan solos al celular, sin llamadas perdidas.' },
+  { name: 'Carolina M.', avatar: 'https://randomuser.me/api/portraits/women/47.jpg', body: 'Digitalicé mi estudio contable con ellos. Mis clientes pueden subir documentos desde la web y yo los recibo ordenados. Un antes y un después.' },
+  { name: 'Agustín P.', avatar: 'https://randomuser.me/api/portraits/men/75.jpg', body: 'Tenía un taller mecánico sin página web. En dos semanas teníamos landing, WhatsApp integrado y estamos llenos de turnos.' },
+  { name: 'Valentina G.', avatar: 'https://randomuser.me/api/portraits/women/63.jpg', body: 'Armaron la plataforma de inscripción para mi jardín de infantes. Las familias se anotan solas desde casa, me ahorré horas de planillas.' },
+  { name: 'Hernán D.', avatar: 'https://randomuser.me/api/portraits/men/86.jpg', body: 'Necesitaba una web profesional para mi estudio jurídico con blog de artículos. Quedó impecable y aparece primero en Google.' },
+] as const;
+
+type Testimonial = (typeof t)[number];
+
+const orders: number[][] = [
+  [0, 1, 2, 3, 4, 5, 6, 7, 8],
+  [3, 7, 1, 5, 8, 2, 0, 6, 4],
+  [6, 2, 8, 4, 0, 7, 3, 5, 1],
+  [1, 5, 7, 2, 6, 3, 8, 4, 0],
+  [8, 4, 0, 6, 3, 1, 5, 7, 2],
+];
+
+function TestimonialCard({ name, avatar, body }: Testimonial) {
+  return (
+    <Card className="w-64">
+      <CardContent>
+        <div className="flex items-center gap-2.5">
+          <Avatar>
+            <AvatarImage src={avatar} alt={name} />
+            <AvatarFallback>{name[0]}</AvatarFallback>
+          </Avatar>
+          <p className="text-sm font-semibold text-on-surface">{name}</p>
+        </div>
+        <blockquote className="mt-3 text-sm text-on-surface-variant leading-relaxed">{body}</blockquote>
+      </CardContent>
+    </Card>
+  );
+}
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-24 px-margin-mobile md:px-margin-desktop">
-      <div className="mx-auto grid max-w-container-max items-center gap-14 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-        <div className="text-center lg:text-left">
-          <h2 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary text-glow mb-4">
+    <section className="relative overflow-hidden py-24" id="testimonios">
+      <div className="mx-auto mb-16 max-w-container-max px-margin-mobile text-center md:px-margin-desktop">
+        <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-4 md:font-display-lg md:text-display-lg">
           Lo que dicen los que ya se movieron
-          </h2>
-          <p className="mx-auto max-w-xl font-body-md text-body-md text-on-surface-variant lg:mx-0">
-            Arrastrá las cards o usá las flechas para ver más. El espacio libre al costado se aprovecha para darle más aire visual al testimonio destacado.
-          </p>
+        </h2>
+        <p className="mx-auto max-w-2xl font-body-md text-body-md text-on-surface-variant">
+          Clientes reales, resultados concretos. Pasá el mouse sobre las cards para pausar.
+        </p>
+      </div>
+
+      <div className="relative flex h-[520px] w-full flex-row items-center justify-center overflow-hidden [perspective:400px]">
+        <div
+          className="flex flex-row items-center gap-5"
+          style={{
+            transform:
+              'translateY(0px) translateZ(-60px) rotateX(12deg) rotateY(-4deg) rotateZ(10deg)',
+          }}
+        >
+          {orders.map((order, colIndex) => (
+            <Marquee
+              key={colIndex}
+              vertical
+              pauseOnHover
+              repeat={3}
+              reverse={colIndex % 2 === 1}
+              className="[--duration:40s]"
+            >
+              {order.map((i) => (
+                <TestimonialCard key={t[i].name} {...t[i]} />
+              ))}
+            </Marquee>
+          ))}
         </div>
 
-        <div className="lg:pl-4 xl:pl-8">
-          <TestimonialCarousel
-            testimonials={TESTIMONIALS}
-            showArrows={true}
-            showDots={true}
-            className="mx-auto max-w-2xl"
-          />
-        </div>
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-1/6 bg-gradient-to-b from-background" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/6 bg-gradient-to-t from-background" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-[15%] bg-gradient-to-r from-background" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-[15%] bg-gradient-to-l from-background" />
       </div>
     </section>
-  )
+  );
 }

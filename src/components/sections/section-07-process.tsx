@@ -1,3 +1,5 @@
+import { FadeInView } from '@/components/ui/fade-in-view';
+
 const steps = [
   {
     title: 'Discovery',
@@ -5,7 +7,7 @@ const steps = [
   },
   {
     title: 'Propuesta',
-    description: 'Presentamos la solución, el stack técnico y el cronograma cerrado.'
+    description: 'Presentamos la solución, la tecnología a usar y el cronograma cerrado.'
   },
   {
     title: 'Desarrollo',
@@ -30,11 +32,11 @@ export default function ProcessSection() {
         <div className="absolute top-1/2 left-0 z-0 hidden h-px w-full -translate-y-1/2 bg-outline-variant/50 md:block" />
 
         {steps.map((step, index) => (
-          <div key={step.title} className="relative z-10 rounded-lg border border-outline-variant/30 bg-surface p-6 text-center">
+          <FadeInView key={step.title} delay={index * 80} className="relative z-10 rounded-lg border border-outline-variant/30 bg-surface p-6 text-center">
             <div className="font-code-sm text-code-sm mb-2 text-primary">0{index + 1}</div>
             <h3 className="font-headline-md text-headline-md mb-2 text-on-surface">{step.title}</h3>
             <p className="font-body-md text-sm text-on-surface-variant">{step.description}</p>
-          </div>
+          </FadeInView>
         ))}
       </div>
     </section>

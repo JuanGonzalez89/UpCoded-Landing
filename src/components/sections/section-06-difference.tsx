@@ -1,3 +1,5 @@
+import { FadeInView } from '@/components/ui/fade-in-view';
+
 const differences = [
   {
     title: 'Entrega en semanas',
@@ -5,9 +7,9 @@ const differences = [
     description: 'No meses. Optimizamos nuestro proceso para que tu producto esté en línea cuando lo necesitás.'
   },
   {
-    title: 'Stack moderno y escalable',
+    title: 'Tecnología que crece con vos',
     icon: 'layers',
-    description: 'Usamos las mismas tecnologías que las grandes empresas para asegurar rendimiento y futuro.'
+    description: 'Usamos las mismas herramientas que las grandes empresas para que tu sitio sea rápido, seguro y preparado para el futuro.'
   },
   {
     title: 'Trato directo con los devs',
@@ -29,14 +31,14 @@ export default function DifferenceSection() {
         </div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {differences.map((difference) => (
-            <div key={difference.title} className="text-center">
+          {differences.map((difference, i) => (
+            <FadeInView key={difference.title} delay={i * 80} className="text-center">
               <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-primary">
                 <span className="material-symbols-outlined text-3xl">{difference.icon}</span>
               </div>
               <h3 className="font-headline-md text-headline-md mb-2 text-on-surface">{difference.title}</h3>
               <p className="font-body-md text-on-surface-variant">{difference.description}</p>
-            </div>
+            </FadeInView>
           ))}
         </div>
       </div>

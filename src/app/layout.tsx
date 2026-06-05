@@ -7,7 +7,7 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Agencia de Desarrollo Web en Argentina | UpCoded',
   description:
-    'Agencia de desarrollo web en Argentina. Construimos sitios, apps y automatizaciones a medida con React, Next.js y Spring Boot. Rápido, limpio y escalable.',
+    'Agencia de desarrollo web en Argentina. Creamos sitios, apps y automatizaciones a medida. Modernos, rápidos y pensados para tu negocio.',
   keywords: [
     'agencia desarrollo web argentina',
     'desarrollo web react nextjs',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Agencia de Desarrollo Web en Argentina | UpCoded',
     description:
-      'Construimos sitios, apps y automatizaciones a medida con React, Next.js y Spring Boot. Rápido, limpio y escalable.',
+      'Creamos sitios, apps y automatizaciones a medida. Modernos, rápidos y pensados para tu negocio.',
     url: 'https://upcoded.dev',
     siteName: 'UpCoded',
     images: [
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Agencia de Desarrollo Web en Argentina | UpCoded',
     description:
-      'Construimos sitios, apps y automatizaciones a medida con React, Next.js y Spring Boot.',
+      'Creamos sitios, apps y automatizaciones a medida.',
     images: ['/og-image.png'],
   },
   robots: {
@@ -73,7 +73,7 @@ const jsonLd = {
         height: 512,
       },
       description:
-        'Agencia de desarrollo web en Argentina especializada en React, Next.js y Spring Boot. Construimos sitios, apps y automatizaciones a medida.',
+        'Agencia de desarrollo web en Argentina. Creamos sitios, apps y automatizaciones a medida para tu negocio.',
       foundingDate: '2024',
       address: {
         '@type': 'PostalAddress',
@@ -102,7 +102,7 @@ const jsonLd = {
               '@type': 'Service',
               name: 'Sitios Web y Landing Pages',
               description:
-                'Páginas ultrarrápidas optimizadas para conversión. Diseño único con React y Next.js.',
+                'Páginas ultrarrápidas optimizadas para conversión. Diseño único con tecnología de primer nivel.',
             },
             priceSpecification: {
               '@type': 'PriceSpecification',
@@ -130,7 +130,7 @@ const jsonLd = {
               '@type': 'Service',
               name: 'Automatizaciones',
               description:
-                'Integración de APIs, workflows automatizados y webhooks personalizados.',
+                'Conexión entre tus herramientas, procesos automáticos y tareas programadas.',
             },
             priceSpecification: {
               '@type': 'PriceSpecification',
@@ -205,7 +205,10 @@ export default function RootLayout({
           {children}
           <WhatsAppFloat />
         </ThemeProvider>
-      </body>
+      {/* impeccable-live-start */}
+<script src="http://localhost:8400/live.js"></script>
+{/* impeccable-live-end */}
+</body>
     </html>
   );
 }

@@ -1,3 +1,6 @@
+import { FadeInView } from '@/components/ui/fade-in-view';
+import ShaderBackground from '@/components/ui/shader-background';
+
 const plans = [
   {
     title: 'Presencia Web',
@@ -9,20 +12,21 @@ const plans = [
     title: 'Producto Digital',
     price: 'USD 1.200',
     featured: true,
-    features: ['App Web completa', 'Base de datos & API', 'Autenticación de usuarios', 'Panel de administración']
+    features: ['Plataforma web completa', 'Datos guardados de forma segura', 'Acceso con usuario y contraseña', 'Panel para gestionar tu negocio']
   },
   {
     title: 'Automatización',
     price: 'USD 400',
     featured: false,
-    features: ['Integración de APIs', 'Workflows automatizados', 'Webhooks personalizados', 'Monitoreo básico']
+    features: ['Conexión entre tus herramientas', 'Tareas que se hacen solas', 'Notificaciones automáticas', 'Supervisión de funcionamiento']
   }
 ] as const;
 
 export default function PricingSection() {
   return (
-    <section className="bg-surface-container-low py-24" id="precios">
-      <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
+    <section className="relative overflow-hidden bg-surface-container-low py-24" id="precios">
+      <ShaderBackground />
+      <div className="relative z-10 mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
         <div className="mb-16 text-center">
           <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-4 md:font-display-lg md:text-display-lg">
             Transparencia desde el día 1
@@ -32,11 +36,12 @@ export default function PricingSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {plans.map((plan) => (
-            <div
+        <div className="relative grid grid-cols-1 gap-8 md:grid-cols-3">
+          {plans.map((plan, i) => (
+            <FadeInView
               key={plan.title}
-              className={plan.featured ? 'relative flex flex-col rounded-lg border border-primary bg-surface-container-highest p-8 shadow-[0_0_20px_rgba(0,217,255,0.1)]' : 'flex flex-col rounded-lg border border-outline-variant/30 bg-surface p-8 transition-colors hover:border-primary/50'}
+              delay={i * 80}
+              className={plan.featured ? 'relative z-10 flex flex-col rounded-lg border border-primary bg-surface-container-highest p-8 shadow-[0_0_20px_rgba(0,217,255,0.1)]' : 'relative z-10 flex flex-col rounded-lg border border-outline-variant/30 bg-surface p-8 transition-colors hover:border-primary/50'}
             >
               {plan.featured ? (
                 <div className="absolute top-0 right-0 rounded-bl-lg rounded-tr-lg bg-primary px-3 py-1 text-xs font-bold font-label-caps text-on-primary">
@@ -60,7 +65,7 @@ export default function PricingSection() {
               <a className={plan.featured ? 'block rounded bg-primary px-6 py-3 text-center font-label-caps text-label-caps uppercase text-on-primary transition-colors hover:bg-primary-fixed-dim' : 'block rounded border border-primary px-6 py-3 text-center font-label-caps text-label-caps uppercase text-primary transition-colors hover:bg-primary/10'} href="#contacto">
                 Elegir Plan
               </a>
-            </div>
+            </FadeInView>
           ))}
         </div>
       </div>

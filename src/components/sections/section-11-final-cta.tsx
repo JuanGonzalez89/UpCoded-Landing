@@ -143,7 +143,7 @@ export default function CTASection() {
                 </div>
 
                 {status === 'error' && (
-                  <p className="text-sm text-red-400 font-label-caps">
+                  <p className="text-sm text-error font-label-caps">
                     Completá todos los campos e intentá de nuevo.
                   </p>
                 )}
