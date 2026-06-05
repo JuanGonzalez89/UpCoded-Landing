@@ -5,9 +5,9 @@ import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'UpCoded | Agencia de Desarrollo Web — React, Next.js y Spring Boot',
-  description:
-    'Agencia de desarrollo web en Argentina. Construimos sitios, apps y automatizaciones con React, Next.js y Spring Boot. Rápido, limpio y sin los precios de una agencia grande.',
+    title: 'UpCoded | Desarrollo Web con React, Next.js y Spring Boot',
+    description:
+      'Agencia de desarrollo web en Argentina. Construimos sitios, apps y automatizaciones a medida con React, Next.js y Spring Boot. Rápido, limpio y escalable.',
   keywords: [
     'agencia desarrollo web argentina',
     'desarrollo web react nextjs',
@@ -17,19 +17,19 @@ export const metadata: Metadata = {
     'upcoded',
   ],
   metadataBase: new URL('https://upcoded.dev'),
-  openGraph: {
-    title: 'UpCoded | Agencia de Desarrollo Web',
+    openGraph: {
+    title: 'UpCoded | Desarrollo Web con React, Next.js y Spring Boot',
     description:
-      'Sitios, apps y automatizaciones con React y Next.js. Entrega real, precio justo.',
+      'Agencia de desarrollo web en Argentina. Construimos sitios, apps y automatizaciones a medida con React, Next.js y Spring Boot. Rápido, limpio y escalable.',
     url: 'https://upcoded.dev',
     siteName: 'UpCoded',
     locale: 'es_AR',
     type: 'website',
   },
-  twitter: {
+    twitter: {
     card: 'summary_large_image',
-    title: 'UpCoded | Agencia de Desarrollo Web',
-    description: 'Sitios, apps y automatizaciones con React y Next.js.',
+    title: 'UpCoded | Desarrollo Web con React, Next.js y Spring Boot',
+    description: 'Agencia de desarrollo web en Argentina. Construimos sitios, apps y automatizaciones a medida con React, Next.js y Spring Boot. Rápido, limpio y escalable.',
   },
   robots: {
     index: true,
