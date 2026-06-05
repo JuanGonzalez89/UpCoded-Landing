@@ -23,6 +23,14 @@ export const metadata: Metadata = {
       'Agencia de desarrollo web en Argentina. Construimos sitios, apps y automatizaciones a medida con React, Next.js y Spring Boot. Rápido, limpio y escalable.',
     url: 'https://upcoded.dev',
     siteName: 'UpCoded',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'UpCoded - Agencia de Desarrollo Web',
+      },
+    ],
     locale: 'es_AR',
     type: 'website',
   },
@@ -30,6 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'UpCoded | Desarrollo Web con React, Next.js y Spring Boot',
     description: 'Agencia de desarrollo web en Argentina. Construimos sitios, apps y automatizaciones a medida con React, Next.js y Spring Boot. Rápido, limpio y escalable.',
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
