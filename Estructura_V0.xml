@@ -1,0 +1,1852 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.gitignore
+next-env.d.ts
+next.config.mjs
+package.json
+postcss.config.mjs
+public/og-image.png
+public/portfolio/ecommerce-mvp/screenshot-1.png
+public/portfolio/ecommerce-mvp/screenshot-2.png
+public/portfolio/ecommerce-mvp/screenshot-3.png
+public/portfolio/ecommerce-mvp/screenshot-4.png
+public/portfolio/Havas_Argentina/Havas_Argentina_Preview.jpg
+public/portfolio/Havas_Argentina/screenshot-1.jpg
+public/portfolio/Havas_Argentina/screenshot-2.jpg
+public/portfolio/Havas_Argentina/screenshot-3.jpg
+public/portfolio/Havas_Argentina/screenshot-4.jpg
+public/portfolio/InvertIA/InvertIA_Preview.png
+public/portfolio/InvertIA/Screenshot_1.png
+public/portfolio/InvertIA/screenshot_2.jpg
+public/portfolio/InvertIA/screenshot_3.jpg
+public/portfolio/InvertIA/screenshot_4.jpg
+public/portfolio/JaraYAsociados/JaraYAsociados_Preview.png
+public/portfolio/JaraYAsociados/Screenshot_1.png
+public/portfolio/JaraYAsociados/Screenshot_2.png
+public/portfolio/JaraYAsociados/Screenshot_3.png
+public/portfolio/JaraYAsociados/Screenshot_4.png
+public/portfolio/logo_upcoded/Logo_Upcoded_192x192.png
+public/portfolio/logo_upcoded/Logo_Upcoded_512x512.png
+public/portfolio/Patagonia_Motors/Preview_Patagonia_Motors.png
+public/portfolio/Patagonia_Motors/Screenshot_1.png
+public/portfolio/Patagonia_Motors/Screenshot_2.png
+public/portfolio/Patagonia_Motors/Screenshot_3.png
+public/portfolio/Patagonia_Motors/Screenshot_4.png
+src/app/api/contact/route.ts
+src/app/globals.css
+src/app/icon.png
+src/app/layout.tsx
+src/app/page.tsx
+src/app/portfolio/[slug]/page.tsx
+src/app/robots.ts
+src/app/sitemap.ts
+src/components/sections/section-02-nav.tsx
+src/components/sections/section-03-hero.tsx
+src/components/sections/section-04-social-proof.tsx
+src/components/sections/section-05-services.tsx
+src/components/sections/section-06-difference.tsx
+src/components/sections/section-07-process.tsx
+src/components/sections/section-08-portfolio.tsx
+src/components/sections/section-09-testimonials.tsx
+src/components/sections/section-10-pricing.tsx
+src/components/sections/section-11-final-cta.tsx
+src/components/sections/section-12-footer.tsx
+src/components/ui/dotted-surface.tsx
+src/components/ui/testimonial.tsx
+src/components/ui/whatsapp-float.tsx
+src/data/projects.ts
+src/lib/utils.ts
+tailwind.config.ts
+tsconfig.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".gitignore">
+.next/
+node_modules/
+.env*
+coverage/
+*.log
+</file>
+
+<file path="next-env.d.ts">
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/app/building-your-application/configuring/typescript for more information.
+</file>
+
+<file path="next.config.mjs">
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true
+};
+
+export default nextConfig;
+</file>
+
+<file path="postcss.config.mjs">
+export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {}
+  }
+};
+</file>
+
+<file path="src/app/api/contact/route.ts">
+import { Resend } from 'resend'
+import { NextRequest, NextResponse } from 'next/server'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
+
+export async function POST(req: NextRequest) {
+  try {
+    const { name, email, message } = await req.json()
+
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { error: 'Todos los campos son requeridos.' },
+        { status: 400 }
+      )
+    }
+
+    const { data, error } = await resend.emails.send({
+      from: 'UpCoded Contacto <onboarding@resend.dev>',
+      to: 'upcodednow@gmail.com',
+      replyTo: email,
+      subject: `Nuevo contacto de ${name} — UpCoded`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background: #131314; padding: 32px; border-radius: 8px; border: 1px solid #3c494d;">
+            <h2 style="color: #00d9ff; margin: 0 0 24px; font-size: 20px;">
+              Nuevo mensaje desde UpCoded
+            </h2>
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr>
+                <td style="padding: 12px 0; border-bottom: 1px solid #3c494d; color: #64748b; width: 120px; font-size: 13px;">
+                  Nombre
+                </td>
+                <td style="padding: 12px 0; border-bottom: 1px solid #3c494d; color: #e2e8f0; font-size: 13px;">
+                  ${name}
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 0; border-bottom: 1px solid #3c494d; color: #64748b; font-size: 13px;">
+                  Email
+                </td>
+                <td style="padding: 12px 0; border-bottom: 1px solid #3c494d; color: #e2e8f0; font-size: 13px;">
+                  <a href="mailto:${email}" style="color: #00d9ff;">${email}</a>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 16px 0 0; color: #64748b; font-size: 13px; vertical-align: top;">
+                  Mensaje
+                </td>
+                <td style="padding: 12px 0 0; color: #e2e8f0; font-size: 13px; line-height: 1.6;">
+                  ${message}
+                </td>
+              </tr>
+            </table>
+            <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #3c494d;">
+              <p style="color: #64748b; font-size: 12px; margin: 0;">
+                Respondé directamente a este email para contactar a ${name}
+              </p>
+            </div>
+          </div>
+        </div>
+      `,
+    })
+
+    if (error) {
+      console.error('Resend error:', error)
+      return NextResponse.json(
+        { error: 'Error al enviar el mensaje.' },
+        { status: 500 }
+      )
+    }
+
+    return NextResponse.json({ success: true })
+
+  } catch (err) {
+    console.error('Server error:', err)
+    return NextResponse.json(
+      { error: 'Error interno del servidor.' },
+      { status: 500 }
+    )
+  }
+}
+</file>
+
+<file path="src/app/globals.css">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+.glow-hover:hover {
+  box-shadow: 0 0 15px rgba(0, 217, 255, 0.4);
+  border-color: rgba(0, 217, 255, 0.8);
+}
+
+.text-glow {
+  text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+}
+
+.code-pattern {
+  background-image: radial-gradient(#3c494d 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+</file>
+
+<file path="src/app/page.tsx">
+import NavSection from '@/components/sections/section-02-nav';
+import HeroSection from '@/components/sections/section-03-hero';
+import SocialProofSection from '@/components/sections/section-04-social-proof';
+import ServicesSection from '@/components/sections/section-05-services';
+import DifferenceSection from '@/components/sections/section-06-difference';
+import ProcessSection from '@/components/sections/section-07-process';
+import PortfolioSection from '@/components/sections/section-08-portfolio';
+import TestimonialsSection from '@/components/sections/section-09-testimonials';
+import PricingSection from '@/components/sections/section-10-pricing';
+import FinalCtaSection from '@/components/sections/section-11-final-cta';
+import FooterSection from '@/components/sections/section-12-footer';
+
+export default function HomePage() {
+  return (
+    <main className="pt-20">
+      <NavSection />
+      <HeroSection />
+      <SocialProofSection />
+      <ServicesSection />
+      <DifferenceSection />
+      <ProcessSection />
+      <PortfolioSection />
+      <TestimonialsSection />
+      <PricingSection />
+      <FinalCtaSection />
+      <FooterSection />
+    </main>
+  );
+}
+</file>
+
+<file path="src/app/portfolio/[slug]/page.tsx">
+import fs from 'node:fs';
+import path from 'node:path';
+
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+
+import { getProjectBySlug, projects } from '@/data/projects';
+
+type PortfolioPageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+function imageExists(imagePath: string) {
+  return fs.existsSync(path.join(process.cwd(), 'public', imagePath));
+}
+
+export function generateStaticParams() {
+  return projects.map((project) => ({ slug: project.slug }));
+}
+
+export async function generateMetadata({ params }: PortfolioPageProps): Promise<Metadata> {
+  const project = getProjectBySlug(params.slug);
+
+  if (!project) {
+    return {
+      title: 'Portfolio | UpCoded',
+      description: 'Proyecto no encontrado.'
+    };
+  }
+
+  return {
+    title: `${project.title} | Portfolio UpCoded`,
+    description: project.summary
+  };
+}
+
+export default function PortfolioCaseStudyPage({ params }: PortfolioPageProps) {
+  const project = getProjectBySlug(params.slug);
+
+  if (!project) {
+    notFound();
+  }
+
+  return (
+    <main className="bg-background py-24">
+      <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
+        <Link className="mb-10 inline-flex font-label-caps text-label-caps uppercase text-primary transition-colors hover:text-primary-fixed" href="/#portfolio">
+          ← Volver al portfolio
+        </Link>
+
+        <section className="mb-16 rounded-xl border border-outline-variant/30 bg-surface-container p-8 md:p-12">
+          <p className="mb-3 font-label-caps text-label-caps uppercase text-on-surface-variant">{project.client}</p>
+          <h1 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-6 md:font-display-lg md:text-display-lg">
+            {project.title}
+          </h1>
+          <div className="mb-6 flex flex-wrap gap-2">
+            {project.stack.map((item) => (
+              <span key={item} className="rounded border border-outline-variant/30 bg-surface-container-high px-2 py-1 font-label-caps text-xs uppercase text-primary">
+                {item}
+              </span>
+            ))}
+          </div>
+          <p className="max-w-3xl font-body-md text-body-md text-on-surface-variant">{project.summary}</p>
+          <div className="mt-8 inline-flex rounded border border-primary bg-primary/10 px-4 py-3 font-label-caps text-label-caps uppercase text-primary">
+            {project.result}
+          </div>
+          {project.liveUrl ? (
+            <a
+              className="mt-6 flex items-center gap-2 rounded border border-primary px-6 py-3 font-label-caps uppercase text-primary transition-colors hover:bg-primary/10"
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="material-symbols-outlined text-[18px] leading-none">arrow_outward</span>
+              Visitar sitio
+            </a>
+          ) : null}
+        </section>
+
+        <section className="grid grid-cols-1 gap-8 md:grid-cols-2 mb-16">
+          <div className="rounded-lg border border-outline-variant/30 bg-surface-container p-8">
+            <h2 className="font-headline-md text-headline-md mb-4 text-primary">Challenge</h2>
+            <p className="font-body-md text-on-surface-variant">{project.challenge}</p>
+          </div>
+
+          <div className="rounded-lg border border-outline-variant/30 bg-surface-container p-8">
+            <h2 className="font-headline-md text-headline-md mb-4 text-primary">Solution</h2>
+            <p className="font-body-md text-on-surface-variant">{project.solution}</p>
+          </div>
+        </section>
+
+        <section className="mb-16">
+          <h2 className="font-headline-md text-headline-md mb-6 text-primary">Screenshots</h2>
+          {project.images.length > 0 ? (
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {project.images.map((imagePath) => {
+                const alt = `${project.title} screenshot`;
+                const exists = imageExists(imagePath);
+
+                return (
+                  <div key={imagePath} className="group overflow-hidden rounded-lg border border-outline-variant/30">
+                    {exists ? (
+                      <Image
+                        src={imagePath}
+                        alt={alt}
+                        width={1200}
+                        height={800}
+                        className="w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                      />
+                    ) : (
+                      <div className="flex aspect-[3/2] items-center justify-center bg-surface-container px-6 text-center font-label-caps text-label-caps uppercase text-on-surface-variant">
+                        Screenshot coming soon
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div className="flex aspect-[3/2] items-center justify-center rounded-lg border border-outline-variant/30 bg-surface-container px-6 text-center font-label-caps text-label-caps uppercase text-on-surface-variant">
+                Screenshot coming soon
+              </div>
+              <div className="flex aspect-[3/2] items-center justify-center rounded-lg border border-outline-variant/30 bg-surface-container px-6 text-center font-label-caps text-label-caps uppercase text-on-surface-variant">
+                Screenshot coming soon
+              </div>
+            </div>
+          )}
+        </section>
+
+        <section className="rounded-xl border border-outline-variant/30 bg-surface-container-high p-8 text-center md:p-12">
+          <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-6 md:font-display-lg md:text-display-lg">
+            ¿Tenés un proyecto similar?
+          </h2>
+          <Link className="inline-flex rounded bg-primary px-6 py-3 font-label-caps text-label-caps uppercase text-on-primary transition-colors hover:bg-primary-fixed-dim" href="/#contacto">
+            Hablemos
+          </Link>
+        </section>
+      </div>
+    </main>
+  );
+}
+</file>
+
+<file path="src/app/robots.ts">
+import { MetadataRoute } from 'next'
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
+    },
+    sitemap: 'https://upcoded.dev/sitemap.xml',
+  }
+}
+</file>
+
+<file path="src/app/sitemap.ts">
+import { MetadataRoute } from 'next'
+import { projects } from '@/data/projects'
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const projectUrls = projects.map((project) => ({
+    url: `https://upcoded.dev/portfolio/${project.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
+  return [
+    {
+      url: 'https://upcoded.dev',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 1,
+    },
+    ...projectUrls,
+  ]
+}
+</file>
+
+<file path="src/components/sections/section-03-hero.tsx">
+import { DottedSurface } from '@/components/ui/dotted-surface';
+
+export default function HeroSection() {
+  return (
+    <section className="relative flex min-h-[614px] items-center overflow-hidden px-margin-mobile py-16 md:py-24 md:px-margin-desktop">
+      <DottedSurface />
+
+      <div className="relative z-10 mx-auto grid w-full max-w-container-max grid-cols-1 items-center gap-gutter md:grid-cols-2">
+        <div className="flex flex-col gap-6">
+          {/* TODO: H1 — ajustar si cambian el copy principal */}
+          <h1 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow md:font-display-lg md:text-display-lg">
+            Tu negocio merece un equipo técnico de verdad.
+          </h1>
+
+          {/* TODO: Subtítulo hero — mantener bajo 2 líneas */}
+          <p className="font-body-md text-body-md max-w-xl text-on-surface-variant">
+            Construimos sitios web, aplicaciones y automatizaciones con React, Next.js y Spring Boot. Rápido, limpio y sin los precios de una agencia grande.
+          </p>
+
+          <div className="mt-4 flex flex-wrap gap-4">
+            <a className="flex items-center gap-2 rounded bg-primary px-6 py-3 font-label-caps text-label-caps uppercase text-on-primary transition-colors hover:bg-primary-fixed-dim" href="#contacto">
+              Hablemos de tu proyecto
+              <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+            <a className="glow-hover flex items-center gap-2 rounded border border-primary px-6 py-3 font-label-caps text-label-caps uppercase text-primary transition-colors hover:bg-primary/10" href="#portfolio">
+              Ver nuestro trabajo
+              <span className="material-symbols-outlined text-sm">arrow_downward</span>
+            </a>
+          </div>
+        </div>
+
+        {/* TODO: Personalizar el objeto JS con proyectos reales si se desea */}
+        <div className="relative hidden rounded-lg border border-outline-variant/30 bg-surface-container-high p-6 shadow-2xl md:block">
+          <div className="absolute left-0 top-0 flex h-8 w-full items-center gap-2 rounded-t-lg border-b border-outline-variant/30 bg-surface-container-highest px-4">
+            <div className="h-3 w-3 rounded-full bg-error" />
+            <div className="h-3 w-3 rounded-full bg-primary-container" />
+            <div className="h-3 w-3 rounded-full bg-primary" />
+          </div>
+          <pre className="mt-8 overflow-hidden font-code-sm text-code-sm text-primary">
+            <code>{`const UpCoded = {
+  stack: ["React", "Next.js", "Spring Boot"],
+  quality: "High-Performance",
+  speed: "Fast",
+  pricing: "Fair",
+  build: function(project) {
+    return \`Deploying ${'{'}project.name{'}'}...\`;
+  }
+};
+
+UpCoded.build({ name: "Tu Próximo Éxito" });
+// Output: Deploying Tu Próximo Éxito 🚀`}</code>
+          </pre>
+        </div>
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/sections/section-04-social-proof.tsx">
+export default function SocialProofSection() {
+  return (
+    <section className="border-y border-outline-variant/30 bg-surface-container-low py-6">
+      <div className="mx-auto max-w-container-max px-margin-mobile text-center md:px-margin-desktop">
+        <p className="mb-4 font-label-caps text-label-caps uppercase text-on-surface-variant">
+          Empresas que ya se movieron rápido con UpCoded:
+        </p>
+
+        <div className="flex flex-wrap items-center justify-center gap-6 font-body-md text-on-surface md:gap-12">
+          {/* TODO: Actualizar estas métricas con datos reales */}
+          <span className="flex items-center gap-2"><span className="text-primary text-xl">⚡</span> +10 proyectos entregados</span>
+          <span className="flex items-center gap-2"><span className="text-primary text-xl">🌎</span> Clientes en Argentina, España</span>
+          <span className="flex items-center gap-2"><span className="text-primary text-xl">⏱</span> Tiempo promedio de entrega: 3 semanas</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/sections/section-05-services.tsx">
+const services = [
+  {
+    title: 'Sitios y Landings',
+    icon: 'web',
+    description: 'Páginas ultrarrápidas optimizadas para conversión. Diseño único, nada de WordPress aburridos.'
+  },
+  {
+    title: 'Aplicaciones Web',
+    icon: 'apps',
+    description: 'Plataformas completas con lógica compleja, bases de datos y paneles de administración a medida.'
+  },
+  {
+    title: 'Automatizaciones',
+    icon: 'autorenew',
+    description: 'Conectamos tus herramientas. Menos trabajo manual, más tiempo para hacer crecer tu negocio.'
+  },
+  {
+    title: 'Soporte y SEO',
+    icon: 'support_agent',
+    description: 'Mantenimiento técnico continuo y optimización para que te encuentren primero en Google.'
+  }
+] as const;
+
+export default function ServicesSection() {
+  return (
+    <section className="mx-auto max-w-container-max px-margin-mobile py-24 md:px-margin-desktop" id="servicios">
+      <div className="mb-16 text-center">
+        <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-4 md:font-display-lg md:text-display-lg">
+          Lo que construimos para vos
+        </h2>
+        <p className="mx-auto max-w-2xl font-body-md text-body-md text-on-surface-variant">
+          Desde una landing que convierte hasta una aplicación completa con backend. Sin templates. Sin letra chica.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {services.map((service) => (
+          <div key={service.title} className="glow-hover flex h-full flex-col rounded-lg border border-outline-variant/30 bg-surface-container p-6 transition-colors hover:border-primary/50">
+            <span className="material-symbols-outlined mb-4 text-4xl text-primary">{service.icon}</span>
+            <h3 className="font-headline-md text-headline-md mb-2 text-on-surface">{service.title}</h3>
+            <p className="mb-6 flex-grow font-body-md text-on-surface-variant">{service.description}</p>
+            {/* TODO: Actualizar los href de "Saber más" cuando haya páginas de detalle */}
+            {/* TODO: Cambiar íconos si se reemplaza Material Symbols por otra librería */}
+            <a className="mt-auto flex items-center gap-2 font-label-caps text-label-caps uppercase text-primary transition-colors hover:text-primary-fixed" href="#">
+              Saber más <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/sections/section-06-difference.tsx">
+const differences = [
+  {
+    title: 'Entrega en semanas',
+    icon: 'speed',
+    description: 'No meses. Optimizamos nuestro proceso para que tu producto esté en línea cuando lo necesitás.'
+  },
+  {
+    title: 'Stack moderno y escalable',
+    icon: 'layers',
+    description: 'Usamos las mismas tecnologías que las grandes empresas para asegurar rendimiento y futuro.'
+  },
+  {
+    title: 'Trato directo con los devs',
+    icon: 'handshake',
+    description: 'Sin gerentes de cuenta en el medio. Hablás directamente con quienes construyen tu producto.'
+  }
+] as const;
+
+export default function DifferenceSection() {
+  return (
+    <section className="relative overflow-hidden bg-surface-container-low py-24">
+      <div className="absolute inset-0 code-pattern pointer-events-none opacity-10" />
+
+      <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop relative z-10">
+        <div className="mb-16 text-center">
+          <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-4 md:font-display-lg md:text-display-lg">
+            Velocidad real. Sin sacrificar calidad.
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {differences.map((difference) => (
+            <div key={difference.title} className="text-center">
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-primary">
+                <span className="material-symbols-outlined text-3xl">{difference.icon}</span>
+              </div>
+              <h3 className="font-headline-md text-headline-md mb-2 text-on-surface">{difference.title}</h3>
+              <p className="font-body-md text-on-surface-variant">{difference.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/sections/section-07-process.tsx">
+const steps = [
+  {
+    title: 'Discovery',
+    description: 'Entendemos tu negocio, objetivos y definimos el alcance técnico.'
+  },
+  {
+    title: 'Propuesta',
+    description: 'Presentamos la solución, el stack técnico y el cronograma cerrado.'
+  },
+  {
+    title: 'Desarrollo',
+    description: 'Codificamos rápido y limpio, con actualizaciones semanales de progreso.'
+  },
+  {
+    title: 'Entrega y Soporte',
+    description: 'Lanzamos a producción y nos quedamos para asegurar que todo vuele.'
+  }
+] as const;
+
+export default function ProcessSection() {
+  return (
+    <section className="mx-auto max-w-container-max px-margin-mobile py-24 md:px-margin-desktop" id="proceso">
+      <div className="mb-16 text-center">
+        <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-4 md:font-display-lg md:text-display-lg">
+          De la idea al lanzamiento en 4 pasos
+        </h2>
+      </div>
+
+      <div className="relative grid grid-cols-1 gap-6 md:grid-cols-4">
+        <div className="absolute top-1/2 left-0 z-0 hidden h-px w-full -translate-y-1/2 bg-outline-variant/50 md:block" />
+
+        {steps.map((step, index) => (
+          <div key={step.title} className="relative z-10 rounded-lg border border-outline-variant/30 bg-surface p-6 text-center">
+            <div className="font-code-sm text-code-sm mb-2 text-primary">0{index + 1}</div>
+            <h3 className="font-headline-md text-headline-md mb-2 text-on-surface">{step.title}</h3>
+            <p className="font-body-md text-sm text-on-surface-variant">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/sections/section-08-portfolio.tsx">
+import Image from 'next/image';
+import Link from 'next/link';
+
+import { projects } from '@/data/projects';
+
+export default function PortfolioSection() {
+  return (
+    <section className="bg-surface-container-low py-24" id="portfolio">
+      <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
+        <div className="mb-12">
+          <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-4 md:font-display-lg md:text-display-lg">
+            Proyectos que ya están corriendo
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {projects.map((project) => (
+            <div key={project.slug} className="group relative overflow-hidden rounded-lg border border-outline-variant/30 bg-surface">
+              <div className="relative overflow-hidden border-b border-outline-variant/30 bg-surface-container-high">
+                {project.previewImage || project.images[0] ? (
+                  <div className="relative aspect-video">
+                    <Image
+                      src={project.previewImage ?? project.images[0]}
+                      alt={`${project.title} preview`}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/15 to-transparent opacity-70" />
+                  </div>
+                ) : (
+                  <div className="flex aspect-video items-center justify-center bg-gradient-to-br from-surface-container-high via-surface-container to-surface-container-low px-6 text-center">
+                    <div className="max-w-xs space-y-3">
+                      <span className="material-symbols-outlined text-5xl text-primary">web</span>
+                      <p className="font-label-caps text-label-caps uppercase text-primary">Live preview</p>
+                      <p className="font-body-md text-sm text-on-surface-variant">{project.summary}</p>
+                    </div>
+                  </div>
+                )}
+                <div className="absolute inset-0 flex items-center justify-center bg-primary/20 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100">
+                  <Link className="rounded bg-surface px-6 py-2 font-label-caps text-label-caps uppercase text-primary transition-colors hover:bg-primary hover:text-on-primary" href={`/portfolio/${project.slug}`}>
+                    Ver caso →
+                  </Link>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="font-headline-md text-headline-md mb-2 text-on-surface">{project.title}</h3>
+                <p className="mb-2 font-body-md text-sm text-on-surface-variant">{project.client}</p>
+                <div className="mb-4 flex flex-wrap gap-2">
+                  {project.stack.map((item) => (
+                    <span key={item} className="rounded border border-outline-variant/30 bg-surface-container px-2 py-1 font-label-caps text-xs uppercase text-primary">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+                <p className="font-body-md text-on-surface-variant">{project.result}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/sections/section-09-testimonials.tsx">
+"use client"
+
+import { TestimonialCarousel } from "@/components/ui/testimonial"
+
+const TESTIMONIALS = [
+  {
+    id: 1,
+    name: "Martín C.",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+    description:
+      "Necesitábamos una solución robusta y rápida. UpCoded entregó a tiempo y la calidad del código nos permitió escalar sin problemas.",
+  },
+  {
+    id: 2,
+    name: "Gonzalo Ferragina",
+    description:
+      "Llevó adelante la creación de la página de onboarding con gran autonomía, manteniendo al equipo informado sobre los avances y coordinando con distintas áreas para lograr un resultado sólido, claro y alineado con el ritmo de UpCoded.",
+  },
+  {
+    id: 3,
+    name: "Diego M.",
+    avatar: "https://randomuser.me/api/portraits/men/15.jpg",
+    description:
+      "Lanzamos en 2 semanas. El sitio carga increíble y las consultas por WhatsApp se triplicaron desde el día uno.",
+  },
+]
+
+export default function TestimonialsSection() {
+  return (
+    <section className="py-24 px-margin-mobile md:px-margin-desktop">
+      <div className="mx-auto grid max-w-container-max items-center gap-14 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+        <div className="text-center lg:text-left">
+          <h2 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary text-glow mb-4">
+          Lo que dicen los que ya se movieron
+          </h2>
+          <p className="mx-auto max-w-xl font-body-md text-body-md text-on-surface-variant lg:mx-0">
+            Arrastrá las cards o usá las flechas para ver más. El espacio libre al costado se aprovecha para darle más aire visual al testimonio destacado.
+          </p>
+        </div>
+
+        <div className="lg:pl-4 xl:pl-8">
+          <TestimonialCarousel
+            testimonials={TESTIMONIALS}
+            showArrows={true}
+            showDots={true}
+            className="mx-auto max-w-2xl"
+          />
+        </div>
+      </div>
+    </section>
+  )
+}
+</file>
+
+<file path="src/components/sections/section-10-pricing.tsx">
+const plans = [
+  {
+    title: 'Presencia Web',
+    price: 'USD 300',
+    featured: false,
+    features: ['Landing page optimizada', 'Diseño responsivo', 'Formulario de contacto', 'SEO básico']
+  },
+  {
+    title: 'Producto Digital',
+    price: 'USD 1.200',
+    featured: true,
+    features: ['App Web completa', 'Base de datos & API', 'Autenticación de usuarios', 'Panel de administración']
+  },
+  {
+    title: 'Automatización',
+    price: 'USD 400',
+    featured: false,
+    features: ['Integración de APIs', 'Workflows automatizados', 'Webhooks personalizados', 'Monitoreo básico']
+  }
+] as const;
+
+export default function PricingSection() {
+  return (
+    <section className="bg-surface-container-low py-24" id="precios">
+      <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
+        <div className="mb-16 text-center">
+          <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-4 md:font-display-lg md:text-display-lg">
+            Transparencia desde el día 1
+          </h2>
+          <p className="mx-auto max-w-2xl font-body-md text-body-md text-on-surface-variant">
+            Precios claros, sin sorpresas.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {plans.map((plan) => (
+            <div
+              key={plan.title}
+              className={plan.featured ? 'relative flex flex-col rounded-lg border border-primary bg-surface-container-highest p-8 shadow-[0_0_20px_rgba(0,217,255,0.1)]' : 'flex flex-col rounded-lg border border-outline-variant/30 bg-surface p-8 transition-colors hover:border-primary/50'}
+            >
+              {plan.featured ? (
+                <div className="absolute top-0 right-0 rounded-bl-lg rounded-tr-lg bg-primary px-3 py-1 text-xs font-bold font-label-caps text-on-primary">
+                  POPULAR
+                </div>
+              ) : null}
+              <h3 className="font-headline-md text-headline-md mb-2 text-on-surface">{plan.title}</h3>
+              {/* TODO: Ajustar precio si cambia */}
+              <div className="mb-6 font-display-lg text-primary">
+                {plan.price}
+                <span className="text-base font-normal text-on-surface-variant"> /desde</span>
+              </div>
+              <ul className="mb-8 flex-grow space-y-4 font-body-md text-on-surface-variant">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-sm text-primary">check</span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <a className={plan.featured ? 'block rounded bg-primary px-6 py-3 text-center font-label-caps text-label-caps uppercase text-on-primary transition-colors hover:bg-primary-fixed-dim' : 'block rounded border border-primary px-6 py-3 text-center font-label-caps text-label-caps uppercase text-primary transition-colors hover:bg-primary/10'} href="#contacto">
+                Elegir Plan
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/ui/dotted-surface.tsx">
+'use client';
+import { cn } from '@/lib/utils';
+import { useTheme } from 'next-themes';
+import React, { useEffect, useRef } from 'react';
+import * as THREE from 'three';
+
+type DottedSurfaceProps = Omit<React.ComponentProps<'div'>, 'ref'>;
+
+export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
+  const { theme } = useTheme();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const sceneRef = useRef<{
+    scene: THREE.Scene;
+    camera: THREE.PerspectiveCamera;
+    renderer: THREE.WebGLRenderer;
+    particles: THREE.Points[];
+    animationId: number;
+    count: number;
+  } | null>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const SEPARATION = 150;
+    const AMOUNTX = 40;
+    const AMOUNTY = 60;
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0xffffff, 2000, 10000);
+
+    const camera = new THREE.PerspectiveCamera(
+      60,
+      containerRef.current.clientWidth / containerRef.current.clientHeight,
+      1,
+      10000,
+    );
+    camera.position.set(0, 355, 1220);
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(
+      containerRef.current.clientWidth,
+      containerRef.current.clientHeight,
+    );
+    renderer.setClearColor(0x000000, 0);
+
+    containerRef.current.appendChild(renderer.domElement);
+
+    const positions: number[] = [];
+    const colors: number[] = [];
+    const geometry = new THREE.BufferGeometry();
+    const color = new THREE.Color();
+
+    for (let ix = 0; ix < AMOUNTX; ix++) {
+      for (let iy = 0; iy < AMOUNTY; iy++) {
+        positions.push(
+          ix * SEPARATION - (AMOUNTX * SEPARATION) / 2,
+          0,
+          iy * SEPARATION - (AMOUNTY * SEPARATION) / 2,
+        );
+        color.setHSL(0.52 + (ix / AMOUNTX) * 0.08 + (iy / AMOUNTY) * 0.03, 1, 0.62);
+        colors.push(color.r, color.g, color.b);
+      }
+    }
+
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+    const material = new THREE.PointsMaterial({
+      size: 6,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.42,
+      sizeAttenuation: true,
+    });
+
+    const points = new THREE.Points(geometry, material);
+    scene.add(points);
+
+    let count = 0;
+    let animationId = 0;
+
+    const animate = () => {
+      animationId = requestAnimationFrame(animate);
+      const positionAttribute = geometry.attributes.position;
+      const pos = positionAttribute.array as Float32Array;
+
+      let i = 0;
+      for (let ix = 0; ix < AMOUNTX; ix++) {
+        for (let iy = 0; iy < AMOUNTY; iy++) {
+          pos[i * 3 + 1] =
+            Math.sin((ix + count) * 0.3) * 50 +
+            Math.sin((iy + count) * 0.5) * 50;
+          i++;
+        }
+      }
+
+      positionAttribute.needsUpdate = true;
+      renderer.render(scene, camera);
+      count += 0.06;
+    };
+
+    const handleResize = () => {
+      if (!containerRef.current) return;
+      camera.aspect =
+        containerRef.current.clientWidth / containerRef.current.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(
+        containerRef.current.clientWidth,
+        containerRef.current.clientHeight,
+      );
+    };
+
+    window.addEventListener('resize', handleResize);
+    animate();
+
+    sceneRef.current = { scene, camera, renderer, particles: [points], animationId, count };
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (sceneRef.current) {
+        cancelAnimationFrame(sceneRef.current.animationId);
+        sceneRef.current.scene.traverse((object) => {
+          if (object instanceof THREE.Points) {
+            object.geometry.dispose();
+            if (Array.isArray(object.material)) {
+              object.material.forEach((m) => m.dispose());
+            } else {
+              (object.material as THREE.Material).dispose();
+            }
+          }
+        });
+        sceneRef.current.renderer.dispose();
+        if (containerRef.current && sceneRef.current.renderer.domElement) {
+          containerRef.current.removeChild(sceneRef.current.renderer.domElement);
+        }
+      }
+    };
+  }, [theme]);
+
+  return (
+    <div
+      ref={containerRef}
+      className={cn('pointer-events-none absolute inset-0 -z-10 overflow-hidden', className)}
+      {...props}
+    />
+  );
+}
+</file>
+
+<file path="src/components/ui/testimonial.tsx">
+import * as React from "react"
+import { motion, PanInfo } from "framer-motion"
+import { cn } from "@/lib/utils"
+
+interface Testimonial {
+  id: number | string
+  name: string
+  avatar?: string
+  description: string
+}
+
+interface TestimonialCarouselProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  testimonials: Testimonial[]
+  showArrows?: boolean
+  showDots?: boolean
+}
+
+const TestimonialCarousel = React.forwardRef<HTMLDivElement, TestimonialCarouselProps>(
+  (
+    { className, testimonials, showArrows = true, showDots = true, ...props },
+    ref,
+  ) => {
+    const [currentIndex, setCurrentIndex] = React.useState(0)
+    const [exitX, setExitX] = React.useState<number>(0)
+
+    const getInitials = (name: string) =>
+      name
+        .split(" ")
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((part) => part[0]?.toUpperCase() ?? "")
+        .join("") || "U"
+
+    const handleDragEnd = (
+      event: MouseEvent | TouchEvent | PointerEvent,
+      info: PanInfo,
+    ) => {
+      if (Math.abs(info.offset.x) > 100) {
+        setExitX(info.offset.x)
+        setTimeout(() => {
+          setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+          setExitX(0)
+        }, 200)
+      }
+    }
+
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "relative h-[26rem] w-full flex items-center justify-center",
+          className
+        )}
+        {...props}
+      >
+        <div className="relative h-[23rem] w-full max-w-[38rem]">
+          {testimonials.map((testimonial, index) => {
+            const isCurrentCard = index === currentIndex
+            if (!isCurrentCard) return null
+
+            return (
+              <motion.div
+                key={testimonial.id}
+                className={cn(
+                  "absolute inset-0 overflow-hidden rounded-3xl cursor-grab active:cursor-grabbing",
+                  "border border-outline-variant/30 bg-surface-container shadow-[0_24px_70px_rgba(0,0,0,0.35)]",
+                )}
+                style={{ zIndex: 3 }}
+                drag={isCurrentCard ? "x" : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.7}
+                onDragEnd={isCurrentCard ? handleDragEnd : undefined}
+                initial={{
+                  scale: 0.95,
+                  opacity: 0,
+                  y: 0,
+                  rotate: 0,
+                }}
+                animate={{
+                  scale: 1,
+                  opacity: 1,
+                  x: exitX,
+                  y: 0,
+                  rotate: exitX / 20,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20,
+                }}
+              >
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-primary-container to-secondary opacity-80" />
+                {showArrows && (
+                  <div className="absolute inset-x-0 top-2 flex justify-between px-4">
+                    <span className="text-2xl select-none cursor-pointer text-on-surface-variant/60 transition-colors hover:text-primary">
+                      &larr;
+                    </span>
+                    <span className="text-2xl select-none cursor-pointer text-on-surface-variant/60 transition-colors hover:text-primary">
+                      &rarr;
+                    </span>
+                  </div>
+                )}
+                <div className="flex h-full flex-col items-center justify-center gap-5 px-8 py-8 text-center">
+                  {testimonial.avatar ? (
+                    <img
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      className="h-16 w-16 rounded-full object-cover ring-2 ring-primary/20 shadow-md"
+                    />
+                  ) : (
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full border border-primary/30 bg-primary-container text-base font-semibold text-on-primary-container shadow-md ring-2 ring-primary/20">
+                      {getInitials(testimonial.name)}
+                    </div>
+                  )}
+                  <h3 className="text-lg font-semibold text-on-surface">
+                    {testimonial.name}
+                  </h3>
+                  <p className="mx-auto max-w-[32rem] text-sm leading-6 text-on-surface-variant">
+                    {testimonial.description}
+                  </p>
+                </div>
+              </motion.div>
+            )
+          })}
+          {showDots && (
+            <div className="absolute -bottom-10 left-0 right-0 flex justify-center gap-2">
+              {testimonials.map((_, index) => (
+                <div
+                  key={index}
+                  className={cn(
+                    "h-2 w-2 rounded-full transition-colors",
+                    index === currentIndex
+                      ? "bg-primary shadow-[0_0_12px_rgba(108,226,255,0.7)]"
+                      : "bg-outline-variant/40",
+                  )}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  },
+)
+TestimonialCarousel.displayName = "TestimonialCarousel"
+export { TestimonialCarousel, type Testimonial }
+</file>
+
+<file path="src/components/ui/whatsapp-float.tsx">
+export function WhatsAppFloat() {
+  const phoneNumber = "5493854899617"
+  const message = encodeURIComponent("Hola Juan, quiero consultar por un proyecto.")
+  const href = `https://wa.me/${phoneNumber}?text=${message}`
+
+  return (
+    <a
+      aria-label="Abrir chat de WhatsApp"
+      className="fixed bottom-6 right-6 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_18px_40px_rgba(37,211,102,0.35)] transition-transform duration-200 hover:scale-110 hover:bg-[#20bd5a] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-background"
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 32 32"
+        className="h-8 w-8"
+        fill="currentColor"
+      >
+        <path d="M16 2.5C8.55 2.5 2.5 8.31 2.5 15.44c0 2.5.74 4.92 2.14 6.99L3 29.5l7.29-1.57a14 14 0 0 0 5.71 1.2h.01c7.45 0 13.5-5.81 13.5-12.94S23.45 2.5 16 2.5Zm0 24.05h-.01a11.5 11.5 0 0 1-5.36-1.32l-.38-.2-4.33.93.95-4.16-.25-.41a11.23 11.23 0 0 1-1.75-5.95C4.87 9.6 9.8 4.9 16 4.9s11.13 4.7 11.13 10.54S22.2 26.55 16 26.55Zm6.15-7.84c-.33-.16-1.96-.95-2.26-1.06-.3-.11-.52-.16-.74.16-.22.33-.85 1.06-1.04 1.28-.19.22-.38.25-.71.08-.33-.16-1.39-.5-2.65-1.6-.98-.87-1.64-1.95-1.83-2.28-.19-.33-.02-.51.14-.67.14-.14.33-.38.49-.58.16-.19.22-.33.33-.55.11-.22.05-.41-.03-.58-.08-.16-.74-1.79-1.02-2.45-.27-.65-.55-.56-.74-.57l-.63-.01c-.22 0-.58.08-.88.41-.3.33-1.14 1.1-1.14 2.68s1.17 3.1 1.34 3.32c.16.22 2.27 3.47 5.51 4.73.77.33 1.37.53 1.84.68.77.25 1.47.21 2.02.13.62-.09 1.96-.8 2.24-1.58.27-.77.27-1.43.19-1.58-.08-.16-.3-.25-.63-.41Z" />
+      </svg>
+    </a>
+  )
+}
+</file>
+
+<file path="src/data/projects.ts">
+export type Project = {
+  slug: string;
+  title: string;
+  client: string;
+  stack: string[];
+  summary: string;
+  result: string;
+  liveUrl: string | null;
+  previewImage?: string;
+  images: string[];
+  challenge: string;
+  solution: string;
+};
+
+export const projects: Project[] = [
+  {
+    slug: "invert-ia",
+    title: "InvertIA",
+    client: "Fintech · Argentina",
+    stack: ["Next.js", "Tailwind CSS", "Vercel"],
+    summary: "Plataforma de inversiones con interfaz moderna y flujo de onboarding optimizado.",
+    result: "Sitio en producción con performance optimizada en Vercel. Entregada en 4 semanas",
+    liveUrl: "https://invert-ia-seven.vercel.app",
+    previewImage: "/portfolio/InvertIA/InvertIA_Preview.png",
+    images: [
+      "/portfolio/InvertIA/Screenshot_1.png",
+      "/portfolio/InvertIA/screenshot_2.jpg",
+      "/portfolio/InvertIA/screenshot_3.jpg",
+      "/portfolio/InvertIA/screenshot_4.jpg",
+    ],
+    challenge: "Crear una plataforma de inversiones que transmita confianza y profesionalismo desde el primer scroll.",
+    solution: "Desarrollamos una interfaz limpia con Next.js enfocada en conversión, con tiempos de carga mínimos y diseño orientado a credibilidad financiera.",
+  },
+  {
+    slug: "ecommerce-mvp",
+    title: "E-Commerce MVP",
+    client: "Retail · Argentina",
+    stack: ["Next.js", "Tailwind CSS", "Vercel"],
+    summary: "MVP de tienda online con catálogo de productos y flujo de compra completo.",
+    result: "MVP funcional lanzado en 3 semanas",
+    liveUrl: null,
+    images: [
+      "/portfolio/ecommerce-mvp/screenshot-1.png",
+      "/portfolio/ecommerce-mvp/screenshot-2.png",
+      "/portfolio/ecommerce-mvp/screenshot-3.png",
+      "/portfolio/ecommerce-mvp/screenshot-4.png",
+    ],
+    challenge: "Lanzar un e-commerce funcional en el menor tiempo posible sin sacrificar experiencia de usuario.",
+    solution: "Construimos un MVP con Next.js con catálogo, carrito y checkout integrado, listo para escalar con pasarela de pagos real.",
+  },
+  {
+    slug: "jara-asociados",
+    title: "Jara y Asociados",
+    client: "Legal · Argentina",
+    stack: ["Next.js", "Tailwind CSS", "Vercel"],
+    summary: "Landing institucional para estudio jurídico con foco en captación de clientes.",
+    result: "Entregada en 2 semanas, con SEO local optimizado",
+    liveUrl: "https://jara-asociados-landing.vercel.app",
+    previewImage: "/portfolio/JaraYAsociados/JaraYAsociados_Preview.png",
+    images: [
+      "/portfolio/JaraYAsociados/Screenshot_1.png",
+      "/portfolio/JaraYAsociados/Screenshot_2.png",
+      "/portfolio/JaraYAsociados/Screenshot_3.png",
+      "/portfolio/JaraYAsociados/Screenshot_4.png",
+    ],
+    challenge: "Diseñar una presencia web que transmita autoridad y confianza para un estudio jurídico con años de trayectoria.",
+    solution: "Landing institucional con secciones de especialidades, equipo y formulario de contacto, optimizada para SEO local.",
+  },
+  {
+    slug: "patagonia-motors",
+    title: "Patagonia Motors",
+    client: "Automotriz · Argentina",
+    stack: ["Next.js", "Tailwind CSS", "Vercel"],
+    summary: "Landing institucional para concesionaria con catálogo de vehículos y formulario de consulta.",
+    result: "Sitio en producción con catálogo online activo. Entregado en 2 semanas, con SEO optimizado",
+    liveUrl: "https://patagoniamotors.vercel.app/",
+    previewImage: "/portfolio/Patagonia_Motors/Preview_Patagonia_Motors.png",
+    images: [
+      "/portfolio/Patagonia_Motors/Screenshot_1.png",
+      "/portfolio/Patagonia_Motors/Screenshot_2.png",
+      "/portfolio/Patagonia_Motors/Screenshot_3.png",
+      "/portfolio/Patagonia_Motors/Screenshot_4.png",
+    ],
+    challenge: "Crear una presencia digital moderna para una concesionaria que transmita confianza y facilite el contacto con compradores potenciales.",
+    solution: "Desarrollamos una landing con catálogo de vehículos, fichas de producto y formulario de consulta directo, optimizada para conversión y carga rápida.",
+  },
+  {
+    slug: "havas-argentina",
+    title: "Havas Argentina",
+    client: "Agencia de Publicidad · Argentina",
+    stack: ["Next.js", "Tailwind CSS", "Vercel"],
+    summary: "Landing de onboarding para nuevos empleados y colaboradores de Havas Argentina.",
+    result: "Flujo de onboarding digitalizado y centralizado. Entregada en 3 semanas",
+    liveUrl: null,
+    previewImage: "/portfolio/Havas_Argentina/Havas_Argentina_Preview.jpg",
+    images: [
+      "/portfolio/Havas_Argentina/screenshot-1.jpg",
+      "/portfolio/Havas_Argentina/screenshot-2.jpg",
+      "/portfolio/Havas_Argentina/screenshot-3.jpg",
+      "/portfolio/Havas_Argentina/screenshot-4.jpg",
+    ],
+    challenge: "Centralizar el proceso de onboarding de una agencia de publicidad de escala internacional en una sola interfaz clara y profesional.",
+    solution: "Diseñamos una landing de onboarding con Next.js que guía al usuario paso a paso, con secciones diferenciadas por tipo de ingresante.",
+  },
+];
+
+export function getProjectBySlug(slug: string) {
+  return projects.find((project) => project.slug === slug);
+}
+</file>
+
+<file path="src/lib/utils.ts">
+import { type ClassValue, clsx } from "clsx"
+import { twMerge } from "tailwind-merge"
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+</file>
+
+<file path="tailwind.config.ts">
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
+  darkMode: 'class',
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+  theme: {
+    extend: {
+      colors: {
+        primary: '#afecff',
+        'primary-container': '#00d9ff',
+        'primary-fixed': '#aeecff',
+        'primary-fixed-dim': '#00d9ff',
+        'on-primary': '#003641',
+        'on-primary-container': '#005b6c',
+        'on-primary-fixed': '#001f26',
+        'on-primary-fixed-variant': '#004e5d',
+        'inverse-primary': '#00687b',
+        'surface-tint': '#00d9ff',
+        background: '#131314',
+        surface: '#131314',
+        'surface-dim': '#131314',
+        'surface-bright': '#3a393a',
+        'surface-container-lowest': '#0e0e0f',
+        'surface-container-low': '#1c1b1c',
+        'surface-container': '#201f20',
+        'surface-container-high': '#2a2a2b',
+        'surface-container-highest': '#353436',
+        'surface-variant': '#353436',
+        'inverse-surface': '#e5e2e3',
+        'inverse-on-surface': '#313031',
+        'on-background': '#e5e2e3',
+        'on-surface': '#e5e2e3',
+        'on-surface-variant': '#bbc9ce',
+        outline: '#859398',
+        'outline-variant': '#3c494d',
+        secondary: '#c8c5cb',
+        'secondary-fixed': '#e4e1e7',
+        'secondary-fixed-dim': '#c8c5cb',
+        'secondary-container': '#47464b',
+        'on-secondary': '#303034',
+        'on-secondary-container': '#b6b4b9',
+        'on-secondary-fixed': '#1b1b1f',
+        'on-secondary-fixed-variant': '#47464b',
+        tertiary: '#e4e2e8',
+        'tertiary-fixed': '#e4e1e8',
+        'tertiary-fixed-dim': '#c8c5cc',
+        'tertiary-container': '#c8c6cc',
+        'on-tertiary': '#303035',
+        'on-tertiary-container': '#535258',
+        'on-tertiary-fixed': '#1b1b20',
+        'on-tertiary-fixed-variant': '#46464c',
+        error: '#ffb4ab',
+        'error-container': '#93000a',
+        'on-error': '#690005',
+        'on-error-container': '#ffdad6'
+      },
+      borderRadius: {
+        DEFAULT: '0.125rem',
+        lg: '0.25rem',
+        xl: '0.5rem',
+        full: '0.75rem'
+      },
+      spacing: {
+        'margin-mobile': '16px',
+        'margin-desktop': '64px',
+        base: '8px',
+        gutter: '24px',
+        'container-max': '1280px'
+      },
+      fontFamily: {
+        'display-lg': ['Inter'],
+        'display-lg-mobile': ['Inter'],
+        'headline-md': ['Inter'],
+        'body-md': ['Inter'],
+        'label-caps': ['JetBrains Mono'],
+        'code-sm': ['JetBrains Mono']
+      },
+      fontSize: {
+        'display-lg': ['48px', { lineHeight: '56px', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'display-lg-mobile': ['32px', { lineHeight: '40px', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'headline-md': ['24px', { lineHeight: '32px', fontWeight: '600' }],
+        'body-md': ['16px', { lineHeight: '24px', fontWeight: '400' }],
+        'label-caps': ['12px', { lineHeight: '16px', letterSpacing: '0.05em', fontWeight: '600' }],
+        'code-sm': ['14px', { lineHeight: '20px', fontWeight: '400' }]
+      }
+    }
+  }
+};
+
+export default config;
+</file>
+
+<file path="tsconfig.json">
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "es2022"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+</file>
+
+<file path="src/components/sections/section-02-nav.tsx">
+import Image from 'next/image';
+
+export default function NavSection() {
+  return (
+    <nav className="fixed top-0 z-50 w-full border-b border-outline-variant/30 bg-surface/80 transition-all duration-300 backdrop-blur-md">
+      <div className="mx-auto flex h-20 max-w-container-max items-center justify-between px-margin-mobile md:px-margin-desktop">
+        <a className="font-display-lg text-headline-md font-bold text-primary flex items-center gap-2 text-glow" href="#">
+          <Image 
+            src="/portfolio/logo_upcoded/Logo_Upcoded_192x192.png" 
+            alt="UpCoded Logo" 
+            width={48} 
+            height={48} 
+            className="object-contain"
+          />
+          UpCoded
+        </a>
+
+        <div className="hidden items-center gap-gutter font-body-md text-body-md md:flex">
+          <a className="text-on-surface-variant transition-colors hover:text-primary" href="#servicios">
+            Servicios
+          </a>
+          <a className="text-on-surface-variant transition-colors hover:text-primary" href="#proceso">
+            Proceso
+          </a>
+          <a className="text-on-surface-variant transition-colors hover:text-primary" href="#portfolio">
+            Portfolio
+          </a>
+          <a className="text-on-surface-variant transition-colors hover:text-primary" href="#precios">
+            Precios
+          </a>
+          {/* CTA nav */}
+          <a
+            className="rounded bg-primary px-6 py-2 font-label-caps text-label-caps uppercase text-on-primary transition-all duration-200 hover:scale-95"
+            href="#contacto"
+          >
+            Hablemos
+          </a>
+        </div>
+
+        {/* Hamburger mobile (TODO: agregar JS toggle para menú móvil) */}
+        <button className="text-primary md:hidden" type="button" aria-label="Abrir menú">
+          <span className="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </nav>
+  );
+}
+</file>
+
+<file path="src/components/sections/section-11-final-cta.tsx">
+'use client'
+
+import { useState } from 'react'
+
+export default function CTASection() {
+  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setForm((prev) => ({ ...prev, [e.target.id]: e.target.value }))
+  }
+
+  const handleSubmit = async () => {
+    if (!form.name || !form.email || !form.message) {
+      setStatus('error')
+      return
+    }
+
+    setStatus('loading')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+
+      if (res.ok) {
+        setStatus('success')
+        setForm({ name: '', email: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  return (
+    <section
+      className="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto"
+      id="contacto"
+    >
+      <div className="bg-surface-container-high rounded-xl p-8 md:p-12 border border-outline-variant/30 relative overflow-hidden">
+        <div className="absolute inset-0 code-pattern opacity-20 pointer-events-none" />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
+
+          {/* Copy */}
+          <div>
+            <h2 className="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary text-glow mb-4">
+              ¿Listo para subir de nivel?
+            </h2>
+            <p className="font-body-md text-body-md text-on-surface-variant mb-8">
+              Dejanos tus datos y nos pondremos en contacto en menos de 24 horas
+              para discutir cómo podemos ayudarte a construir tu próximo proyecto.
+            </p>
+            <ul className="space-y-4 font-body-md text-on-surface">
+              <li className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-primary">mail</span>
+                upcodednow@gmail.com
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-primary">schedule</span>
+                Lunes a Viernes, 9am – 6pm (ART)
+              </li>
+            </ul>
+          </div>
+
+          {/* Form */}
+          <div className="bg-surface p-6 rounded-lg border border-outline-variant/30">
+
+            {status === 'success' ? (
+              <div className="h-full flex flex-col items-center justify-center text-center gap-4 py-8">
+                <span className="material-symbols-outlined text-primary text-5xl">
+                  check_circle
+                </span>
+                <h3 className="font-headline-md text-headline-md text-on-surface">
+                  ¡Mensaje enviado!
+                </h3>
+                <p className="font-body-md text-on-surface-variant">
+                  Te respondemos en menos de 24 horas.
+                </p>
+                <button
+                  onClick={() => setStatus('idle')}
+                  className="text-primary font-label-caps text-label-caps uppercase hover:underline mt-2"
+                >
+                  Enviar otro mensaje
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <div>
+                  <label
+                    className="block font-label-caps text-label-caps text-on-surface-variant mb-2"
+                    htmlFor="name"
+                  >
+                    Nombre
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder="Tu nombre o empresa"
+                    className="w-full bg-surface-container border border-outline-variant rounded p-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-colors outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    className="block font-label-caps text-label-caps text-on-surface-variant mb-2"
+                    htmlFor="email"
+                  >
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="tucorreo@empresa.com"
+                    className="w-full bg-surface-container border border-outline-variant rounded p-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-colors outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    className="block font-label-caps text-label-caps text-on-surface-variant mb-2"
+                    htmlFor="message"
+                  >
+                    Mensaje breve sobre tu proyecto
+                  </label>
+                  <textarea
+                    id="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder="¿Qué estás buscando construir?"
+                    className="w-full bg-surface-container border border-outline-variant rounded p-3 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-colors outline-none h-32 resize-none"
+                  />
+                </div>
+
+                {status === 'error' && (
+                  <p className="text-sm text-red-400 font-label-caps">
+                    Completá todos los campos e intentá de nuevo.
+                  </p>
+                )}
+
+                <button
+                  onClick={handleSubmit}
+                  disabled={status === 'loading'}
+                  className="w-full bg-primary text-on-primary px-6 py-3 rounded font-label-caps text-label-caps uppercase hover:bg-primary-fixed-dim transition-colors flex items-center justify-center gap-2 mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {status === 'loading' ? (
+                    <>Enviando...</>
+                  ) : (
+                    <>
+                      Quiero una propuesta gratuita
+                      <span className="material-symbols-outlined text-sm">send</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            )}
+
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+</file>
+
+<file path="package.json">
+{
+  "name": "upcoded-landing",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.40.0",
+    "next": "14.2.32",
+    "next-themes": "^0.4.6",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-icons": "^5.6.0",
+    "resend": "^6.12.4",
+    "tailwind-merge": "^3.6.0",
+    "three": "^0.184.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "@types/three": "^0.184.1",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "14.2.32",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3"
+  }
+}
+</file>
+
+<file path="src/components/sections/section-12-footer.tsx">
+import Image from 'next/image';
+import { FaInstagram, FaLinkedin, FaGithub, FaXTwitter } from 'react-icons/fa6';
+
+export default function FooterSection() {
+  return (
+    <footer className="w-full border-t border-outline-variant/20 bg-surface-container-lowest py-16">
+      <div className="mx-auto flex max-w-container-max flex-col items-center gap-base px-margin-mobile md:flex-row md:justify-between md:px-margin-desktop">
+        <div className="flex items-center gap-2 font-display-lg text-headline-md text-primary">
+          <Image 
+            src="/portfolio/logo_upcoded/Logo_Upcoded_192x192.png" 
+            alt="UpCoded Logo" 
+            width={48} 
+            height={48} 
+            className="object-contain"
+          />
+          UpCoded
+        </div>
+
+        <div className="flex gap-4 font-code-sm text-code-sm">
+          <a className="flex items-center gap-1.5 text-on-surface-variant transition-colors hover:text-primary" href="https://www.instagram.com/upcoded/" target="_blank" rel="noopener noreferrer">
+            <FaInstagram className="text-base" />
+            Instagram
+          </a>
+          <a className="flex items-center gap-1.5 text-on-surface-variant transition-colors hover:text-primary" href="https://www.linkedin.com/company/upcoded-desarrollo-web-y-apps-para-negocios/?viewAsMember=true" target="_blank" rel="noopener noreferrer">
+            <FaLinkedin className="text-base" />
+            LinkedIn
+          </a>
+          <a className="flex items-center gap-1.5 text-on-surface-variant transition-colors hover:text-primary" href="#">
+            <FaGithub className="text-base" />
+            GitHub
+          </a>
+          <a className="flex items-center gap-1.5 text-on-surface-variant transition-colors hover:text-primary" href="https://x.com/upcodednow" target="_blank" rel="noopener noreferrer">
+            <FaXTwitter className="text-base" />
+            X
+          </a>
+        </div>
+
+        <div className="mt-4 text-center font-code-sm text-code-sm text-on-surface-variant md:mt-0 md:text-right">
+          © 2025 UpCoded. High-Performance Engineering.
+          <br />
+          <span className="text-xs opacity-50">Hecho con React &amp; Next.js por UpCoded</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+</file>
+
+<file path="src/app/layout.tsx">
+import type { Metadata } from 'next';
+import { ThemeProvider } from 'next-themes';
+import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
+// @ts-ignore: global CSS is handled by Next.js
+import './globals.css';
+
+export const metadata: Metadata = {
+    title: 'UpCoded | Desarrollo Web con React, Next.js y Spring Boot',
+    description:
+      'Agencia de desarrollo web en Argentina. Construimos sitios, apps y automatizaciones a medida con React, Next.js y Spring Boot. Rápido, limpio y escalable.',
+  keywords: [
+    'agencia desarrollo web argentina',
+    'desarrollo web react nextjs',
+    'aplicaciones web a medida',
+    'automatización whatsapp instagram',
+    'diseño web profesional argentina',
+    'upcoded',
+  ],
+  metadataBase: new URL('https://upcoded.dev'),
+    openGraph: {
+    title: 'UpCoded | Desarrollo Web con React, Next.js y Spring Boot',
+    description:
+      'Agencia de desarrollo web en Argentina. Construimos sitios, apps y automatizaciones a medida con React, Next.js y Spring Boot. Rápido, limpio y escalable.',
+    url: 'https://upcoded.dev',
+    siteName: 'UpCoded',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'UpCoded - Agencia de Desarrollo Web',
+      },
+    ],
+    locale: 'es_AR',
+    type: 'website',
+  },
+    twitter: {
+    card: 'summary_large_image',
+    title: 'UpCoded | Desarrollo Web con React, Next.js y Spring Boot',
+    description: 'Agencia de desarrollo web en Argentina. Construimos sitios, apps y automatizaciones a medida con React, Next.js y Spring Boot. Rápido, limpio y escalable.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html className="dark" lang="es">
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="bg-background text-on-background font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          {children}
+          <WhatsAppFloat />
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
+</file>
+
+</files>

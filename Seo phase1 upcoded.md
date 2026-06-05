@@ -1,7 +1,20 @@
+# SEO Phase 1 — upcoded.dev
+**Branch:** `seo/phase-1-schema-metadata`  
+**Objetivo:** Implementar JSON-LD Schema, mejorar metadata, corregir H1 y agregar canonicals.
+
+---
+
+## Archivos a modificar (3 en total)
+
+---
+
+### 1. `src/app/layout.tsx`
+**Reemplazar el archivo completo con:**
+
+```tsx
 import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
-// @ts-ignore: global CSS is handled by Next.js
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -209,3 +222,135 @@ export default function RootLayout({
     </html>
   );
 }
+```
+
+---
+
+### 2. `src/components/sections/section-03-hero.tsx`
+**Reemplazar únicamente el `<h1>` y el `<p>` del subtítulo:**
+
+Buscar:
+```tsx
+<h1 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow md:font-display-lg md:text-display-lg">
+  Tu negocio merece un equipo técnico de verdad.
+</h1>
+```
+
+Reemplazar con:
+```tsx
+<h1 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow md:font-display-lg md:text-display-lg">
+  Agencia de desarrollo web en Argentina que entrega resultados reales.
+</h1>
+```
+
+Buscar:
+```tsx
+<p className="font-body-md text-body-md max-w-xl text-on-surface-variant">
+  Construimos sitios web, aplicaciones y automatizaciones con React, Next.js y Spring Boot. Rápido, limpio y sin los precios de una agencia grande.
+</p>
+```
+
+Reemplazar con:
+```tsx
+<p className="font-body-md text-body-md max-w-xl text-on-surface-variant">
+  Construimos sitios web, aplicaciones y automatizaciones con React, Next.js y Spring Boot. El equipo técnico que tu negocio necesita, sin los precios de una agencia grande.
+</p>
+```
+
+---
+
+### 3. `src/app/portfolio/[slug]/page.tsx`
+**Reemplazar la función `generateMetadata` completa:**
+
+Buscar:
+```tsx
+export async function generateMetadata({ params }: PortfolioPageProps): Promise<Metadata> {
+  const project = getProjectBySlug(params.slug);
+
+  if (!project) {
+    return {
+      title: 'Portfolio | UpCoded',
+      description: 'Proyecto no encontrado.'
+    };
+  }
+
+  return {
+    title: `${project.title} | Portfolio UpCoded`,
+    description: project.summary
+  };
+}
+```
+
+Reemplazar con:
+```tsx
+export async function generateMetadata({ params }: PortfolioPageProps): Promise<Metadata> {
+  const project = getProjectBySlug(params.slug);
+
+  if (!project) {
+    return {
+      title: 'Portfolio | UpCoded',
+      description: 'Proyecto no encontrado.',
+    };
+  }
+
+  return {
+    title: `${project.title} — Caso de Estudio | UpCoded`,
+    description: `${project.summary} Desarrollado por UpCoded, agencia de desarrollo web en Argentina.`,
+    alternates: {
+      canonical: `https://upcoded.dev/portfolio/${project.slug}`,
+    },
+    openGraph: {
+      title: `${project.title} | UpCoded Portfolio`,
+      description: project.summary,
+      url: `https://upcoded.dev/portfolio/${project.slug}`,
+      images: project.previewImage
+        ? [{ url: project.previewImage, width: 1200, height: 630 }]
+        : [],
+    },
+  };
+}
+```
+
+**Agregar schema JSON-LD por proyecto. Dentro de `PortfolioCaseStudyPage`, antes del `return`, agregar:**
+
+```tsx
+const caseStudySchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: project.title,
+  description: project.summary,
+  creator: {
+    '@type': 'Organization',
+    name: 'UpCoded',
+    url: 'https://upcoded.dev',
+  },
+  url: `https://upcoded.dev/portfolio/${project.slug}`,
+  ...(project.liveUrl && { sameAs: project.liveUrl }),
+};
+```
+
+**Y dentro del JSX, como primer hijo del `<main>`, agregar:**
+
+```tsx
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }}
+/>
+```
+
+---
+
+## Checklist de validación post-deploy
+
+- [ ] Verificar schema en: https://search.google.com/test/rich-results?url=https://upcoded.dev
+- [ ] Verificar metadata en: https://metatags.io/?url=https://upcoded.dev
+- [ ] Confirmar que `https://upcoded.dev/sitemap.xml` responde correctamente
+- [ ] Enviar sitemap en Google Search Console → Indexación → Sitemaps
+
+---
+
+## Qué NO tocar en esta branch
+
+- `src/app/sitemap.ts` — se amplía en Phase 2 cuando existan páginas de servicios
+- `src/components/sections/section-05-services.tsx` — los links `href="#"` se corrigen en Phase 2
+- Cualquier otro componente o archivo no listado arriba
