@@ -1,7 +1,15 @@
-import { DottedSurface } from '@/components/ui/dotted-surface';
+import dynamic from 'next/dynamic';
 import { FadeInView } from '@/components/ui/fade-in-view';
 import { Typewriter } from '@/components/ui/typewriter';
-import WireframeDottedGlobe from '@/components/ui/wireframe-dotted-globe';
+
+const DottedSurface = dynamic(
+  () => import('@/components/ui/dotted-surface').then((m) => m.DottedSurface),
+  { ssr: false },
+);
+const WireframeDottedGlobe = dynamic(
+  () => import('@/components/ui/wireframe-dotted-globe'),
+  { ssr: false },
+);
 
 export default function HeroSection() {
   return (
