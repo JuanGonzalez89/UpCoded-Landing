@@ -127,9 +127,13 @@ const ShaderBackground = ({ className = '' }: ShaderBackgroundProps) => {
 
     let visible = true;
     let running = true;
+    let rafId = 0;
 
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
+      if (visible && rafId === 0) {
+        rafId = requestAnimationFrame(render);
+      }
     }, { threshold: 0 });
     observer.observe(canvas);
 
@@ -140,7 +144,7 @@ const ShaderBackground = ({ className = '' }: ShaderBackgroundProps) => {
       const parent = canvas.parentElement;
       if (!parent) return;
       const { width, height } = parent.getBoundingClientRect();
-      const dpr = reducedMotion ? 1 : Math.min(window.devicePixelRatio || 1, 0.75);
+      const dpr = reducedMotion ? 1 : Math.min(window.devicePixelRatio || 1, 1);
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
@@ -164,13 +168,18 @@ const ShaderBackground = ({ className = '' }: ShaderBackgroundProps) => {
         gl.enableVertexAttribArray(posLoc);
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       }
-      requestAnimationFrame(render);
+      if (visible) {
+        rafId = requestAnimationFrame(render);
+      } else {
+        rafId = 0;
+      }
     };
 
-    requestAnimationFrame(render);
+    rafId = requestAnimationFrame(render);
 
     return () => {
       running = false;
+      if (rafId) cancelAnimationFrame(rafId);
       observer.disconnect();
       ro.disconnect();
     };
