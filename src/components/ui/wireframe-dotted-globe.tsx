@@ -23,7 +23,7 @@ function getCachedData(): unknown | null {
     if (!raw) return null;
     const entry: CacheEntry = JSON.parse(raw);
     if (Date.now() - entry.timestamp > CACHE_DURATION) {
-      localStorage.removeItem(CACHE_KEY);
+      try { localStorage.removeItem(CACHE_KEY); } catch { /* localStorage no disponible */ }
       return null;
     }
     return entry.data;
@@ -102,6 +102,7 @@ const WireframeDottedGlobe = ({ className = '' }: WireframeDottedGlobeProps) => 
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    let mounted = true;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const parent = canvas.parentElement;
@@ -146,6 +147,7 @@ const WireframeDottedGlobe = ({ className = '' }: WireframeDottedGlobeProps) => 
     }
 
     function render() {
+      if (!mounted) return;
       const s = projection.scale();
       ctx.clearRect(0, 0, projection.translate()[0] * 2, projection.translate()[1] * 2);
 
@@ -278,6 +280,7 @@ const WireframeDottedGlobe = ({ className = '' }: WireframeDottedGlobeProps) => 
     canvas.addEventListener('touchstart', (e) => { if (e.touches.length === 1) startInteraction(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
 
     return () => {
+      mounted = false;
       timer.stop();
       observer.disconnect();
       resizeObserver.disconnect();

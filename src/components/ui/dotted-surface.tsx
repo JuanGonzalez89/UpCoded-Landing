@@ -21,10 +21,17 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let mounted = true;
     const container = containerRef.current;
     if (!container) return;
 
     const buildScene = () => {
+      let renderer: THREE.WebGLRenderer | null = null;
+      try {
+        renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      } catch {
+        return null;
+      }
       const w = container.clientWidth;
       const h = container.clientHeight || Math.round(w / 1.5);
       const visibleWidth = calcVisibleWidth(CAMERA_Z, FOV, w / h);
@@ -35,7 +42,6 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
       const camera = new THREE.PerspectiveCamera(FOV, w / h, 1, 10000);
       camera.position.set(0, 355, CAMERA_Z);
 
-      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(w, h);
       renderer.setClearColor(0x000000, 0);
@@ -76,6 +82,7 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
       let animationId = 0;
 
       const animate = () => {
+        if (!mounted) return;
         animationId = requestAnimationFrame(animate);
         const pos = geometry.attributes.position.array as Float32Array;
         let i = 0;
@@ -98,6 +105,7 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
     };
 
     let current = buildScene();
+    if (!current) return;
 
     const handleResize = () => {
       if (!container || !current) return;
