@@ -55,7 +55,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "Tailwind CSS", "Vercel"],
     summary: "Landing institucional para estudio jurídico con foco en captación de clientes.",
     result: "Entregada en 2 semanas, con SEO local optimizado",
-    liveUrl: "https://jara-asociados-landing.vercel.app",
+    liveUrl: "https://jara-y-asociados-landing.vercel.app",
     previewImage: "/portfolio/JaraYAsociados/JaraYAsociados_Preview.png",
     images: [
       "/portfolio/JaraYAsociados/Screenshot_1.png",
