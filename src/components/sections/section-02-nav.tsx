@@ -2,72 +2,128 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { PiListBold, PiXBold } from 'react-icons/pi';
+
+const links = [
+  { label: 'Servicios', href: '/#servicios' },
+  { label: 'Trabajo', href: '/#portfolio' },
+  { label: 'Proceso', href: '/#proceso' },
+  { label: 'Precios', href: '/#precios' },
+  { label: 'Blog', href: '/blog' },
+] as const;
 
 export default function NavSection() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const sentinel = useRef<HTMLDivElement>(null);
+
+  // La regla inferior aparece recien cuando la pagina se movio.
+  // IntersectionObserver en vez de listener de scroll: no corre por frame.
+  useEffect(() => {
+    const el = sentinel.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => setScrolled(!entry.isIntersecting));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Con el menu abierto el fondo no debe scrollear, y Escape lo cierra.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [menuOpen]);
 
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-outline-variant/30 bg-surface/80 transition-all duration-300 backdrop-blur-md">
-      <div className="mx-auto flex h-20 max-w-container-max items-center justify-between px-margin-mobile md:px-margin-desktop">
-        <Link className="font-display-lg text-headline-md font-bold text-primary flex items-center gap-2 text-glow" href="/">
-          <Image 
-            src="/portfolio/logo_upcoded/Logo_Upcoded_192x192.png" 
-            alt="UpCoded Logo" 
-            width={48} 
-            height={48} 
-            className="object-contain"
-          />
-          UpCoded
-        </Link>
+    <>
+      <div ref={sentinel} aria-hidden className="absolute left-0 top-0 h-px w-px" />
 
-        <div className="hidden items-center gap-gutter font-body-md text-body-md md:flex">
-          <a className="text-on-surface-variant transition-colors hover:text-primary" href="#servicios">
-            Servicios
-          </a>
-          <a className="text-on-surface-variant transition-colors hover:text-primary" href="#proceso">
-            Proceso
-          </a>
-          <a className="text-on-surface-variant transition-colors hover:text-primary" href="#portfolio">
-            Portfolio
-          </a>
-          <a className="text-on-surface-variant transition-colors hover:text-primary" href="#precios">
-            Precios
-          </a>
-          <a
-            className="rounded bg-primary px-6 py-2 font-label-caps text-label-caps uppercase text-on-primary transition-all duration-200 hover:scale-95"
-            href="#contacto"
+      <header
+        className={`fixed inset-x-0 top-0 z-50 border-b bg-background/95 backdrop-blur-md transition-colors duration-300 ease-upcoded ${
+          scrolled ? 'border-outline-variant' : 'border-transparent'
+        }`}
+      >
+        <nav
+          aria-label="Principal"
+          className="mx-auto flex h-[68px] max-w-container-max items-center justify-between px-margin-mobile md:px-margin-desktop"
+        >
+          <Link
+            className="flex items-center gap-2.5 text-[1.0625rem] font-semibold tracking-[-0.02em] text-on-surface"
+            href="/"
           >
-            Hablemos
-          </a>
-        </div>
+            <Image
+              src="/portfolio/logo_upcoded/Logo_Upcoded_192x192.png"
+              alt=""
+              width={30}
+              height={30}
+              className="object-contain"
+            />
+            UpCoded
+          </Link>
 
-        <button className="text-primary md:hidden" type="button" aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'} onClick={() => setMenuOpen(!menuOpen)}>
-          <span className="material-symbols-outlined">{menuOpen ? 'close' : 'menu'}</span>
-        </button>
-      </div>
+          <div className="hidden items-center gap-8 md:flex">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                className="text-[0.9375rem] text-on-surface-variant transition-colors duration-200 ease-upcoded hover:text-on-surface"
+                href={link.href}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              className="rounded-md bg-primary px-5 py-2.5 text-[0.9375rem] font-medium text-on-primary transition-colors duration-200 ease-upcoded hover:bg-primary-container active:scale-[0.98]"
+              href="/#contacto"
+            >
+              Hablemos
+            </Link>
+          </div>
+
+          <button
+            className="-mr-2 flex h-11 w-11 items-center justify-center text-on-surface md:hidden"
+            type="button"
+            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? <PiXBold size={22} /> : <PiListBold size={22} />}
+          </button>
+        </nav>
+      </header>
 
       {menuOpen && (
-        <div className="border-t border-outline-variant/30 bg-surface px-margin-mobile pb-6 pt-4 md:hidden">
-          <div className="flex flex-col gap-4">
-            <a className="font-body-md text-on-surface-variant transition-colors hover:text-primary" href="#servicios" onClick={() => setMenuOpen(false)}>
-              Servicios
-            </a>
-            <a className="font-body-md text-on-surface-variant transition-colors hover:text-primary" href="#proceso" onClick={() => setMenuOpen(false)}>
-              Proceso
-            </a>
-            <a className="font-body-md text-on-surface-variant transition-colors hover:text-primary" href="#portfolio" onClick={() => setMenuOpen(false)}>
-              Portfolio
-            </a>
-            <a className="font-body-md text-on-surface-variant transition-colors hover:text-primary" href="#precios" onClick={() => setMenuOpen(false)}>
-              Precios
-            </a>
-            <a className="mt-2 block rounded bg-primary px-6 py-3 text-center font-label-caps text-label-caps uppercase text-on-primary transition-all duration-200" href="#contacto" onClick={() => setMenuOpen(false)}>
+        <div className="fixed inset-0 z-40 flex flex-col bg-background pt-[68px] md:hidden">
+          <nav aria-label="Principal móvil" className="flex flex-col px-margin-mobile pt-6">
+            {links.map((link, i) => (
+              <Link
+                key={link.href}
+                className="border-b border-outline-variant py-4 text-2xl font-medium tracking-[-0.02em] text-on-surface motion-safe:animate-none"
+                href={link.href}
+                style={{ transitionDelay: `${i * 40}ms` }}
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              className="mt-8 flex min-h-[52px] items-center justify-center rounded-md bg-primary px-6 text-base font-medium text-on-primary active:scale-[0.98]"
+              href="/#contacto"
+              onClick={() => setMenuOpen(false)}
+            >
               Hablemos
-            </a>
-          </div>
+            </Link>
+          </nav>
         </div>
       )}
-    </nav>
+    </>
   );
 }

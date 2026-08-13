@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
       from: 'UpCoded Contacto <onboarding@resend.dev>',
       to: 'upcodednow@gmail.com',
       replyTo: email,
-      subject: `Nuevo contacto de ${name} — UpCoded`,
+      subject: `Nuevo contacto de ${name} | UpCoded`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background: #131314; padding: 32px; border-radius: 8px; border: 1px solid #3c494d;">

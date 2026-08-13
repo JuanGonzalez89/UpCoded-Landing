@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
+import { PiArrowLeft, PiArrowRight } from 'react-icons/pi';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { getAllPosts, getPostBySlug } from '@/lib/mdx';
 import NavSection from '@/components/sections/section-02-nav';
 import FooterSection from '@/components/sections/section-12-footer';
-import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
 
 type BlogPostPageProps = {
   params: { slug: string };
@@ -81,11 +81,11 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <NavSection />
-      <main className="pt-20">
+      <main id="contenido" className="pt-[68px]">
         <article className="mx-auto max-w-[720px] px-margin-mobile py-24 md:px-8">
 
           {/* Breadcrumb */}
-          <nav className="mb-6 flex items-center gap-2 font-label-caps text-label-caps uppercase text-on-surface-variant">
+          <nav className="mb-6 flex items-center gap-2 font-mono text-label-caps uppercase text-on-surface-variant">
             <Link href="/" className="hover:text-primary transition-colors">Inicio</Link>
             <span>/</span>
             <Link href="/blog" className="hover:text-primary transition-colors">Blog</Link>
@@ -95,7 +95,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* Header */}
           <header className="mb-12">
-            <div className="mb-4 flex flex-wrap items-center gap-4 font-label-caps text-label-caps uppercase text-on-surface-variant">
+            <div className="mb-4 flex flex-wrap items-center gap-4 font-mono text-label-caps uppercase text-on-surface-variant">
               <span>
                 {new Date(post.date).toLocaleDateString('es-AR', {
                   year: 'numeric',
@@ -103,13 +103,13 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                   day: 'numeric',
                 })}
               </span>
-              <span className="text-primary">•</span>
-              <span className="text-primary">{post.readingTime}</span>
+              <span aria-hidden>·</span>
+              <span>{post.readingTime}</span>
             </div>
-            <h1 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-6 md:font-display-lg md:text-display-lg">
+            <h1 className="text-display-lg text-on-surface mb-6">
               {post.title}
             </h1>
-            <p className="font-body-md text-body-md text-on-surface-variant">
+            <p className="text-body-md text-on-surface-variant">
               {post.description}
             </p>
           </header>
@@ -119,37 +119,40 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             <MDXRemote source={post.content} />
           </div>
 
-          {/* CTA al final del artículo */}
-          <div className="mt-16 rounded-xl border border-primary/30 bg-surface-container-high p-8 text-center">
-            <h2 className="font-headline-md text-headline-md mb-3 text-primary">
-              ¿Necesitás un equipo de desarrollo web en Argentina?
-            </h2>
-            <p className="mb-6 font-body-md text-on-surface-variant">
-              En UpCoded construimos sitios, apps y automatizaciones con lo último en tecnología web. Contanos tu proyecto.
-            </p>
-            <Link
-              href="/#contacto"
-              className="inline-flex items-center gap-2 rounded bg-primary px-6 py-3 font-label-caps text-label-caps uppercase text-on-primary transition-colors hover:bg-primary-fixed-dim"
-            >
-              Quiero una propuesta gratuita
-              <span className="material-symbols-outlined text-sm">arrow_forward</span>
-            </Link>
-          </div>
-
           {/* Back to blog */}
-          <div className="mt-12 text-center">
+          <div className="mt-16 border-t border-outline-variant pt-8">
             <Link
               href="/blog"
-              className="font-label-caps text-label-caps uppercase text-on-surface-variant transition-colors hover:text-primary"
+              className="inline-flex items-center gap-2 text-[0.9375rem] font-medium text-primary transition-colors duration-200 ease-upcoded hover:text-primary-container"
             >
-              ← Volver al blog
+              <PiArrowLeft aria-hidden size={15} />
+              Volver al blog
             </Link>
           </div>
 
         </article>
+
+        {/* Cierre en tinta, igual que en el resto del sitio: se funde con el footer. */}
+        <section className="on-ink bg-ink px-margin-mobile py-20 text-on-ink md:px-margin-desktop">
+          <div className="mx-auto max-w-container-max">
+            <h2 className="max-w-measure text-headline-lg text-on-ink">
+              ¿Necesitás un equipo de desarrollo web en Argentina?
+            </h2>
+            <p className="mt-5 max-w-measure text-body-md text-on-ink-variant">
+              En UpCoded construimos sitios, apps y automatizaciones con lo último en tecnología
+              web. Contanos tu proyecto.
+            </p>
+            <Link
+              href="/#contacto"
+              className="mt-8 inline-flex min-h-[52px] items-center justify-center gap-2 rounded-md bg-on-ink px-7 text-base font-medium text-ink transition-colors duration-200 ease-upcoded hover:bg-accent-ink active:scale-[0.98]"
+            >
+              Quiero una propuesta gratuita
+              <PiArrowRight aria-hidden size={16} />
+            </Link>
+          </div>
+        </section>
       </main>
       <FooterSection />
-      <WhatsAppFloat />
     </>
   );
 }

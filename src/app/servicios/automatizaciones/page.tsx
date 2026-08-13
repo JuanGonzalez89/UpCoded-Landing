@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
+import { PiArrowRight } from 'react-icons/pi';
 import Link from 'next/link';
 import NavSection from '@/components/sections/section-02-nav';
 import FooterSection from '@/components/sections/section-12-footer';
-import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
 
 export const metadata: Metadata = {
   title: 'Automatización de Procesos para Empresas en Argentina | UpCoded',
@@ -43,12 +43,12 @@ const jsonLd = {
 };
 
 const useCases = [
-  { icon: 'chat', title: 'WhatsApp automático', description: 'Que tus clientes reciban respuestas al instante, sin que nadie tenga que escribir. Atención 24/7 sin esfuerzo.' },
-  { icon: 'sync_alt', title: 'Conexión entre herramientas', description: 'Conectamos tu WhatsApp, tu correo, tus redes y tus sistemas para que compartan información automáticamente.' },
-  { icon: 'mail', title: 'Emails que se disparan solos', description: 'Cuando un cliente hace algo —completa un formulario, compra, se registra— recibe el mensaje justo sin que toques nada.' },
-  { icon: 'tonality', title: 'Sistemas que hablan entre sí', description: 'Si tenés varias herramientas que no se comunican, las conectamos para que trabajen juntas sin que intervengas.' },
-  { icon: 'notifications_active', title: 'Alertas inteligentes', description: 'Recibí una notificación en tu celular o mail cuando pase algo importante: una venta, un reclamo, un vencimiento.' },
-  { icon: 'table_chart', title: 'Reportes automáticos', description: 'Todos los números de tu negocio llegan a tu mail o WhatsApp sin que nadie los tenga que armar a mano.' },
+  { title: 'WhatsApp automático', description: 'Que tus clientes reciban respuestas al instante, sin que nadie tenga que escribir. Atención 24/7 sin esfuerzo.' },
+  { title: 'Conexión entre herramientas', description: 'Conectamos tu WhatsApp, tu correo, tus redes y tus sistemas para que compartan información automáticamente.' },
+  { title: 'Emails que se disparan solos', description: 'Cuando un cliente hace algo (completa un formulario, compra o se registra), recibe el mensaje justo sin que toques nada.' },
+  { title: 'Sistemas que hablan entre sí', description: 'Si tenés varias herramientas que no se comunican, las conectamos para que trabajen juntas sin que intervengas.' },
+  { title: 'Alertas inteligentes', description: 'Recibí una notificación en tu celular o mail cuando pase algo importante: una venta, un reclamo, un vencimiento.' },
+  { title: 'Reportes automáticos', description: 'Todos los números de tu negocio llegan a tu mail o WhatsApp sin que nadie los tenga que armar a mano.' },
 ];
 
 const faqs = [
@@ -78,11 +78,11 @@ export default function AutomatizacionesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <NavSection />
-      <main className="pt-20">
+      <main id="contenido" className="pt-[68px]">
 
         {/* Hero */}
         <section className="mx-auto max-w-container-max px-margin-mobile py-24 md:px-margin-desktop">
-          <nav className="mb-6 flex items-center gap-2 font-label-caps text-label-caps uppercase text-on-surface-variant">
+          <nav className="mb-6 flex items-center gap-2 font-mono text-label-caps uppercase text-on-surface-variant">
             <Link href="/" className="hover:text-primary transition-colors">Inicio</Link>
             <span>/</span>
             <Link href="/#servicios" className="hover:text-primary transition-colors">Servicios</Link>
@@ -90,19 +90,19 @@ export default function AutomatizacionesPage() {
             <span className="text-primary">Automatizaciones</span>
           </nav>
           <div className="max-w-3xl">
-            <h1 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-6 md:font-display-lg md:text-display-lg">
+            <h1 className="text-display-lg text-on-surface mb-6">
               Automaticá las tareas repetitivas de tu negocio
             </h1>
-            <p className="mb-8 font-body-md text-body-md text-on-surface-variant max-w-2xl">
+            <p className="mb-8 text-body-md text-on-surface-variant max-w-2xl">
               Conectamos tus herramientas para que el trabajo manual desaparezca. Más tiempo para lo importante, menos errores, menos estrés.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/#contacto"
-                className="flex items-center gap-2 rounded bg-primary px-6 py-3 font-label-caps text-label-caps uppercase text-on-primary transition-colors hover:bg-primary-fixed-dim"
+                className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-md bg-primary px-7 text-base font-medium text-on-primary transition-colors duration-200 ease-upcoded hover:bg-primary-container active:scale-[0.98]"
               >
                 Quiero automatizar mi negocio
-                <span className="material-symbols-outlined text-sm">arrow_forward</span>
+              <PiArrowRight aria-hidden size={16} />
               </Link>
             </div>
           </div>
@@ -111,18 +111,17 @@ export default function AutomatizacionesPage() {
         {/* Use cases */}
         <section className="bg-surface-container-low py-24">
           <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
-            <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-16 md:font-display-lg md:text-display-lg">
+            <h2 className="text-headline-lg text-on-surface mb-16">
               Así podemos ayudarte
             </h2>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {useCases.map((uc) => (
                 <div
                   key={uc.title}
-                  className="glow-hover rounded-lg border border-outline-variant/30 bg-surface p-6 transition-colors hover:border-primary/50"
+                  className="rounded-lg border border-outline-variant bg-surface-container p-7 transition-[transform,border-color] duration-200 ease-upcoded hover:-translate-y-[3px] hover:border-primary"
                 >
-                  <span className="material-symbols-outlined mb-4 text-3xl text-primary block">{uc.icon}</span>
-                  <h3 className="font-headline-md text-headline-md mb-2 text-on-surface">{uc.title}</h3>
-                  <p className="font-body-md text-on-surface-variant">{uc.description}</p>
+                  <h3 className="text-headline-md mb-2 text-on-surface">{uc.title}</h3>
+                  <p className="text-on-surface-variant">{uc.description}</p>
                 </div>
               ))}
             </div>
@@ -131,41 +130,40 @@ export default function AutomatizacionesPage() {
 
         {/* FAQ */}
         <section className="mx-auto max-w-container-max px-margin-mobile py-24 md:px-margin-desktop">
-          <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-16 md:font-display-lg md:text-display-lg">
+          <h2 className="text-headline-lg text-on-surface mb-16">
             Preguntas frecuentes
           </h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {faqs.map((faq) => (
-              <div key={faq.q} className="rounded-lg border border-outline-variant/30 bg-surface-container p-6">
-                <h3 className="font-headline-md text-headline-md mb-3 text-on-surface">{faq.q}</h3>
-                <p className="font-body-md text-on-surface-variant">{faq.a}</p>
+              <div key={faq.q} className="rounded-lg border border-outline-variant bg-surface-container p-6">
+                <h3 className="text-headline-md mb-3 text-on-surface">{faq.q}</h3>
+                <p className="text-on-surface-variant">{faq.a}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* CTA */}
-        <section className="bg-surface-container-low py-24">
+        <section className="on-ink bg-ink py-24 text-on-ink">
           <div className="mx-auto max-w-container-max px-margin-mobile py-8 text-center md:px-margin-desktop">
-            <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-4 md:font-display-lg md:text-display-lg">
+            <h2 className="text-headline-lg text-on-ink mb-4">
               ¿Qué proceso querés dejar de hacer a mano?
             </h2>
-            <p className="mx-auto mb-8 max-w-xl font-body-md text-body-md text-on-surface-variant">
+            <p className="mx-auto mb-8 max-w-xl text-body-md text-on-ink-variant">
               Contanos qué tarea se repite y te mostramos cómo automatizarla.
             </p>
             <Link
               href="/#contacto"
-              className="inline-flex items-center gap-2 rounded bg-primary px-8 py-4 font-label-caps text-label-caps uppercase text-on-primary transition-colors hover:bg-primary-fixed-dim"
+              className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-md bg-on-ink px-7 text-base font-medium text-ink transition-colors duration-200 ease-upcoded hover:bg-accent-ink active:scale-[0.98]"
             >
               Quiero una propuesta gratuita
-              <span className="material-symbols-outlined text-sm">arrow_forward</span>
+              <PiArrowRight aria-hidden size={16} />
             </Link>
           </div>
         </section>
 
       </main>
       <FooterSection />
-      <WhatsAppFloat />
     </>
   );
 }

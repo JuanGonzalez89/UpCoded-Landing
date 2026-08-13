@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
+import { PiArrowRight } from 'react-icons/pi';
 import Link from 'next/link';
 import NavSection from '@/components/sections/section-02-nav';
 import FooterSection from '@/components/sections/section-12-footer';
-import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
 
 export const metadata: Metadata = {
-  title: 'Desarrollo Web en Argentina | Agencia Profesional — UpCoded',
+  title: 'Desarrollo Web en Argentina | Agencia Profesional | UpCoded',
   description:
     'Agencia de desarrollo web en Argentina. Creamos sitios rápidos, modernos y optimizados para que tu negocio aparezca en Google. Entrega en semanas, no meses.',
   alternates: {
@@ -47,26 +47,22 @@ const jsonLd = {
 };
 
 const features = [
-  {
-    icon: 'speed',
+  {
     title: 'Velocidad que tus clientes notan',
     description:
       'Un sitio lento hace que la gente se vaya antes de verte. Los nuestros cargan al instante, en cualquier dispositivo.',
   },
-  {
-    icon: 'devices',
+  {
     title: 'Se ve bien en todos lados',
     description:
       'Diseñamos para que se vea perfecto en celular, tablet y computadora. Sin sorpresas, sin pantallas rotas.',
   },
-  {
-    icon: 'search',
+  {
     title: 'Listo para aparecer en Google',
     description:
       'Configuramos todo lo necesario para que Google encuentre tu sitio y lo muestre cuando alguien busca lo que hacés.',
   },
-  {
-    icon: 'lock',
+  {
     title: 'Seguro y sin complicaciones',
     description:
       'Código limpio y moderno. Olvidate de mantener plugins, actualizaciones de emergencia o sitios que se caen.',
@@ -100,11 +96,11 @@ export default function DesarrolloWebArgentinaPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <NavSection />
-      <main className="pt-20">
+      <main id="contenido" className="pt-[68px]">
 
         {/* Hero */}
         <section className="relative mx-auto max-w-container-max px-margin-mobile py-24 md:px-margin-desktop">
-          <nav className="mb-6 flex items-center gap-2 font-label-caps text-label-caps uppercase text-on-surface-variant">
+          <nav className="mb-6 flex items-center gap-2 font-mono text-label-caps uppercase text-on-surface-variant">
             <Link href="/" className="hover:text-primary transition-colors">Inicio</Link>
             <span>/</span>
             <Link href="/#servicios" className="hover:text-primary transition-colors">Servicios</Link>
@@ -113,23 +109,23 @@ export default function DesarrolloWebArgentinaPage() {
           </nav>
 
           <div className="max-w-3xl">
-            <h1 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-6 md:font-display-lg md:text-display-lg">
+            <h1 className="text-display-lg text-on-surface mb-6">
               Creamos el sitio web que tu negocio merece
             </h1>
-            <p className="mb-8 font-body-md text-body-md text-on-surface-variant max-w-2xl">
+            <p className="mb-8 text-body-md text-on-surface-variant max-w-2xl">
               Tu sitio web es la puerta de entrada a nuevos clientes. Nosotros lo construimos rápido, moderno y optimizado para que te encuentren en Google. Sin plantillas genéricas, sin vueltas.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/#contacto"
-                className="flex items-center gap-2 rounded bg-primary px-6 py-3 font-label-caps text-label-caps uppercase text-on-primary transition-colors hover:bg-primary-fixed-dim"
+                className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-md bg-primary px-7 text-base font-medium text-on-primary transition-colors duration-200 ease-upcoded hover:bg-primary-container active:scale-[0.98]"
               >
                 Pedir presupuesto gratis
-                <span className="material-symbols-outlined text-sm">arrow_forward</span>
+              <PiArrowRight aria-hidden size={16} />
               </Link>
               <Link
                 href="/#portfolio"
-                className="glow-hover flex items-center gap-2 rounded border border-primary px-6 py-3 font-label-caps text-label-caps uppercase text-primary transition-colors hover:bg-primary/10"
+                className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-md border border-outline-strong px-7 text-base font-medium text-on-surface transition-colors duration-200 ease-upcoded hover:border-primary hover:text-primary active:scale-[0.98]"
               >
                 Ver proyectos
               </Link>
@@ -138,28 +134,25 @@ export default function DesarrolloWebArgentinaPage() {
         </section>
 
         {/* Features */}
-        <section className="border-y border-outline-variant/30 bg-surface-container-low py-16">
+        <section className="border-y border-outline-variant bg-surface-container-low py-16">
           <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
-            <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-4 md:font-display-lg md:text-display-lg">
+            <h2 className="text-headline-lg text-on-surface mb-4">
               Por qué elegirnos para tu proyecto web
             </h2>
-            <p className="mb-16 max-w-2xl font-body-md text-body-md text-on-surface-variant">
+            <p className="mb-16 max-w-2xl text-body-md text-on-surface-variant">
               No usamos plantillas ni tercerizamos el trabajo. Cada proyecto lo construimos desde cero pensando en tu negocio.
             </p>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               {features.map((f) => (
                 <div
                   key={f.title}
-                  className="glow-hover flex gap-4 rounded-lg border border-outline-variant/30 bg-surface-container p-6 transition-colors hover:border-primary/50"
+                  className="rounded-lg border border-outline-variant bg-surface-container p-7 transition-[transform,border-color] duration-200 ease-upcoded hover:-translate-y-[3px] hover:border-primary"
                 >
-                  <span className="material-symbols-outlined mt-1 text-2xl text-primary shrink-0">
-                    {f.icon}
-                  </span>
                   <div>
-                    <h3 className="font-headline-md text-headline-md mb-2 text-on-surface">
+                    <h3 className="text-headline-md mb-2 text-on-surface">
                       {f.title}
                     </h3>
-                    <p className="font-body-md text-on-surface-variant">{f.description}</p>
+                    <p className="text-on-surface-variant">{f.description}</p>
                   </div>
                 </div>
               ))}
@@ -169,46 +162,45 @@ export default function DesarrolloWebArgentinaPage() {
 
         {/* FAQ */}
         <section className="mx-auto max-w-container-max px-margin-mobile py-24 md:px-margin-desktop">
-          <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-16 md:font-display-lg md:text-display-lg">
+          <h2 className="text-headline-lg text-on-surface mb-16">
             Preguntas frecuentes
           </h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {faqs.map((faq) => (
               <div
                 key={faq.q}
-                className="rounded-lg border border-outline-variant/30 bg-surface p-6"
+                className="rounded-lg border border-outline-variant bg-surface-container p-7"
               >
-                <h3 className="font-headline-md text-headline-md mb-3 text-on-surface">
+                <h3 className="text-headline-md mb-3 text-on-surface">
                   {faq.q}
                 </h3>
-                <p className="font-body-md text-on-surface-variant">{faq.a}</p>
+                <p className="text-on-surface-variant">{faq.a}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* CTA final */}
-        <section className="bg-surface-container-low py-24">
+        <section className="on-ink bg-ink py-24 text-on-ink">
           <div className="mx-auto max-w-container-max px-margin-mobile text-center md:px-margin-desktop">
-            <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-4 md:font-display-lg md:text-display-lg">
+            <h2 className="text-headline-lg text-on-ink mb-4">
               ¿Tenés un proyecto en mente?
             </h2>
-            <p className="mx-auto mb-8 max-w-xl font-body-md text-body-md text-on-surface-variant">
+            <p className="mx-auto mb-8 max-w-xl text-body-md text-on-ink-variant">
               Contanos qué necesitás y te respondemos en menos de 24 horas con una propuesta concreta.
             </p>
             <Link
               href="/#contacto"
-              className="inline-flex items-center gap-2 rounded bg-primary px-8 py-4 font-label-caps text-label-caps uppercase text-on-primary transition-colors hover:bg-primary-fixed-dim"
+              className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-md bg-on-ink px-7 text-base font-medium text-ink transition-colors duration-200 ease-upcoded hover:bg-accent-ink active:scale-[0.98]"
             >
               Quiero una propuesta gratuita
-              <span className="material-symbols-outlined text-sm">arrow_forward</span>
+              <PiArrowRight aria-hidden size={16} />
             </Link>
           </div>
         </section>
 
       </main>
       <FooterSection />
-      <WhatsAppFloat />
     </>
   );
 }

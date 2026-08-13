@@ -9,3 +9,6 @@ Seo phase1 upcoded.md
 *.md
 
 .impeccable/
+
+# skills instaladas via npx skills
+.claude/skills/

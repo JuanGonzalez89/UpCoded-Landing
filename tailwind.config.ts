@@ -1,90 +1,159 @@
 import type { Config } from 'tailwindcss';
 
+/**
+ * UpCoded design tokens.
+ *
+ * Tema unico: claro (papel calido) con acento verde petroleo profundo.
+ * Los nombres semanticos (surface / on-surface / primary / outline) se mantienen
+ * respecto del sistema anterior para que blog, portfolio y servicios hereden la
+ * paleta sin tocar cada archivo.
+ *
+ * La familia `ink-*` es el unico contrapunto oscuro y se usa solo en dos bloques
+ * deliberados de la home (Resultados y Contacto + Footer). No es un modo oscuro.
+ */
 const config: Config = {
-  darkMode: 'class',
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       colors: {
-        primary: '#afecff',
-        'primary-container': '#00d9ff',
-        'primary-fixed': '#aeecff',
-        'primary-fixed-dim': '#00d9ff',
-        'on-primary': '#003641',
-        'on-primary-container': '#005b6c',
-        'on-primary-fixed': '#001f26',
-        'on-primary-fixed-variant': '#004e5d',
-        'inverse-primary': '#00687b',
-        'surface-tint': '#00d9ff',
-        background: '#131314',
-        surface: '#131314',
-        'surface-dim': '#131314',
-        'surface-bright': '#3a393a',
-        'surface-container-lowest': '#0e0e0f',
-        'surface-container-low': '#1c1b1c',
-        'surface-container': '#201f20',
-        'surface-container-high': '#2a2a2b',
-        'surface-container-highest': '#353436',
-        'surface-variant': '#353436',
-        'inverse-surface': '#e5e2e3',
-        'inverse-on-surface': '#313031',
-        'on-background': '#e5e2e3',
-        'on-surface': '#e5e2e3',
-        'on-surface-variant': '#bbc9ce',
-        outline: '#859398',
-        'outline-variant': '#3c494d',
-        secondary: '#c8c5cb',
-        'secondary-fixed': '#e4e1e7',
-        'secondary-fixed-dim': '#c8c5cb',
-        'secondary-container': '#47464b',
-        'on-secondary': '#303034',
-        'on-secondary-container': '#b6b4b9',
-        'on-secondary-fixed': '#1b1b1f',
-        'on-secondary-fixed-variant': '#47464b',
-        tertiary: '#e4e2e8',
-        'tertiary-fixed': '#e4e1e8',
-        'tertiary-fixed-dim': '#c8c5cc',
-        'tertiary-container': '#c8c6cc',
-        'on-tertiary': '#303035',
-        'on-tertiary-container': '#535258',
-        'on-tertiary-fixed': '#1b1b20',
-        'on-tertiary-fixed-variant': '#46464c',
-        error: '#ffb4ab',
-        'error-container': '#93000a',
-        'on-error': '#690005',
-        'on-error-container': '#ffdad6'
+        // Acento
+        primary: '#0F4C4A',
+        'primary-container': '#0A3735',
+        'primary-fixed': '#0A3735',
+        'primary-fixed-dim': '#0A3735',
+        'on-primary': '#FBF9F6',
+        'on-primary-container': '#FBF9F6',
+        'on-primary-fixed': '#FBF9F6',
+        'on-primary-fixed-variant': '#DCEAE7',
+        'primary-tint': '#EDF2F1',
+        'surface-tint': '#0F4C4A',
+        'inverse-primary': '#8FC9C1',
+
+        // Superficies claras
+        background: '#FBF9F6',
+        surface: '#FBF9F6',
+        'surface-dim': '#F3EFE9',
+        'surface-bright': '#FFFFFF',
+        'surface-container-lowest': '#FFFFFF',
+        'surface-container-low': '#F3EFE9',
+        'surface-container': '#FFFFFF',
+        'surface-container-high': '#FFFFFF',
+        'surface-container-highest': '#F3EFE9',
+        'surface-variant': '#F3EFE9',
+
+        // Tinta / texto
+        'on-background': '#191713',
+        'on-surface': '#191713',
+        'on-surface-variant': '#6C665C',
+        outline: '#8E877B',
+        'outline-variant': '#E3DDD3',
+        'outline-strong': '#D8D1C6',
+
+        // Bloques oscuros deliberados
+        ink: '#191713',
+        'ink-container': '#211E19',
+        'ink-outline': '#38342D',
+        'on-ink': '#FBF9F6',
+        'on-ink-variant': '#A8A196',
+        'accent-ink': '#8FC9C1',
+        'inverse-surface': '#191713',
+        'inverse-on-surface': '#FBF9F6',
+
+        // Neutros secundarios (compatibilidad con el sistema anterior)
+        secondary: '#6C665C',
+        'secondary-container': '#F3EFE9',
+        'on-secondary': '#FBF9F6',
+        'on-secondary-container': '#191713',
+        tertiary: '#8E877B',
+        'tertiary-container': '#F3EFE9',
+        'on-tertiary': '#FBF9F6',
+        'on-tertiary-container': '#191713',
+
+        error: '#9B2C1C',
+        'error-container': '#F7E4E0',
+        'on-error': '#FBF9F6',
+        'on-error-container': '#6B1E13',
       },
+
+      /**
+       * Shape lock: 6px en controles (boton, input, badge), 10px en cards,
+       * 14px en contenedores grandes. `full` vuelve a ser circulo real.
+       */
       borderRadius: {
-        DEFAULT: '0.125rem',
-        lg: '0.25rem',
-        xl: '0.5rem',
-        full: '0.75rem'
+        DEFAULT: '6px',
+        sm: '4px',
+        md: '6px',
+        lg: '10px',
+        xl: '14px',
+        '2xl': '18px',
+        full: '9999px',
       },
+
       spacing: {
-        'margin-mobile': '16px',
-        'margin-desktop': '64px',
+        'margin-mobile': '20px',
+        'margin-desktop': '48px',
         base: '8px',
         gutter: '24px',
-        'container-max': '1280px'
+        'container-max': '1220px',
       },
+
+      maxWidth: {
+        'container-max': '1220px',
+        measure: '65ch',
+      },
+
       fontFamily: {
-        'display-lg': ['Inter'],
-        'display-lg-mobile': ['Inter'],
-        'headline-md': ['Inter'],
-        'body-md': ['Inter'],
-        'label-caps': ['JetBrains Mono'],
-        'code-sm': ['JetBrains Mono']
+        sans: ['var(--font-instrument-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-jetbrains-mono)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        // Aliases del sistema anterior, ahora todos apuntan a las dos familias reales.
+        'display-lg': ['var(--font-instrument-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'display-lg-mobile': ['var(--font-instrument-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'headline-md': ['var(--font-instrument-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'body-md': ['var(--font-instrument-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'label-caps': ['var(--font-jetbrains-mono)', 'ui-monospace', 'monospace'],
+        'code-sm': ['var(--font-jetbrains-mono)', 'ui-monospace', 'monospace'],
       },
+
+      /** Escala fluida. Los pares mobile/desktop colapsan al mismo clamp. */
       fontSize: {
-        'display-lg': ['48px', { lineHeight: '56px', letterSpacing: '-0.02em', fontWeight: '700' }],
-        'display-lg-mobile': ['32px', { lineHeight: '40px', letterSpacing: '-0.02em', fontWeight: '700' }],
-        'headline-md': ['24px', { lineHeight: '32px', fontWeight: '600' }],
-        'body-md': ['16px', { lineHeight: '24px', fontWeight: '400' }],
-        'label-caps': ['12px', { lineHeight: '16px', letterSpacing: '0.05em', fontWeight: '600' }],
-        'code-sm': ['14px', { lineHeight: '20px', fontWeight: '400' }]
-      }
-    }
-  }
+        'display-lg': [
+          'clamp(2.125rem, 1.35rem + 3.9vw, 3.75rem)',
+          { lineHeight: '1.03', letterSpacing: '-0.032em', fontWeight: '600' },
+        ],
+        'display-lg-mobile': [
+          'clamp(2.125rem, 1.35rem + 3.9vw, 3.75rem)',
+          { lineHeight: '1.03', letterSpacing: '-0.032em', fontWeight: '600' },
+        ],
+        'headline-lg': [
+          'clamp(1.6875rem, 1.25rem + 2.2vw, 2.5rem)',
+          { lineHeight: '1.08', letterSpacing: '-0.028em', fontWeight: '600' },
+        ],
+        'headline-md': [
+          'clamp(1.1875rem, 1.1rem + 0.45vw, 1.375rem)',
+          { lineHeight: '1.25', letterSpacing: '-0.015em', fontWeight: '600' },
+        ],
+        'body-md': [
+          'clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem)',
+          { lineHeight: '1.6', letterSpacing: '-0.005em', fontWeight: '400' },
+        ],
+        'body-sm': ['0.9375rem', { lineHeight: '1.55', fontWeight: '400' }],
+        'label-caps': [
+          '0.6875rem',
+          { lineHeight: '1.2', letterSpacing: '0.14em', fontWeight: '500' },
+        ],
+        'code-sm': ['0.8125rem', { lineHeight: '1.45', fontWeight: '400' }],
+        figure: [
+          'clamp(2.75rem, 1.9rem + 4.2vw, 4.5rem)',
+          { lineHeight: '0.95', letterSpacing: '-0.04em', fontWeight: '500' },
+        ],
+      },
+
+      transitionTimingFunction: {
+        // Curva unica del sitio. Sin ease-in-out por defecto.
+        upcoded: 'cubic-bezier(0.32, 0.72, 0, 1)',
+      },
+    },
+  },
 };
 
 export default config;

@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { PiArrowUpRight } from 'react-icons/pi';
 import path from 'node:path';
 
 import type { Metadata } from 'next';
@@ -7,6 +8,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { getProjectBySlug, projects } from '@/data/projects';
+import NavSection from '@/components/sections/section-02-nav';
+import FooterSection from '@/components/sections/section-12-footer';
 
 type PortfolioPageProps = {
   params: {
@@ -33,7 +36,7 @@ export async function generateMetadata({ params }: PortfolioPageProps): Promise<
   }
 
   return {
-    title: `${project.title} — Caso de Estudio | UpCoded`,
+    title: `${project.title} | Caso de estudio | UpCoded`,
     description: `${project.summary} Desarrollado por UpCoded, agencia de desarrollo web en Argentina.`,
     alternates: {
       canonical: `https://upcoded.dev/portfolio/${project.slug}`,
@@ -70,107 +73,135 @@ export default function PortfolioCaseStudyPage({ params }: PortfolioPageProps) {
     ...(project.liveUrl && { sameAs: project.liveUrl }),
   };
 
+  const screenshots = project.images.filter(imageExists);
+
   return (
-    <main className="bg-background py-24">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }}
       />
-      <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
-        <Link className="mb-10 inline-flex font-label-caps text-label-caps uppercase text-primary transition-colors hover:text-primary-fixed" href="/#portfolio">
-          ← Volver al portfolio
-        </Link>
+      <NavSection />
 
-        <section className="mb-16 rounded-xl border border-outline-variant/30 bg-surface-container p-8 md:p-12">
-          <p className="mb-3 font-label-caps text-label-caps uppercase text-on-surface-variant">{project.client}</p>
-          <h1 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-6 md:font-display-lg md:text-display-lg">
-            {project.title}
-          </h1>
-          <div className="mb-6 flex flex-wrap gap-2">
-            {project.stack.map((item) => (
-              <span key={item} className="rounded border border-outline-variant/30 bg-surface-container-high px-2 py-1 font-label-caps text-xs uppercase text-primary">
-                {item}
-              </span>
-            ))}
-          </div>
-          <p className="max-w-3xl font-body-md text-body-md text-on-surface-variant">{project.summary}</p>
-          <div className="mt-8 inline-flex rounded border border-primary bg-primary/10 px-4 py-3 font-label-caps text-label-caps uppercase text-primary">
-            {project.result}
-          </div>
-          {project.liveUrl ? (
-            <a
-              className="mt-6 flex items-center gap-2 rounded border border-primary px-6 py-3 font-label-caps uppercase text-primary transition-colors hover:bg-primary/10"
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+      <main id="contenido" className="pt-[68px]">
+        <article>
+          <header className="mx-auto max-w-container-max px-margin-mobile py-20 md:px-margin-desktop lg:py-24">
+            <nav
+              aria-label="Miga de pan"
+              className="flex items-center gap-2 font-mono text-label-caps uppercase text-on-surface-variant"
             >
-              <span className="material-symbols-outlined text-[18px] leading-none">arrow_outward</span>
-              Visitar sitio
-            </a>
-          ) : null}
-        </section>
+              <Link className="transition-colors duration-200 ease-upcoded hover:text-primary" href="/">
+                Inicio
+              </Link>
+              <span aria-hidden>/</span>
+              <Link
+                className="transition-colors duration-200 ease-upcoded hover:text-primary"
+                href="/#portfolio"
+              >
+                Trabajo
+              </Link>
+            </nav>
 
-        <section className="grid grid-cols-1 gap-8 md:grid-cols-2 mb-16">
-          <div className="rounded-lg border border-outline-variant/30 bg-surface-container p-8">
-            <h2 className="font-headline-md text-headline-md mb-4 text-primary">Challenge</h2>
-            <p className="font-body-md text-on-surface-variant">{project.challenge}</p>
+            <p className="mt-10 font-mono text-label-caps uppercase text-on-surface-variant">
+              {project.client}
+            </p>
+            <h1 className="mt-4 max-w-measure text-display-lg text-on-surface">{project.title}</h1>
+            <p className="mt-6 max-w-measure text-body-md text-on-surface-variant">
+              {project.summary}
+            </p>
+
+            <div className="mt-10 flex flex-wrap items-center gap-3">
+              {project.stack.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-md bg-primary-tint px-2.5 py-1.5 font-mono text-label-caps uppercase text-primary"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            {project.liveUrl ? (
+              <a
+                className="mt-8 inline-flex min-h-[52px] items-center justify-center gap-2 rounded-md border border-outline-strong px-7 text-base font-medium text-on-surface transition-colors duration-200 ease-upcoded hover:border-primary hover:text-primary active:scale-[0.98]"
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visitar el sitio
+                <PiArrowUpRight aria-hidden size={16} />
+              </a>
+            ) : null}
+          </header>
+
+          <section className="border-y border-outline-variant bg-surface-container-low">
+            <div className="mx-auto max-w-container-max px-margin-mobile py-10 md:px-margin-desktop lg:py-12">
+              <h2 className="font-mono text-label-caps uppercase text-on-surface-variant">
+                Resultado
+              </h2>
+              <p className="mt-3 max-w-measure text-headline-md text-on-surface">{project.result}</p>
+            </div>
+          </section>
+
+          <div className="mx-auto grid max-w-container-max grid-cols-1 gap-10 px-margin-mobile py-20 md:px-margin-desktop lg:grid-cols-2 lg:gap-14 lg:py-24">
+            <section>
+              <h2 className="text-headline-md text-on-surface">El desafío</h2>
+              <p className="mt-4 max-w-measure text-body-md text-on-surface-variant">
+                {project.challenge}
+              </p>
+            </section>
+            <section>
+              <h2 className="text-headline-md text-on-surface">La solución</h2>
+              <p className="mt-4 max-w-measure text-body-md text-on-surface-variant">
+                {project.solution}
+              </p>
+            </section>
           </div>
 
-          <div className="rounded-lg border border-outline-variant/30 bg-surface-container p-8">
-            <h2 className="font-headline-md text-headline-md mb-4 text-primary">Solution</h2>
-            <p className="font-body-md text-on-surface-variant">{project.solution}</p>
-          </div>
-        </section>
-
-        <section className="mb-16">
-          <h2 className="font-headline-md text-headline-md mb-6 text-primary">Screenshots</h2>
-          {project.images.length > 0 ? (
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {project.images.map((imagePath) => {
-                const alt = `${project.title} screenshot`;
-                const exists = imageExists(imagePath);
-
-                return (
-                  <div key={imagePath} className="group overflow-hidden rounded-lg border border-outline-variant/30">
-                    {exists ? (
-                      <Image
-                        src={imagePath}
-                        alt={alt}
-                        width={1200}
-                        height={800}
-                        className="w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        sizes="(min-width: 768px) 50vw, 100vw"
-                      />
-                    ) : (
-                      <div className="flex aspect-[3/2] items-center justify-center bg-surface-container px-6 text-center font-label-caps text-label-caps uppercase text-on-surface-variant">
-                        Screenshot coming soon
-                      </div>
-                    )}
+          {screenshots.length > 0 ? (
+            <section className="mx-auto max-w-container-max px-margin-mobile pb-20 md:px-margin-desktop lg:pb-24">
+              <h2 className="text-headline-md text-on-surface">Capturas del proyecto</h2>
+              <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+                {screenshots.map((imagePath, i) => (
+                  <div
+                    key={imagePath}
+                    className="overflow-hidden rounded-lg border border-outline-variant bg-surface-container"
+                  >
+                    <Image
+                      src={imagePath}
+                      alt={`Pantalla ${i + 1} del sitio de ${project.title}`}
+                      width={1200}
+                      height={800}
+                      className="h-auto w-full object-cover"
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                    />
                   </div>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              <div className="flex aspect-[3/2] items-center justify-center rounded-lg border border-outline-variant/30 bg-surface-container px-6 text-center font-label-caps text-label-caps uppercase text-on-surface-variant">
-                Screenshot coming soon
+                ))}
               </div>
-              <div className="flex aspect-[3/2] items-center justify-center rounded-lg border border-outline-variant/30 bg-surface-container px-6 text-center font-label-caps text-label-caps uppercase text-on-surface-variant">
-                Screenshot coming soon
-              </div>
-            </div>
-          )}
-        </section>
+            </section>
+          ) : null}
 
-        <section className="rounded-xl border border-outline-variant/30 bg-surface-container-high p-8 text-center md:p-12">
-          <h2 className="font-display-lg-mobile text-display-lg-mobile text-primary text-glow mb-6 md:font-display-lg md:text-display-lg">
-            ¿Tenés un proyecto similar?
-          </h2>
-          <Link className="inline-flex rounded bg-primary px-6 py-3 font-label-caps text-label-caps uppercase text-on-primary transition-colors hover:bg-primary-fixed-dim" href="/#contacto">
-            Hablemos
-          </Link>
-        </section>
-      </div>
-    </main>
+          <section className="on-ink bg-ink px-margin-mobile py-24 text-on-ink md:px-margin-desktop">
+            <div className="mx-auto max-w-container-max">
+              <h2 className="max-w-measure text-headline-lg text-on-ink">
+                ¿Tenés un proyecto similar?
+              </h2>
+              <p className="mt-5 max-w-measure text-body-md text-on-ink-variant">
+                Contanos qué necesitás y te respondemos en menos de 24 horas con una propuesta
+                concreta.
+              </p>
+              <Link
+                className="mt-8 inline-flex min-h-[52px] items-center justify-center rounded-md bg-on-ink px-7 text-base font-medium text-ink transition-colors duration-200 ease-upcoded hover:bg-accent-ink active:scale-[0.98]"
+                href="/#contacto"
+              >
+                Hablemos
+              </Link>
+            </div>
+          </section>
+        </article>
+      </main>
+
+      <FooterSection />
+    </>
   );
 }

@@ -2,75 +2,96 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-}
-
-.glow-hover:hover {
-  box-shadow: 0 0 15px rgba(0, 217, 255, 0.4);
-  border-color: rgba(0, 217, 255, 0.8);
-}
-
-.text-glow {
-  text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
-}
-
-.code-pattern {
-  background-image: radial-gradient(#3c494d 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
+
+  body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Los anclas de nav no deben quedar debajo de la barra fija de 68px. */
+  [id] {
+    scroll-margin-top: 88px;
+  }
+
+  h1,
+  h2 {
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  /* Las cifras en mono siempre alineadas en columna. */
+  .font-mono,
+  .font-label-caps,
+  .font-code-sm {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.primary');
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Dentro de un bloque de tinta el foco tiene que verse sobre fondo oscuro. */
+  .on-ink :focus-visible {
+    outline-color: theme('colors.accent-ink');
+  }
+
+  ::selection {
+    background-color: theme('colors.primary');
+    color: theme('colors.on-primary');
+  }
+
+  .on-ink ::selection {
+    background-color: theme('colors.accent-ink');
+    color: theme('colors.ink');
   }
 }
 
-@keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
+@layer components {
+  /* Salto al contenido para navegacion por teclado. */
+  .skip-link {
+    @apply sr-only;
   }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
+
+  .skip-link:focus-visible {
+    @apply not-sr-only fixed left-4 top-4 z-[100] rounded-md bg-primary px-4 py-2 text-sm font-medium text-on-primary;
   }
-}
-
-.animate-marquee {
-  animation: marquee var(--duration, 40s) infinite linear;
-}
-
-.animate-marquee-vertical {
-  animation: marquee-vertical var(--duration, 40s) infinite linear;
 }
 
 /* MDX Blog Prose */
 .prose-upcoded {
-  color: #bbc9ce;
-  font-size: 16px;
-  line-height: 1.8;
+  color: #6c665c;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  max-width: 68ch;
 }
 
 .prose-upcoded h2 {
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1.3;
-  color: #afecff;
-  margin-top: 2.5rem;
+  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 1.875rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: #191713;
+  margin-top: 3rem;
   margin-bottom: 1rem;
-  text-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
 }
 
 .prose-upcoded h3 {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: #e5e2e3;
+  letter-spacing: -0.015em;
+  color: #191713;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
 }
@@ -80,7 +101,7 @@ body {
 }
 
 .prose-upcoded strong {
-  color: #e5e2e3;
+  color: #191713;
   font-weight: 600;
 }
 
@@ -97,11 +118,13 @@ body {
 }
 
 .prose-upcoded ul li::before {
-  content: '→';
+  content: '';
   position: absolute;
   left: 0;
-  color: #afecff;
-  font-family: 'JetBrains Mono', monospace;
+  top: 0.7em;
+  width: 10px;
+  height: 1px;
+  background-color: #0f4c4a;
 }
 
 .prose-upcoded ol {
@@ -118,49 +141,49 @@ body {
 }
 
 .prose-upcoded ol li::before {
-  content: counter(list-counter) '.';
+  content: counter(list-counter);
   position: absolute;
   left: 0;
-  color: #afecff;
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 600;
+  color: #0f4c4a;
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .prose-upcoded a {
-  color: #afecff;
+  color: #0f4c4a;
   text-decoration: underline;
+  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  transition: color 0.2s;
+  transition: color 0.2s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .prose-upcoded a:hover {
-  color: #00d9ff;
+  color: #0a3735;
 }
 
 .prose-upcoded blockquote {
-  border-left: 3px solid #afecff;
-  padding: 0.5rem 0 0.5rem 1.5rem;
-  margin: 1.5rem 0;
-  color: #e5e2e3;
-  font-style: italic;
-  background: rgba(175, 236, 255, 0.05);
-  border-radius: 0 4px 4px 0;
+  border-left: 2px solid #0f4c4a;
+  padding: 0.25rem 0 0.25rem 1.5rem;
+  margin: 2rem 0;
+  color: #191713;
+  font-size: 1.125rem;
+  line-height: 1.5;
 }
 
 .prose-upcoded code {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  background: #201f20;
-  border: 1px solid #3c494d;
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 0.8125rem;
+  background: #f3efe9;
+  border: 1px solid #e3ddd3;
   border-radius: 4px;
   padding: 0.15em 0.4em;
-  color: #afecff;
+  color: #0f4c4a;
 }
 
 .prose-upcoded pre {
-  background: #0e0e0f;
-  border: 1px solid #3c494d;
-  border-radius: 8px;
+  background: #191713;
+  border-radius: 10px;
   padding: 1.25rem;
   overflow-x: auto;
   margin-bottom: 1.5rem;
@@ -170,38 +193,39 @@ body {
   background: none;
   border: none;
   padding: 0;
-  font-size: 13px;
-  color: #afecff;
+  font-size: 0.8125rem;
+  color: #8fc9c1;
 }
 
 .prose-upcoded hr {
   border: none;
-  border-top: 1px solid #3c494d;
-  margin: 2rem 0;
+  border-top: 1px solid #e3ddd3;
+  margin: 2.5rem 0;
 }
 
 .prose-upcoded table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1.5rem;
-  font-size: 14px;
+  font-size: 0.9375rem;
 }
 
 .prose-upcoded th {
   text-align: left;
-  padding: 0.75rem 1rem;
-  border-bottom: 2px solid #3c494d;
-  color: #afecff;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  padding: 0.75rem 1rem 0.75rem 0;
+  border-bottom: 1px solid #d8d1c6;
+  color: #191713;
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.14em;
+  font-weight: 500;
 }
 
 .prose-upcoded td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid #3c494d;
-  color: #bbc9ce;
+  padding: 0.75rem 1rem 0.75rem 0;
+  border-bottom: 1px solid #e3ddd3;
+  color: #6c665c;
 }
 
 .prose-upcoded tr:last-child td {

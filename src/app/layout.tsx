@@ -1,8 +1,26 @@
-import type { Metadata } from 'next';
-import { ThemeProvider } from 'next-themes';
+import type { Metadata, Viewport } from 'next';
+import { Instrument_Sans, JetBrains_Mono } from 'next/font/google';
 import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
 // @ts-ignore: global CSS is handled by Next.js
 import './globals.css';
+
+const instrumentSans = Instrument_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-instrument-sans',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  display: 'swap',
+  variable: '--font-jetbrains-mono',
+});
+
+export const viewport: Viewport = {
+  themeColor: '#FBF9F6',
+  colorScheme: 'light',
+};
 
 export const metadata: Metadata = {
   title: 'Agencia de Desarrollo Web en Argentina | UpCoded',
@@ -185,27 +203,20 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html className="dark" lang="es-AR">
+    <html lang="es-AR" className={`${instrumentSans.variable} ${jetbrainsMono.variable}`}>
       <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-background text-on-background font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          {children}
-          <WhatsAppFloat />
-        </ThemeProvider>
-</body>
+      <body className="bg-background font-sans text-body-md text-on-background">
+        <a className="skip-link" href="#contenido">
+          Ir al contenido
+        </a>
+        {children}
+        <WhatsAppFloat />
+      </body>
     </html>
   );
 }

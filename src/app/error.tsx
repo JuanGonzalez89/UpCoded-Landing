@@ -1,29 +1,34 @@
 'use client';
 
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+import Link from 'next/link';
+import { PiWarningCircle } from 'react-icons/pi';
+
+export default function Error({ reset }: { error: Error & { digest?: string }; reset: () => void }) {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4 text-center">
-      <div className="max-w-md space-y-6">
-        <div className="text-6xl">⚠️</div>
-        <h1 className="font-display-lg text-display-lg text-primary">
-          Algo salió mal
-        </h1>
-        <p className="font-body-md text-body-md text-on-surface-variant">
-          Hubo un error inesperado. Probá recargar la página.
+    <main className="flex min-h-[100dvh] items-center bg-background px-margin-mobile md:px-margin-desktop">
+      <div className="mx-auto w-full max-w-measure">
+        <PiWarningCircle aria-hidden size={32} className="text-primary" />
+        <h1 className="mt-6 text-headline-lg text-on-surface">Algo salió mal</h1>
+        <p className="mt-4 text-body-md text-on-surface-variant">
+          Hubo un error inesperado al cargar esta página. Probá de nuevo. Si vuelve a pasar,
+          escribinos a upcodednow@gmail.com y lo resolvemos.
         </p>
-        <button
-          onClick={reset}
-          className="rounded bg-primary px-6 py-3 font-label-caps text-label-caps uppercase text-on-primary transition-colors hover:bg-primary-fixed-dim"
-        >
-          Intentar de nuevo
-        </button>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
+          <button
+            type="button"
+            onClick={reset}
+            className="inline-flex min-h-[52px] items-center justify-center rounded-md bg-primary px-7 text-base font-medium text-on-primary transition-colors duration-200 ease-upcoded hover:bg-primary-container active:scale-[0.98]"
+          >
+            Intentar de nuevo
+          </button>
+          <Link
+            href="/"
+            className="inline-flex min-h-[52px] items-center justify-center rounded-md border border-outline-strong px-7 text-base font-medium text-on-surface transition-colors duration-200 ease-upcoded hover:border-primary hover:text-primary active:scale-[0.98]"
+          >
+            Volver al inicio
+          </Link>
+        </div>
       </div>
-    </div>
+    </main>
   );
 }
