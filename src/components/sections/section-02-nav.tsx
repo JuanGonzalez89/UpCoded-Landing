@@ -57,17 +57,17 @@ export default function NavSection() {
           className="mx-auto flex h-[68px] max-w-container-max items-center justify-between px-margin-mobile md:px-margin-desktop"
         >
           <Link
-            className="flex items-center gap-2.5 text-[1.0625rem] font-semibold tracking-[-0.02em] text-on-surface"
+            className="flex items-center gap-2.5 text-[1.0625rem] font-semibold tracking-tight text-on-surface"
             href="/"
           >
             <Image
               src="/portfolio/logo_upcoded/Logo_Upcoded_192x192.png"
               alt=""
-              width={30}
-              height={30}
-              className="object-contain"
+              width={26}
+              height={26}
+              className="object-contain grayscale invert"
             />
-            UpCoded
+            UpCoded<span className="font-mono text-[11px] text-on-surface-variant tracking-wide ml-0.5">/dev</span>
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">
@@ -81,7 +81,7 @@ export default function NavSection() {
               </Link>
             ))}
             <Link
-              className="rounded-md bg-primary px-5 py-2.5 text-[0.9375rem] font-medium text-on-primary transition-colors duration-200 ease-upcoded hover:bg-primary-container active:scale-[0.98]"
+              className="rounded-full bg-primary px-6 py-2.5 text-[0.875rem] font-medium text-on-primary transition-opacity duration-200 ease-upcoded hover:opacity-85 active:scale-[0.98]"
               href="/#contacto"
             >
               Hablemos
@@ -115,7 +115,7 @@ export default function NavSection() {
               </Link>
             ))}
             <Link
-              className="mt-8 flex min-h-[52px] items-center justify-center rounded-md bg-primary px-6 text-base font-medium text-on-primary active:scale-[0.98]"
+              className="mt-8 flex min-h-[52px] items-center justify-center rounded-full bg-primary px-6 text-base font-medium text-on-primary active:scale-[0.98]"
               href="/#contacto"
               onClick={() => setMenuOpen(false)}
             >

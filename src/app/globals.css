@@ -37,24 +37,14 @@
   }
 
   :focus-visible {
-    outline: 2px solid theme('colors.primary');
+    outline: 1px solid theme('colors.outline-variant');
     outline-offset: 2px;
     border-radius: 2px;
-  }
-
-  /* Dentro de un bloque de tinta el foco tiene que verse sobre fondo oscuro. */
-  .on-ink :focus-visible {
-    outline-color: theme('colors.accent-ink');
   }
 
   ::selection {
     background-color: theme('colors.primary');
     color: theme('colors.on-primary');
-  }
-
-  .on-ink ::selection {
-    background-color: theme('colors.accent-ink');
-    color: theme('colors.ink');
   }
 }
 
@@ -71,7 +61,7 @@
 
 /* MDX Blog Prose */
 .prose-upcoded {
-  color: #6c665c;
+  color: #A1A1AA;
   font-size: 1.0625rem;
   line-height: 1.7;
   max-width: 68ch;
@@ -82,7 +72,7 @@
   font-weight: 600;
   line-height: 1.15;
   letter-spacing: -0.025em;
-  color: #191713;
+  color: #FAFAFA;
   margin-top: 3rem;
   margin-bottom: 1rem;
 }
@@ -91,7 +81,7 @@
   font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.015em;
-  color: #191713;
+  color: #FAFAFA;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
 }
@@ -101,7 +91,7 @@
 }
 
 .prose-upcoded strong {
-  color: #191713;
+  color: #FAFAFA;
   font-weight: 600;
 }
 
@@ -124,7 +114,7 @@
   top: 0.7em;
   width: 10px;
   height: 1px;
-  background-color: #0f4c4a;
+  background-color: #FAFAFA;
 }
 
 .prose-upcoded ol {
@@ -144,14 +134,14 @@
   content: counter(list-counter);
   position: absolute;
   left: 0;
-  color: #0f4c4a;
+  color: #FAFAFA;
   font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
   font-size: 0.8125rem;
   font-variant-numeric: tabular-nums;
 }
 
 .prose-upcoded a {
-  color: #0f4c4a;
+  color: #FAFAFA;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
@@ -159,14 +149,14 @@
 }
 
 .prose-upcoded a:hover {
-  color: #0a3735;
+  color: #A1A1AA;
 }
 
 .prose-upcoded blockquote {
-  border-left: 2px solid #0f4c4a;
+  border-left: 2px solid #FAFAFA;
   padding: 0.25rem 0 0.25rem 1.5rem;
   margin: 2rem 0;
-  color: #191713;
+  color: #FAFAFA;
   font-size: 1.125rem;
   line-height: 1.5;
 }
@@ -174,15 +164,15 @@
 .prose-upcoded code {
   font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
   font-size: 0.8125rem;
-  background: #f3efe9;
-  border: 1px solid #e3ddd3;
+  background: #18181B;
+  border: 1px solid #27272A;
   border-radius: 4px;
   padding: 0.15em 0.4em;
-  color: #0f4c4a;
+  color: #FAFAFA;
 }
 
 .prose-upcoded pre {
-  background: #191713;
+  background: #121215;
   border-radius: 10px;
   padding: 1.25rem;
   overflow-x: auto;
@@ -194,12 +184,12 @@
   border: none;
   padding: 0;
   font-size: 0.8125rem;
-  color: #8fc9c1;
+  color: #FAFAFA;
 }
 
 .prose-upcoded hr {
   border: none;
-  border-top: 1px solid #e3ddd3;
+  border-top: 1px solid #27272A;
   margin: 2.5rem 0;
 }
 
@@ -213,8 +203,8 @@
 .prose-upcoded th {
   text-align: left;
   padding: 0.75rem 1rem 0.75rem 0;
-  border-bottom: 1px solid #d8d1c6;
-  color: #191713;
+  border-bottom: 1px solid #3F3F46;
+  color: #FAFAFA;
   font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
   font-size: 0.6875rem;
   text-transform: uppercase;
@@ -224,8 +214,8 @@
 
 .prose-upcoded td {
   padding: 0.75rem 1rem 0.75rem 0;
-  border-bottom: 1px solid #e3ddd3;
-  color: #6c665c;
+  border-bottom: 1px solid #27272A;
+  color: #A1A1AA;
 }
 
 .prose-upcoded tr:last-child td {

@@ -1,54 +1,47 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import { PiArrowUpRight } from 'react-icons/pi';
+import { PiArrowRight } from 'react-icons/pi';
 import { FadeInView } from '@/components/ui/fade-in-view';
 
 type Service = {
+  id: string;
   title: string;
   description: string;
-  price?: string;
   href: string;
-  /** Celda ancha del bento. Exactamente dos de las cuatro la usan. */
-  wide?: boolean;
-  /** Unica celda en tinta clara de acento, para romper el blanco sobre blanco. */
-  tinted?: boolean;
-  image?: { src: string; alt: string };
+  tags: string[];
 };
 
 const services: Service[] = [
   {
-    title: 'Sitios y Landings',
-    description:
-      'Páginas ultrarrápidas optimizadas para conversión. Diseño único, nada de WordPress aburridos.',
-    price: 'Desde USD 300',
-    href: '/servicios/landing-pages-profesionales',
-    wide: true,
-    image: {
-      src: '/portfolio/JaraYAsociados/JaraYAsociados_Preview.png',
-      alt: 'Landing institucional del estudio jurídico Jara y Asociados',
-    },
-  },
-  {
+    id: '01',
     title: 'Aplicaciones Web',
     description:
-      'Sistemas completos que manejan usuarios, datos y procesos complejos para tu negocio.',
-    price: 'Desde USD 1.200',
+      'Sistemas completos que manejan usuarios, datos y lógicas de negocio complejas. Desde la idea hasta el deploy en producción.',
     href: '/servicios/aplicaciones-web-a-medida',
-    tinted: true,
+    tags: ['React', 'Next.js', 'Postgres'],
   },
   {
+    id: '02',
     title: 'Automatizaciones',
     description:
-      'Conectamos tus herramientas. Menos trabajo manual, más tiempo para hacer crecer tu negocio.',
-    price: 'Desde USD 400',
+      'Conectamos tus herramientas para eliminar el trabajo manual. Bots, sincronización de datos y flujos de trabajo autónomos.',
     href: '/servicios/automatizaciones',
+    tags: ['Python', 'APIs', 'Workflows'],
   },
   {
-    title: 'Soporte y SEO',
+    id: '03',
+    title: 'Sitios y Landings',
     description:
-      'Mantenimiento técnico continuo y optimización para que te encuentren primero en Google.',
+      'Páginas ultrarrápidas optimizadas para conversión y posicionamiento orgánico. Diseño único e interactivo.',
+    href: '/servicios/landing-pages-profesionales',
+    tags: ['UX/UI', 'Framer', 'SEO'],
+  },
+  {
+    id: '04',
+    title: 'Soporte y Evolución',
+    description:
+      'Mantenimiento técnico continuo, optimización de performance y nuevas features para que tu plataforma nunca quede obsoleta.',
     href: '/servicios/desarrollo-web-argentina',
-    wide: true,
+    tags: ['Cloud', 'DevOps', 'Scale'],
   },
 ];
 
@@ -56,66 +49,62 @@ export default function ServicesSection() {
   return (
     <section className="px-margin-mobile py-24 md:px-margin-desktop lg:py-32" id="servicios">
       <div className="mx-auto max-w-container-max">
-        <div className="max-w-measure">
-          <h2 className="text-headline-lg text-on-surface">Lo que construimos para vos</h2>
-          <p className="mt-5 text-body-md text-on-surface-variant">
-            Desde una landing que convierte hasta una plataforma completa con panel de gestión.
-            Sin plantillas genéricas. Sin letra chica.
-          </p>
+        <div className="mb-20 grid grid-cols-1 items-end gap-8 md:grid-cols-2 md:gap-16">
+          <div>
+            <FadeInView>
+              <p className="mb-6 font-mono text-[12px] uppercase tracking-widest text-on-surface-variant">
+                — Servicios
+              </p>
+            </FadeInView>
+            <FadeInView delay={100}>
+              <h2 className="m-0 text-[clamp(36px,5.4vw,72px)] font-medium leading-none tracking-tighter text-on-surface">
+                Tres disciplinas.<br />Un equipo.
+              </h2>
+            </FadeInView>
+          </div>
+          <FadeInView delay={200}>
+            <p className="m-0 max-w-[480px] text-[1.0625rem] leading-relaxed text-on-surface-variant">
+              Desarrollo, automatización y diseño web en un solo lugar. Sin intermediarios, sin perder el hilo. Tu proyecto en manos del mismo equipo de principio a fin.
+            </p>
+          </FadeInView>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <div>
           {services.map((service, i) => (
-            <FadeInView
-              key={service.title}
-              delay={i * 70}
-              className={service.wide ? 'lg:col-span-2' : 'lg:col-span-1'}
-            >
+            <FadeInView key={service.id} delay={i * 100}>
               <Link
                 href={service.href}
-                className={`group flex h-full flex-col rounded-lg border p-7 transition-[transform,border-color] duration-200 ease-upcoded hover:-translate-y-[3px] hover:border-primary active:scale-[0.99] ${
-                  service.tinted
-                    ? 'border-transparent bg-primary-tint'
-                    : 'border-outline-variant bg-surface-container'
-                }`}
+                className="group grid grid-cols-1 items-start gap-4 border-t border-outline py-7 transition-colors duration-200 hover:border-on-surface md:grid-cols-[48px_1fr_auto] lg:grid-cols-[48px_1fr_1fr_auto] lg:gap-8 lg:py-8"
               >
-                {service.price ? (
-                  <p className="font-mono text-label-caps uppercase text-primary">
-                    {service.price}
-                  </p>
-                ) : null}
-
-                <h3 className="mt-3 text-headline-md text-on-surface">{service.title}</h3>
-
-                <p className="mt-2.5 max-w-[46ch] text-body-sm text-on-surface-variant">
+                <p className="pt-[6px] font-mono text-[12px] tracking-wide text-on-surface-variant leading-none">
+                  {service.id}
+                </p>
+                
+                <h3 className="text-[clamp(22px,2.4vw,32px)] font-medium leading-snug tracking-tight text-on-surface transition-colors duration-200 group-hover:text-primary lg:col-span-1">
+                  {service.title}
+                </h3>
+                
+                <p className="hidden max-w-[380px] text-[0.9375rem] leading-relaxed text-on-surface-variant lg:block">
                   {service.description}
                 </p>
-
-                {/* Las capturas son de pagina completa, muy altas. Se recortan a 16/9
-                    desde arriba para que la celda ancha no desbalancee el bento. */}
-                {service.image ? (
-                  <div className="relative mt-7 aspect-[16/9] overflow-hidden rounded-md border border-outline-variant">
-                    <Image
-                      src={service.image.src}
-                      alt={service.image.alt}
-                      fill
-                      sizes="(min-width: 1024px) 60vw, 100vw"
-                      className="object-cover object-top"
-                    />
+                
+                <div className="flex flex-wrap items-center gap-2 md:gap-3">
+                  {service.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-outline bg-surface-dim px-2.5 py-1 font-mono text-[11px] text-on-surface-variant transition-colors group-hover:border-outline-variant"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                  <div className="ml-2 flex h-8 w-8 items-center justify-center rounded-full border border-transparent text-on-surface-variant transition-all duration-200 group-hover:border-outline group-hover:-rotate-45 group-hover:bg-surface-dim group-hover:text-on-surface">
+                    <PiArrowRight size={18} />
                   </div>
-                ) : null}
-
-                <span className="mt-auto flex items-center gap-1.5 pt-7 text-[0.9375rem] font-medium text-primary">
-                  Saber más
-                  <PiArrowUpRight
-                    aria-hidden
-                    size={15}
-                    className="transition-transform duration-200 ease-upcoded group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  />
-                </span>
+                </div>
               </Link>
             </FadeInView>
           ))}
+          <div className="border-t border-outline"></div>
         </div>
       </div>
     </section>

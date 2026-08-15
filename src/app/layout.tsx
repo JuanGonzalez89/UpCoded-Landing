@@ -1,13 +1,13 @@
 import type { Metadata, Viewport } from 'next';
-import { Instrument_Sans, JetBrains_Mono } from 'next/font/google';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
 // @ts-ignore: global CSS is handled by Next.js
 import './globals.css';
 
-const instrumentSans = Instrument_Sans({
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-instrument-sans',
+  variable: '--font-instrument-sans', // Keeping the variable name so we don't break tailwind classes
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -18,8 +18,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: '#FBF9F6',
-  colorScheme: 'light',
+  themeColor: '#09090B',
+  colorScheme: 'dark',
 };
 
 export const metadata: Metadata = {
@@ -203,7 +203,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es-AR" className={`${instrumentSans.variable} ${jetbrainsMono.variable}`}>
+    <html lang="es-AR" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
         <script
           type="application/ld+json"

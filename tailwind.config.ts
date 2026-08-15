@@ -17,62 +17,42 @@ const config: Config = {
     extend: {
       colors: {
         // Acento
-        primary: '#0F4C4A',
-        'primary-container': '#0A3735',
-        'primary-fixed': '#0A3735',
-        'primary-fixed-dim': '#0A3735',
-        'on-primary': '#FBF9F6',
-        'on-primary-container': '#FBF9F6',
-        'on-primary-fixed': '#FBF9F6',
-        'on-primary-fixed-variant': '#DCEAE7',
-        'primary-tint': '#EDF2F1',
-        'surface-tint': '#0F4C4A',
-        'inverse-primary': '#8FC9C1',
+        primary: '#EBEBEB',
+        'on-primary': '#050505',
+        'primary-container': '#1A1A1A',
+        'on-primary-container': '#EBEBEB',
+        
+        // Superficies
+        background: '#09090B',
+        surface: '#09090B',
+        'surface-dim': '#121215',
+        'surface-bright': '#18181B',
+        'surface-container': '#121215',
+        'surface-variant': '#18181B',
+        
+        // Texto
+        'on-background': '#FAFAFA',
+        'on-surface': '#FAFAFA',
+        'on-surface-variant': '#A1A1AA',
+        
+        // Bordes (1px lines)
+        outline: '#27272A',
+        'outline-variant': '#3F3F46',
+        'outline-strong': '#52525B',
 
-        // Superficies claras
-        background: '#FBF9F6',
-        surface: '#FBF9F6',
-        'surface-dim': '#F3EFE9',
-        'surface-bright': '#FFFFFF',
-        'surface-container-lowest': '#FFFFFF',
-        'surface-container-low': '#F3EFE9',
-        'surface-container': '#FFFFFF',
-        'surface-container-high': '#FFFFFF',
-        'surface-container-highest': '#F3EFE9',
-        'surface-variant': '#F3EFE9',
+        // Para retrocompatibilidad y utilidades (ink no se usa más pero lo apuntamos al dark)
+        ink: '#FAFAFA',
+        'ink-container': '#18181B',
+        'on-ink': '#050505',
+        'accent-ink': '#EBEBEB',
 
-        // Tinta / texto
-        'on-background': '#191713',
-        'on-surface': '#191713',
-        'on-surface-variant': '#6C665C',
-        outline: '#8E877B',
-        'outline-variant': '#E3DDD3',
-        'outline-strong': '#D8D1C6',
-
-        // Bloques oscuros deliberados
-        ink: '#191713',
-        'ink-container': '#211E19',
-        'ink-outline': '#38342D',
-        'on-ink': '#FBF9F6',
-        'on-ink-variant': '#A8A196',
-        'accent-ink': '#8FC9C1',
-        'inverse-surface': '#191713',
-        'inverse-on-surface': '#FBF9F6',
-
-        // Neutros secundarios (compatibilidad con el sistema anterior)
-        secondary: '#6C665C',
-        'secondary-container': '#F3EFE9',
-        'on-secondary': '#FBF9F6',
-        'on-secondary-container': '#191713',
-        tertiary: '#8E877B',
-        'tertiary-container': '#F3EFE9',
-        'on-tertiary': '#FBF9F6',
-        'on-tertiary-container': '#191713',
-
-        error: '#9B2C1C',
-        'error-container': '#F7E4E0',
-        'on-error': '#FBF9F6',
-        'on-error-container': '#6B1E13',
+        // Neutros secundarios
+        secondary: '#A1A1AA',
+        'secondary-container': '#18181B',
+        'on-secondary': '#050505',
+        
+        error: '#EF4444',
+        'on-error': '#FAFAFA',
       },
 
       /**
