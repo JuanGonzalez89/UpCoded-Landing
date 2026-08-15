@@ -7,19 +7,21 @@ import { projects, type Project } from '@/data/projects';
 function ProjectCard({
   project,
   priority = false,
+  lang,
 }: {
   project: Project;
   priority?: boolean;
+  lang: string;
 }) {
   const image = project.previewImage ?? project.images[0];
 
   return (
     <Link
-      href={`/portfolio/${project.slug}`}
+      href={`/${lang}/portfolio/${project.slug}`}
       className="group block w-full flex-shrink-0"
     >
-      {image ? (
-        <div className="overflow-hidden rounded-xl border border-outline">
+      <div className="overflow-hidden rounded-2xl border border-outline bg-surface-dim transition-all duration-500 group-hover:-translate-y-2 group-hover:border-primary/30 group-hover:shadow-[0_8px_30px_rgba(20,184,166,0.1)]">
+        {image ? (
           <Image
             src={image}
             alt={`Captura del sitio de ${project.title}`}
@@ -27,18 +29,29 @@ function ProjectCard({
             height={600}
             priority={priority}
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="aspect-[16/10] w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+            className="aspect-[16/10] w-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:scale-[1.04]"
           />
-        </div>
-      ) : null}
+        ) : (
+          <Image
+            src={`/api/og?title=${encodeURIComponent(project.title)}&category=${encodeURIComponent(project.client)}`}
+            alt={`Captura del sitio de ${project.title}`}
+            width={960}
+            height={600}
+            priority={priority}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="aspect-[16/10] w-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:scale-[1.04]"
+          />
+        )}
+      </div>
 
-      <div className="mt-[22px] flex items-baseline justify-between">
+      <div className="mt-6 flex items-baseline justify-between transition-transform duration-500 ease-out group-hover:translate-x-1">
         <div>
-          <p className="font-mono text-[12px] uppercase tracking-wide text-on-surface-variant">
+          <p className="font-mono text-[12px] uppercase tracking-wide text-on-surface-variant transition-colors duration-300 group-hover:text-primary">
             {project.client}
           </p>
-          <h3 className="mt-2 text-2xl font-medium tracking-tight text-on-surface">
+          <h3 className="mt-2 flex items-center gap-2 text-2xl font-medium tracking-tight text-on-surface">
             {project.title}
+            <PiArrowRight className="text-primary opacity-0 -translate-x-2 transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100" size={20} />
           </h3>
         </div>
         <p className="font-mono text-[12px] uppercase tracking-wide text-on-surface-variant">
@@ -49,7 +62,7 @@ function ProjectCard({
   );
 }
 
-export default function WorkSection() {
+export default function WorkSection({ lang }: { lang: string }) {
   return (
     <section className="border-t border-outline py-24 md:py-32" id="portfolio">
       <div className="mx-auto max-w-[1240px] px-8 max-[720px]:px-5">
@@ -71,7 +84,7 @@ export default function WorkSection() {
         <div className="mt-14 grid grid-cols-1 gap-14 md:grid-cols-2 md:gap-8">
           {projects.map((project, i) => (
             <FadeInView key={project.slug} delay={(i % 2) * 100}>
-              <ProjectCard project={project} priority={i < 2} />
+              <ProjectCard project={project} priority={i < 2} lang={lang} />
             </FadeInView>
           ))}
         </div>

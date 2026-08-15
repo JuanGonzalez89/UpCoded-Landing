@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
+import { ThemeProvider } from '@/components/theme-provider';
 // @ts-ignore: global CSS is handled by Next.js
-import './globals.css';
+import '../globals.css';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -201,9 +202,10 @@ const jsonLd = {
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+  params: { lang },
+}: Readonly<{ children: React.ReactNode; params: { lang: string } }>) {
   return (
-    <html lang="es-AR" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang={lang} className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -211,11 +213,13 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-background font-sans text-body-md text-on-background">
-        <a className="skip-link" href="#contenido">
-          Ir al contenido
-        </a>
-        {children}
-        <WhatsAppFloat />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <a className="skip-link" href="#contenido">
+            Ir al contenido
+          </a>
+          {children}
+          <WhatsAppFloat />
+        </ThemeProvider>
       </body>
     </html>
   );

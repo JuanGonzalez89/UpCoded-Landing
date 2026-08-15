@@ -1,0 +1,19 @@
+{
+  "hero": {
+    "badge": "Bespoke Design & Code",
+    "title1": "We build",
+    "title2": "digital products",
+    "title3": "that dominate",
+    "description": "We design and engineer applications, automations, and web platforms for brands seeking high performance.",
+    "cta_primary": "Start project",
+    "cta_secondary": "View our work"
+  },
+  "nav": {
+    "services": "Services",
+    "work": "Work",
+    "process": "Process",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "contact": "Let's talk"
+  }
+}

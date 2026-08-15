@@ -1,0 +1,19 @@
+{
+  "hero": {
+    "badge": "Diseño & Código a Medida",
+    "title1": "Construimos",
+    "title2": "productos digitales",
+    "title3": "de alto rendimiento",
+    "description": "Diseñamos y desarrollamos aplicaciones, automatizaciones y plataformas web para marcas que buscan dominar.",
+    "cta_primary": "Iniciar proyecto",
+    "cta_secondary": "Ver casos de éxito"
+  },
+  "nav": {
+    "services": "Servicios",
+    "work": "Trabajo",
+    "process": "Proceso",
+    "pricing": "Precios",
+    "blog": "Blog",
+    "contact": "Hablemos"
+  }
+}

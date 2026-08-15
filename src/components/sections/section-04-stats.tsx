@@ -6,9 +6,9 @@ import { FadeInView } from '@/components/ui/fade-in-view';
  * src/data/projects.ts, no un numero de marketing.
  */
 const stats = [
-  { figure: '+10', label: 'Proyectos entregados' },
-  { figure: '5', label: 'Rubros: fintech, legal, retail, automotriz y publicidad' },
-  { figure: '2', label: 'Países: Argentina y España' },
+  { figure: '+20', label: 'Proyectos entregados' },
+  { figure: '10+', label: 'Rubros: fintech, legal, retail, automotriz, logística, salud, e-commerce y publicidad' },
+  { figure: '3', label: 'Países: Argentina, España y Estados Unidos' },
   { figure: '100%', label: 'Trato directo con quien programa' },
 ] as const;
 

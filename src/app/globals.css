@@ -3,6 +3,74 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --primary: 15 118 110;          /* #0F766E */
+    --on-primary: 255 255 255;      /* #FFFFFF */
+    --primary-container: 204 251 241; /* teal-100 */
+    --on-primary-container: 17 94 89; /* teal-800 */
+    
+    --background: 255 255 255;      /* #FFFFFF */
+    --surface: 248 250 252;         /* slate-50 */
+    --surface-dim: 241 245 249;     /* slate-100 */
+    --surface-bright: 255 255 255;
+    --surface-container: 248 250 252;
+    --surface-variant: 226 232 240; /* slate-200 */
+    
+    --on-background: 15 23 42;      /* slate-900 */
+    --on-surface: 15 23 42;
+    --on-surface-variant: 71 85 105; /* slate-600 */
+    
+    --outline: 203 213 225;         /* slate-300 */
+    --outline-variant: 226 232 240;
+    --outline-strong: 148 163 184;  /* slate-400 */
+
+    --ink: 15 23 42;
+    --ink-container: 241 245 249;
+    --on-ink: 255 255 255;
+    --accent-ink: 15 118 110;
+
+    --secondary: 71 85 105;
+    --secondary-container: 241 245 249;
+    --on-secondary: 15 23 42;
+
+    --error: 220 38 38;             /* red-600 */
+    --on-error: 255 255 255;
+  }
+
+  .dark {
+    --primary: 20 184 166;          /* #14B8A6 */
+    --on-primary: 6 9 14;           /* #06090E */
+    --primary-container: 13 19 28;  /* #0D131C */
+    --on-primary-container: 20 184 166;
+    
+    --background: 6 9 14;           /* #06090E */
+    --surface: 13 19 28;            /* #0D131C */
+    --surface-dim: 11 16 23;        /* #0B1017 */
+    --surface-bright: 17 24 39;     /* #111827 */
+    --surface-container: 13 19 28;
+    --surface-variant: 17 24 39;
+    
+    --on-background: 248 250 252;   /* #F8FAFC */
+    --on-surface: 248 250 252;
+    --on-surface-variant: 148 163 184; /* #94A3B8 */
+    
+    --outline: 30 41 59;            /* #1E293B */
+    --outline-variant: 51 65 85;    /* #334155 */
+    --outline-strong: 71 85 105;    /* #475569 */
+
+    --ink: 248 250 252;
+    --ink-container: 17 24 39;
+    --on-ink: 6 9 14;
+    --accent-ink: 20 184 166;
+
+    --secondary: 148 163 184;
+    --secondary-container: 17 24 39;
+    --on-secondary: 6 9 14;
+
+    --error: 239 68 68;             /* red-500 */
+    --on-error: 248 250 252;
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;

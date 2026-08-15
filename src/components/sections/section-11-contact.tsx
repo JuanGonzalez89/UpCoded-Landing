@@ -78,24 +78,24 @@ export default function ContactSection() {
 
   return (
     <section
-      className="on-ink bg-ink px-margin-mobile pb-20 pt-24 text-on-ink md:px-margin-desktop lg:pb-24 lg:pt-32"
+      className="bg-surface-dim px-margin-mobile pb-20 pt-24 md:px-margin-desktop lg:pb-24 lg:pt-32"
       id="contacto"
     >
       <div className="mx-auto grid max-w-container-max grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
         <div className="lg:col-span-5">
-          <h2 className="text-headline-lg text-on-ink">¿Listo para subir de nivel?</h2>
-          <p className="mt-5 max-w-measure text-body-md text-on-ink-variant">
+          <h2 className="text-[clamp(32px,4vw,56px)] font-medium leading-tight tracking-tight text-on-surface">¿Listo para subir<br />de nivel?</h2>
+          <p className="mt-5 max-w-measure text-body-md text-on-surface-variant">
             Dejanos tus datos y nos pondremos en contacto en menos de 24 horas para discutir
             cómo podemos ayudarte a construir tu próximo proyecto.
           </p>
 
-          <dl className="mt-10 space-y-4 border-t border-ink-outline pt-8">
+          <dl className="mt-10 space-y-4 border-t border-outline pt-8">
             <div className="flex items-center gap-3">
               <dt className="sr-only">Email</dt>
-              <PiEnvelopeSimple aria-hidden size={18} className="shrink-0 text-accent-ink" />
+              <PiEnvelopeSimple aria-hidden size={18} className="shrink-0 text-primary" />
               <dd>
                 <a
-                  className="text-body-md text-on-ink underline decoration-ink-outline underline-offset-4 transition-colors duration-200 ease-upcoded hover:decoration-accent-ink"
+                  className="text-body-md font-medium text-on-surface transition-colors hover:text-primary"
                   href="mailto:upcodednow@gmail.com"
                 >
                   upcodednow@gmail.com
@@ -104,15 +104,13 @@ export default function ContactSection() {
             </div>
             <div className="flex items-center gap-3">
               <dt className="sr-only">Horario</dt>
-              <PiClock aria-hidden size={18} className="shrink-0 text-accent-ink" />
-              <dd className="text-body-md text-on-ink">Lunes a viernes, 9am a 6pm (ART)</dd>
+              <PiClock aria-hidden size={18} className="shrink-0 text-primary" />
+              <dd className="text-body-md text-on-surface">Lunes a viernes, 9am a 6pm (ART)</dd>
             </div>
           </dl>
         </div>
 
-        {/* Formulario en papel sobre tinta: es el momento de conversion, tiene que ser el
-            elemento mas legible de la pagina. */}
-        <div className="rounded-lg bg-surface-container-low p-6 sm:p-8 lg:col-span-6 lg:col-start-7">
+        <div className="rounded-2xl border border-outline bg-surface-container p-6 sm:p-10 lg:col-span-6 lg:col-start-7 shadow-sm">
           {status === 'success' ? (
             <div className="flex flex-col items-start gap-4 py-8">
               <PiCheckCircle aria-hidden size={36} className="text-primary" />

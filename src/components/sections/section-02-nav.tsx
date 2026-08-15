@@ -3,20 +3,29 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { PiListBold, PiXBold } from 'react-icons/pi';
+import { useTheme } from 'next-themes';
+import { PiListBold, PiXBold, PiSun, PiMoon, PiTranslate } from 'react-icons/pi';
 
-const links = [
-  { label: 'Servicios', href: '/#servicios' },
-  { label: 'Trabajo', href: '/#portfolio' },
-  { label: 'Proceso', href: '/#proceso' },
-  { label: 'Precios', href: '/#precios' },
-  { label: 'Blog', href: '/blog' },
-] as const;
-
-export default function NavSection() {
+export default function NavSection({ dict, lang }: { dict?: Record<string, string>, lang?: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const sentinel = useRef<HTMLDivElement>(null);
+
+  const fallbackLinks = [
+    { label: 'Servicios', href: '/#servicios' },
+    { label: 'Trabajo', href: '/#portfolio' },
+    { label: 'Proceso', href: '/#proceso' },
+    { label: 'Precios', href: '/#precios' },
+    { label: 'Blog', href: '/blog' },
+  ];
+
+  const links = dict ? [
+    { label: dict.services, href: `/${lang}/#servicios` },
+    { label: dict.work, href: `/${lang}/#portfolio` },
+    { label: dict.process, href: `/${lang}/#proceso` },
+    { label: dict.pricing, href: `/${lang}/#precios` },
+    { label: dict.blog, href: `/${lang}/blog` },
+  ] : fallbackLinks;
 
   // La regla inferior aparece recien cuando la pagina se movio.
   // IntersectionObserver en vez de listener de scroll: no corre por frame.
@@ -42,6 +51,10 @@ export default function NavSection() {
       window.removeEventListener('keydown', onKey);
     };
   }, [menuOpen]);
+
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   return (
     <>
@@ -81,49 +94,92 @@ export default function NavSection() {
               </Link>
             ))}
             <Link
-              className="rounded-full bg-primary px-6 py-2.5 text-[0.875rem] font-medium text-on-primary transition-opacity duration-200 ease-upcoded hover:opacity-85 active:scale-[0.98]"
-              href="/#contacto"
+              className="rounded-full border border-outline bg-surface-dim px-6 py-2.5 text-[0.875rem] font-medium text-on-surface transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_0_15px_rgba(20,184,166,0.15)] active:scale-[0.98]"
+              href={`/${lang ?? 'es'}/#contacto`}
             >
-              Hablemos
+              {dict?.contact ?? 'Hablemos'}
             </Link>
+            
+            <div className="flex items-center gap-1">
+              {mounted && (
+                <button
+                  type="button"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-outline bg-surface-dim text-on-surface-variant transition-colors hover:border-primary hover:text-primary"
+                  onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                  aria-label="Toggle theme"
+                >
+                  {theme === 'dark' ? <PiSun size={20} /> : <PiMoon size={20} />}
+                </button>
+              )}
+              
+              <Link
+                href={lang === 'es' ? '/en' : '/es'}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-outline bg-surface-dim text-xs font-mono text-on-surface-variant transition-colors hover:border-primary hover:text-primary uppercase"
+              >
+                {lang === 'es' ? 'EN' : 'ES'}
+              </Link>
+            </div>
           </div>
 
-          <button
-            className="-mr-2 flex h-11 w-11 items-center justify-center text-on-surface md:hidden"
-            type="button"
-            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            {menuOpen ? <PiXBold size={22} /> : <PiListBold size={22} />}
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <Link
+              href={lang === 'es' ? '/en' : '/es'}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-outline bg-surface-dim text-xs font-mono text-on-surface-variant transition-colors hover:text-primary uppercase"
+            >
+              {lang === 'es' ? 'EN' : 'ES'}
+            </Link>
+            {mounted && (
+              <button
+                type="button"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-outline bg-surface-dim text-on-surface-variant transition-colors hover:text-primary"
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                aria-label="Toggle theme"
+              >
+                {theme === 'dark' ? <PiSun size={18} /> : <PiMoon size={18} />}
+              </button>
+            )}
+            <button
+              className="-mr-2 ml-1 flex h-11 w-11 items-center justify-center text-on-surface"
+              type="button"
+              aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((open) => !open)}
+            >
+              {menuOpen ? <PiXBold size={22} /> : <PiListBold size={22} />}
+            </button>
+          </div>
         </nav>
       </header>
 
-      {menuOpen && (
-        <div className="fixed inset-0 z-40 flex flex-col bg-background pt-[68px] md:hidden">
-          <nav aria-label="Principal móvil" className="flex flex-col px-margin-mobile pt-6">
-            {links.map((link, i) => (
+      {/* Mobile Menu */}
+      <div
+        className={`fixed inset-0 z-[45] bg-background transition-opacity duration-300 md:hidden ${
+          menuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+        aria-hidden={!menuOpen}
+      >
+        <div className="flex h-full flex-col px-margin-mobile pb-10 pt-[120px]">
+          <nav className="flex flex-col gap-6">
+            {links.map((link) => (
               <Link
-                key={link.href}
-                className="border-b border-outline-variant py-4 text-2xl font-medium tracking-[-0.02em] text-on-surface motion-safe:animate-none"
+                key={link.label}
                 href={link.href}
-                style={{ transitionDelay: `${i * 40}ms` }}
+                className="text-[2rem] font-medium tracking-tight text-on-surface transition-colors hover:text-primary"
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
             <Link
-              className="mt-8 flex min-h-[52px] items-center justify-center rounded-full bg-primary px-6 text-base font-medium text-on-primary active:scale-[0.98]"
-              href="/#contacto"
+              className="mt-8 flex min-h-[52px] items-center justify-center rounded-full border border-outline bg-surface-dim px-6 text-base font-medium text-on-surface transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_0_15px_rgba(20,184,166,0.15)] active:scale-[0.98]"
+              href={`/${lang ?? 'es'}/#contacto`}
               onClick={() => setMenuOpen(false)}
             >
-              Hablemos
+              {dict?.contact ?? 'Hablemos'}
             </Link>
           </nav>
         </div>
-      )}
+      </div>
     </>
   );
 }

@@ -52,8 +52,8 @@ export default function ServicesSection() {
         <div className="mb-20 grid grid-cols-1 items-end gap-8 md:grid-cols-2 md:gap-16">
           <div>
             <FadeInView>
-              <p className="mb-6 font-mono text-[12px] uppercase tracking-widest text-on-surface-variant">
-                — Servicios
+              <p className="mb-6 font-mono text-[12px] uppercase tracking-widest text-primary">
+                // Servicios
               </p>
             </FadeInView>
             <FadeInView delay={100}>
@@ -69,42 +69,46 @@ export default function ServicesSection() {
           </FadeInView>
         </div>
 
-        <div>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {services.map((service, i) => (
             <FadeInView key={service.id} delay={i * 100}>
               <Link
                 href={service.href}
-                className="group grid grid-cols-1 items-start gap-4 border-t border-outline py-7 transition-colors duration-200 hover:border-on-surface md:grid-cols-[48px_1fr_auto] lg:grid-cols-[48px_1fr_1fr_auto] lg:gap-8 lg:py-8"
+                className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-outline bg-surface-container p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-[0_10px_40px_-10px_rgba(20,184,166,0.1)] lg:p-10"
               >
-                <p className="pt-[6px] font-mono text-[12px] tracking-wide text-on-surface-variant leading-none">
+                {/* Giant Outline Number Background */}
+                <div className="absolute -right-4 -top-8 select-none text-[180px] font-bold leading-none tracking-tighter text-transparent opacity-10 transition-all duration-500 group-hover:-translate-x-4 group-hover:scale-110 group-hover:opacity-20 group-hover:text-primary" style={{ WebkitTextStroke: '2px currentColor' }}>
                   {service.id}
-                </p>
-                
-                <h3 className="text-[clamp(22px,2.4vw,32px)] font-medium leading-snug tracking-tight text-on-surface transition-colors duration-200 group-hover:text-primary lg:col-span-1">
-                  {service.title}
-                </h3>
-                
-                <p className="hidden max-w-[380px] text-[0.9375rem] leading-relaxed text-on-surface-variant lg:block">
-                  {service.description}
-                </p>
-                
-                <div className="flex flex-wrap items-center gap-2 md:gap-3">
-                  {service.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-outline bg-surface-dim px-2.5 py-1 font-mono text-[11px] text-on-surface-variant transition-colors group-hover:border-outline-variant"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  <div className="ml-2 flex h-8 w-8 items-center justify-center rounded-full border border-transparent text-on-surface-variant transition-all duration-200 group-hover:border-outline group-hover:-rotate-45 group-hover:bg-surface-dim group-hover:text-on-surface">
-                    <PiArrowRight size={18} />
+                </div>
+
+                <div className="relative z-10 flex flex-1 flex-col">
+                  <div className="mb-8 flex flex-wrap gap-2">
+                    {service.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-md border border-outline bg-surface px-2.5 py-1 font-mono text-[11px] font-medium uppercase tracking-wider text-on-surface-variant transition-colors group-hover:border-primary/30 group-hover:text-primary"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <h3 className="mb-4 text-3xl font-medium tracking-tight text-on-surface transition-colors duration-300 group-hover:text-primary">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="mb-8 max-w-[400px] text-[1.0625rem] leading-relaxed text-on-surface-variant">
+                    {service.description}
+                  </p>
+                  
+                  <div className="mt-auto flex items-center gap-2 font-mono text-[13px] font-medium tracking-wide text-primary transition-transform duration-300 group-hover:translate-x-2">
+                    Saber más
+                    <PiArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </div>
               </Link>
             </FadeInView>
           ))}
-          <div className="border-t border-outline"></div>
         </div>
       </div>
     </section>

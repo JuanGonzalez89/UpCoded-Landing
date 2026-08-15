@@ -9,16 +9,19 @@ import ProcessSection from '@/components/sections/section-09-process';
 import PricingSection from '@/components/sections/section-10-pricing';
 import ContactSection from '@/components/sections/section-11-contact';
 import FooterSection from '@/components/sections/section-12-footer';
+import { getDictionary } from '@/dictionaries';
 
-export default function HomePage() {
+export default async function HomePage({ params }: { params: { lang: 'es' | 'en' } }) {
+  const dict = await getDictionary(params.lang);
+
   return (
     <>
-      <NavSection />
+      <NavSection dict={dict.nav} lang={params.lang} />
       <main id="contenido">
-        <HeroSection />
+        <HeroSection dict={dict.hero} />
         <StatsSection />
         <ServicesSection />
-        <WorkSection />
+        <WorkSection lang={params.lang} />
         <ResultsSection />
         <DifferenceSection />
         <ProcessSection />

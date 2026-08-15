@@ -17,42 +17,42 @@ const config: Config = {
     extend: {
       colors: {
         // Acento
-        primary: '#EBEBEB',
-        'on-primary': '#050505',
-        'primary-container': '#1A1A1A',
-        'on-primary-container': '#EBEBEB',
+        primary: 'rgb(var(--primary) / <alpha-value>)',
+        'on-primary': 'rgb(var(--on-primary) / <alpha-value>)',
+        'primary-container': 'rgb(var(--primary-container) / <alpha-value>)',
+        'on-primary-container': 'rgb(var(--on-primary-container) / <alpha-value>)',
         
         // Superficies
-        background: '#09090B',
-        surface: '#09090B',
-        'surface-dim': '#121215',
-        'surface-bright': '#18181B',
-        'surface-container': '#121215',
-        'surface-variant': '#18181B',
+        background: 'rgb(var(--background) / <alpha-value>)',
+        surface: 'rgb(var(--surface) / <alpha-value>)',
+        'surface-dim': 'rgb(var(--surface-dim) / <alpha-value>)',
+        'surface-bright': 'rgb(var(--surface-bright) / <alpha-value>)',
+        'surface-container': 'rgb(var(--surface-container) / <alpha-value>)',
+        'surface-variant': 'rgb(var(--surface-variant) / <alpha-value>)',
         
         // Texto
-        'on-background': '#FAFAFA',
-        'on-surface': '#FAFAFA',
-        'on-surface-variant': '#A1A1AA',
+        'on-background': 'rgb(var(--on-background) / <alpha-value>)',
+        'on-surface': 'rgb(var(--on-surface) / <alpha-value>)',
+        'on-surface-variant': 'rgb(var(--on-surface-variant) / <alpha-value>)',
         
-        // Bordes (1px lines)
-        outline: '#27272A',
-        'outline-variant': '#3F3F46',
-        'outline-strong': '#52525B',
+        // Bordes
+        outline: 'rgb(var(--outline) / <alpha-value>)',
+        'outline-variant': 'rgb(var(--outline-variant) / <alpha-value>)',
+        'outline-strong': 'rgb(var(--outline-strong) / <alpha-value>)',
 
-        // Para retrocompatibilidad y utilidades (ink no se usa más pero lo apuntamos al dark)
-        ink: '#FAFAFA',
-        'ink-container': '#18181B',
-        'on-ink': '#050505',
-        'accent-ink': '#EBEBEB',
+        // Compatibilidad (ink map)
+        ink: 'rgb(var(--ink) / <alpha-value>)',
+        'ink-container': 'rgb(var(--ink-container) / <alpha-value>)',
+        'on-ink': 'rgb(var(--on-ink) / <alpha-value>)',
+        'accent-ink': 'rgb(var(--accent-ink) / <alpha-value>)',
 
         // Neutros secundarios
-        secondary: '#A1A1AA',
-        'secondary-container': '#18181B',
-        'on-secondary': '#050505',
+        secondary: 'rgb(var(--secondary) / <alpha-value>)',
+        'secondary-container': 'rgb(var(--secondary-container) / <alpha-value>)',
+        'on-secondary': 'rgb(var(--on-secondary) / <alpha-value>)',
         
-        error: '#EF4444',
-        'on-error': '#FAFAFA',
+        error: 'rgb(var(--error) / <alpha-value>)',
+        'on-error': 'rgb(var(--on-error) / <alpha-value>)',
       },
 
       /**
@@ -134,6 +134,9 @@ const config: Config = {
       },
     },
   },
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 };
 
 export default config;
