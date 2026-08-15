@@ -84,21 +84,26 @@ export default function NavSection({ dict, lang }: { dict?: Record<string, strin
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                className="text-[0.9375rem] text-on-surface-variant transition-colors duration-200 ease-upcoded hover:text-on-surface"
-                href={link.href}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
+            {links.map((link) => {
+              const isHashLink = link.href.includes('#');
+              const Element = isHashLink ? 'a' : Link;
+              
+              return (
+                <Element
+                  key={link.href}
+                  className="text-[0.9375rem] text-on-surface-variant transition-colors duration-200 ease-upcoded hover:text-on-surface"
+                  href={link.href}
+                >
+                  {link.label}
+                </Element>
+              );
+            })}
+            <a
               className="rounded-full border border-outline bg-surface-dim px-6 py-2.5 text-[0.875rem] font-medium text-on-surface transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_0_15px_rgba(20,184,166,0.15)] active:scale-[0.98]"
               href={`/${lang ?? 'es'}/#contacto`}
             >
               {dict?.contact ?? 'Hablemos'}
-            </Link>
+            </a>
             
             <div className="flex items-center gap-1">
               {mounted && (
@@ -160,23 +165,28 @@ export default function NavSection({ dict, lang }: { dict?: Record<string, strin
       >
         <div className="flex h-full flex-col px-margin-mobile pb-10 pt-[120px]">
           <nav className="flex flex-col gap-6">
-            {links.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-[2rem] font-medium tracking-tight text-on-surface transition-colors hover:text-primary"
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
+            {links.map((link) => {
+              const isHashLink = link.href.includes('#');
+              const Element = isHashLink ? 'a' : Link;
+
+              return (
+                <Element
+                  key={link.label}
+                  href={link.href}
+                  className="text-[2rem] font-medium tracking-tight text-on-surface transition-colors hover:text-primary"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.label}
+                </Element>
+              );
+            })}
+            <a
               className="mt-8 flex min-h-[52px] items-center justify-center rounded-full border border-outline bg-surface-dim px-6 text-base font-medium text-on-surface transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_0_15px_rgba(20,184,166,0.15)] active:scale-[0.98]"
               href={`/${lang ?? 'es'}/#contacto`}
               onClick={() => setMenuOpen(false)}
             >
               {dict?.contact ?? 'Hablemos'}
-            </Link>
+            </a>
           </nav>
         </div>
       </div>
