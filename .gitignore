@@ -12,3 +12,9 @@ Seo phase1 upcoded.md
 
 # skills instaladas via npx skills
 .claude/skills/
+
+# artefactos de build
+tsconfig.tsbuildinfo
+
+# fuentes de video pesadas (no versionar)
+video-src/

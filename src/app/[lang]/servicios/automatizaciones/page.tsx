@@ -3,21 +3,28 @@ import { PiArrowRight } from 'react-icons/pi';
 import Link from 'next/link';
 import NavSection from '@/components/sections/section-02-nav';
 import FooterSection from '@/components/sections/section-12-footer';
+import { buildAlternates, localizedUrl, toLocale } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string };
+}): Promise<Metadata> {
+  const locale = toLocale(params.lang);
+
+  return {
   title: 'Automatización de Procesos para Empresas en Argentina | UpCoded',
   description:
     'Automatizamos procesos de tu negocio en Argentina: conectamos herramientas, eliminamos tareas manuales y mejoramos tu productividad. Ahorrá tiempo y recursos.',
-  alternates: {
-    canonical: 'https://upcoded.dev/servicios/automatizaciones',
-  },
+  alternates: buildAlternates(locale, 'servicios/automatizaciones'),
   openGraph: {
     title: 'Automatización de Procesos en Argentina | UpCoded',
     description:
       'Conectamos tus herramientas y eliminamos tareas manuales. Menos trabajo repetitivo, más productividad.',
-    url: 'https://upcoded.dev/servicios/automatizaciones',
+    url: localizedUrl(locale, 'servicios/automatizaciones'),
   },
-};
+  };
+}
 
 const jsonLd = {
   '@context': 'https://schema.org',

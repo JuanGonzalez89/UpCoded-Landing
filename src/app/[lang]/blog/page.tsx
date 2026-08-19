@@ -5,6 +5,27 @@ import { getDictionary } from '@/dictionaries';
 import { PiArrowRight, PiArrowLeft } from 'react-icons/pi';
 import NavSection from '@/components/sections/section-02-nav';
 import FooterSection from '@/components/sections/section-12-footer';
+import type { Metadata } from 'next';
+import { buildAlternates, localizedUrl, toLocale } from '@/lib/seo';
+
+export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+  const locale = toLocale(params.lang);
+  const isEn = locale === 'en';
+
+  return {
+    title: isEn
+      ? 'Web Development Blog | UpCoded'
+      : 'Blog de Desarrollo Web en Argentina | UpCoded',
+    description: isEn
+      ? 'Articles on web development and digital strategy for growing businesses.'
+      : 'Artículos sobre desarrollo web y estrategia digital para empresas argentinas. Tips, costos, comparativas y guías prácticas.',
+    alternates: buildAlternates(locale, 'blog'),
+    openGraph: {
+      url: localizedUrl(locale, 'blog'),
+      type: 'website',
+    },
+  };
+}
 
 export default async function BlogIndexPage({ params }: { params: { lang: 'es' | 'en' } }) {
   const posts = getBlogPosts(params.lang);

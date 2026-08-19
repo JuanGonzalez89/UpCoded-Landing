@@ -8,12 +8,14 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { getProjectBySlug, projects } from '@/data/projects';
+import { LOCALES, buildAlternates, localizedUrl, toLocale } from '@/lib/seo';
 import NavSection from '@/components/sections/section-02-nav';
 import FooterSection from '@/components/sections/section-12-footer';
 
 type PortfolioPageProps = {
   params: {
     slug: string;
+    lang: string;
   };
 };
 
@@ -22,7 +24,11 @@ function imageExists(imagePath: string) {
 }
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  // Un caso de estudio por idioma: sin esto solo se prerenderiza una variante
+  // y la otra queda fuera del build estatico.
+  return LOCALES.flatMap((lang) =>
+    projects.map((project) => ({ lang, slug: project.slug })),
+  );
 }
 
 export async function generateMetadata({ params }: PortfolioPageProps): Promise<Metadata> {
@@ -35,16 +41,16 @@ export async function generateMetadata({ params }: PortfolioPageProps): Promise<
     };
   }
 
+  const locale = toLocale(params.lang);
+
   return {
     title: `${project.title} | Caso de estudio | UpCoded`,
     description: `${project.summary} Desarrollado por UpCoded, agencia de desarrollo web en Argentina.`,
-    alternates: {
-      canonical: `https://upcoded.dev/portfolio/${project.slug}`,
-    },
+    alternates: buildAlternates(locale, `portfolio/${project.slug}`),
     openGraph: {
       title: `${project.title} | UpCoded Portfolio`,
       description: project.summary,
-      url: `https://upcoded.dev/portfolio/${project.slug}`,
+      url: localizedUrl(locale, `portfolio/${project.slug}`),
       images: project.previewImage
         ? [{ url: project.previewImage, width: 1200, height: 630 }]
         : [],

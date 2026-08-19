@@ -3,21 +3,28 @@ import { PiArrowRight } from 'react-icons/pi';
 import Link from 'next/link';
 import NavSection from '@/components/sections/section-02-nav';
 import FooterSection from '@/components/sections/section-12-footer';
+import { buildAlternates, localizedUrl, toLocale } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string };
+}): Promise<Metadata> {
+  const locale = toLocale(params.lang);
+
+  return {
   title: 'Landing Pages Profesionales en Argentina | UpCoded',
   description:
     'Diseño y desarrollo de landing pages profesionales en Argentina. Optimizadas para convertir visitas en clientes. Rápidas, únicas y listas en 2 semanas.',
-  alternates: {
-    canonical: 'https://upcoded.dev/servicios/landing-pages-profesionales',
-  },
+  alternates: buildAlternates(locale, 'servicios/landing-pages-profesionales'),
   openGraph: {
     title: 'Landing Pages Profesionales en Argentina | UpCoded',
     description:
       'Landing pages diseñadas para convertir visitas en clientes. Entrega en 2 semanas.',
-    url: 'https://upcoded.dev/servicios/landing-pages-profesionales',
+    url: localizedUrl(locale, 'servicios/landing-pages-profesionales'),
   },
-};
+  };
+}
 
 const jsonLd = {
   '@context': 'https://schema.org',

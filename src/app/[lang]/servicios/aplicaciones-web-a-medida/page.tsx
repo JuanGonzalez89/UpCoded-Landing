@@ -3,21 +3,28 @@ import { PiArrowRight } from 'react-icons/pi';
 import Link from 'next/link';
 import NavSection from '@/components/sections/section-02-nav';
 import FooterSection from '@/components/sections/section-12-footer';
+import { buildAlternates, localizedUrl, toLocale } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string };
+}): Promise<Metadata> {
+  const locale = toLocale(params.lang);
+
+  return {
   title: 'Sistemas Web a Medida en Argentina | UpCoded',
   description:
     'Desarrollamos plataformas web completas para tu negocio en Argentina. Con panel de administración, usuarios, base de datos y las funcionalidades que necesites.',
-  alternates: {
-    canonical: 'https://upcoded.dev/servicios/aplicaciones-web-a-medida',
-  },
+  alternates: buildAlternates(locale, 'servicios/aplicaciones-web-a-medida'),
   openGraph: {
     title: 'Sistemas Web a Medida en Argentina | UpCoded',
     description:
       'Plataformas web completas con panel de administración, usuarios y base de datos. Hechas a la medida de tu negocio.',
-    url: 'https://upcoded.dev/servicios/aplicaciones-web-a-medida',
+    url: localizedUrl(locale, 'servicios/aplicaciones-web-a-medida'),
   },
-};
+  };
+}
 
 const jsonLd = {
   '@context': 'https://schema.org',

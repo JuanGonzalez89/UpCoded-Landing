@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown';
 import Image from 'next/image';
 
 import { getDictionary } from '@/dictionaries';
+import { buildAlternates, localizedUrl, toLocale } from '@/lib/seo';
 import NavSection from '@/components/sections/section-02-nav';
 import FooterSection from '@/components/sections/section-12-footer';
 
@@ -22,9 +23,19 @@ export async function generateMetadata({ params }: { params: { slug: string, lan
   const post = getBlogPostBySlug(params.slug, params.lang);
   if (!post) return {};
   
+  const locale = toLocale(params.lang);
+
   return {
     title: `${post.title} | UpCoded Blog`,
     description: post.description,
+    alternates: buildAlternates(locale, `blog/${post.slug}`),
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      url: localizedUrl(locale, `blog/${post.slug}`),
+      type: 'article',
+      publishedTime: post.date,
+    },
   };
 }
 

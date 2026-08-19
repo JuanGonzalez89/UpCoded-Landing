@@ -3,21 +3,28 @@ import { PiArrowRight } from 'react-icons/pi';
 import Link from 'next/link';
 import NavSection from '@/components/sections/section-02-nav';
 import FooterSection from '@/components/sections/section-12-footer';
+import { buildAlternates, localizedUrl, toLocale } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string };
+}): Promise<Metadata> {
+  const locale = toLocale(params.lang);
+
+  return {
   title: 'Desarrollo Web en Argentina | Agencia Profesional | UpCoded',
   description:
     'Agencia de desarrollo web en Argentina. Creamos sitios rápidos, modernos y optimizados para que tu negocio aparezca en Google. Entrega en semanas, no meses.',
-  alternates: {
-    canonical: 'https://upcoded.dev/servicios/desarrollo-web-argentina',
-  },
+  alternates: buildAlternates(locale, 'servicios/desarrollo-web-argentina'),
   openGraph: {
     title: 'Desarrollo Web en Argentina | UpCoded',
     description:
       'Creamos sitios rápidos, modernos y optimizados para que tu negocio aparezca en Google.',
-    url: 'https://upcoded.dev/servicios/desarrollo-web-argentina',
+    url: localizedUrl(locale, 'servicios/desarrollo-web-argentina'),
   },
-};
+  };
+}
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -47,22 +54,22 @@ const jsonLd = {
 };
 
 const features = [
-  {
+  {
     title: 'Velocidad que tus clientes notan',
     description:
       'Un sitio lento hace que la gente se vaya antes de verte. Los nuestros cargan al instante, en cualquier dispositivo.',
   },
-  {
+  {
     title: 'Se ve bien en todos lados',
     description:
       'Diseñamos para que se vea perfecto en celular, tablet y computadora. Sin sorpresas, sin pantallas rotas.',
   },
-  {
+  {
     title: 'Listo para aparecer en Google',
     description:
       'Configuramos todo lo necesario para que Google encuentre tu sitio y lo muestre cuando alguien busca lo que hacés.',
   },
-  {
+  {
     title: 'Seguro y sin complicaciones',
     description:
       'Código limpio y moderno. Olvidate de mantener plugins, actualizaciones de emergencia o sitios que se caen.',

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
 import { ThemeProvider } from '@/components/theme-provider';
+import { LOCALES, SITE_URL, buildAlternates, localizedUrl, toLocale } from '@/lib/seo';
 // @ts-ignore: global CSS is handled by Next.js
 import '../globals.css';
 
@@ -23,7 +24,19 @@ export const viewport: Viewport = {
   colorScheme: 'dark',
 };
 
-export const metadata: Metadata = {
+/** Prerenderiza /es y /en en el build en vez de resolverlos on-demand. */
+export function generateStaticParams() {
+  return LOCALES.map((lang) => ({ lang }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string };
+}): Promise<Metadata> {
+  const locale = toLocale(params.lang);
+
+  return {
   title: 'Agencia de Desarrollo Web en Argentina | UpCoded',
   description:
     'Agencia de desarrollo web en Argentina. Creamos sitios, apps y automatizaciones a medida. Modernos, rápidos y pensados para tu negocio.',
@@ -37,15 +50,13 @@ export const metadata: Metadata = {
     'automatización web argentina',
     'upcoded',
   ],
-  metadataBase: new URL('https://upcoded.dev'),
-  alternates: {
-    canonical: 'https://upcoded.dev',
-  },
+  metadataBase: new URL(SITE_URL),
+  alternates: buildAlternates(locale),
   openGraph: {
     title: 'Agencia de Desarrollo Web en Argentina | UpCoded',
     description:
       'Creamos sitios, apps y automatizaciones a medida. Modernos, rápidos y pensados para tu negocio.',
-    url: 'https://upcoded.dev',
+    url: localizedUrl(locale),
     siteName: 'UpCoded',
     images: [
       {
@@ -55,7 +66,7 @@ export const metadata: Metadata = {
         alt: 'UpCoded - Agencia de Desarrollo Web en Argentina',
       },
     ],
-    locale: 'es_AR',
+    locale: locale === 'en' ? 'en_US' : 'es_AR',
     type: 'website',
   },
   twitter: {
@@ -75,7 +86,8 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-};
+  };
+}
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -168,14 +180,8 @@ const jsonLd = {
       description: 'Agencia de desarrollo web en Argentina',
       publisher: { '@id': 'https://upcoded.dev/#organization' },
       inLanguage: 'es-AR',
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: {
-          '@type': 'EntryPoint',
-          urlTemplate: 'https://upcoded.dev/?q={search_term_string}',
-        },
-        'query-input': 'required name=search_term_string',
-      },
+      // Sin SearchAction: el sitio no tiene buscador interno, y la plantilla
+      // /?q={search_term_string} terminaba siendo rastreada como URL literal.
     },
     {
       '@type': 'WebPage',
