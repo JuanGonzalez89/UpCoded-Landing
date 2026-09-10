@@ -55,7 +55,7 @@ function ProjectCard({
           </h3>
         </div>
         <p className="font-mono text-[12px] uppercase tracking-wide text-on-surface-variant">
-          2024
+          {project.year}
         </p>
       </div>
     </Link>

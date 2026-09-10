@@ -10,6 +10,7 @@ export type Project = {
   images: string[];
   challenge: string;
   solution: string;
+  year: number;
 };
 
 export const projects: Project[] = [
@@ -30,6 +31,7 @@ export const projects: Project[] = [
     ],
     challenge: "Crear una plataforma de inversiones que transmita confianza y profesionalismo desde el primer scroll.",
     solution: "Desarrollamos una interfaz limpia con Next.js enfocada en conversión, con tiempos de carga mínimos y diseño orientado a credibilidad financiera.",
+    year: 2025,
   },
   {
     slug: "ecommerce-mvp",
@@ -47,6 +49,7 @@ export const projects: Project[] = [
     ],
     challenge: "Lanzar un e-commerce funcional en el menor tiempo posible sin sacrificar experiencia de usuario.",
     solution: "Construimos un MVP con Next.js con catálogo, carrito y checkout integrado, listo para escalar con pasarela de pagos real.",
+    year: 2024,
   },
   {
     slug: "jara-asociados",
@@ -65,6 +68,7 @@ export const projects: Project[] = [
     ],
     challenge: "Diseñar una presencia web que transmita autoridad y confianza para un estudio jurídico con años de trayectoria.",
     solution: "Landing institucional con secciones de especialidades, equipo y formulario de contacto, optimizada para SEO local.",
+    year: 2025,
   },
   {
     slug: "patagonia-motors",
@@ -83,6 +87,7 @@ export const projects: Project[] = [
     ],
     challenge: "Crear una presencia digital moderna para una concesionaria que transmita confianza y facilite el contacto con compradores potenciales.",
     solution: "Desarrollamos una landing con catálogo de vehículos, fichas de producto y formulario de consulta directo, optimizada para conversión y carga rápida.",
+    year: 2025,
   },
   {
     slug: "havas-argentina",
@@ -101,6 +106,26 @@ export const projects: Project[] = [
     ],
     challenge: "Centralizar el proceso de onboarding de una agencia de publicidad de escala internacional en una sola interfaz clara y profesional.",
     solution: "Diseñamos una landing de onboarding con Next.js que guía al usuario paso a paso, con secciones diferenciadas por tipo de ingresante.",
+    year: 2025,
+  },
+  {
+    slug: "odontologia-santiago",
+    title: "Odontología Santiago",
+    client: "Salud · Odontología · Argentina",
+    stack: ["Next.js", "Tailwind CSS", "Vercel"],
+    summary: "Landing institucional para consultorio odontológico con foco en turnos online y confianza del paciente.",
+    result: "Sitio en producción con sistema de reserva de turnos integrado. Entregado en 2 semanas",
+    liveUrl: "https://www.odontologiasantiago.com",
+    previewImage: "/portfolio/OdontologiaSantiago/OdontologiaSantiago_Preview.png",
+    images: [
+      "/portfolio/OdontologiaSantiago/Screenshot_1.png",
+      "/portfolio/OdontologiaSantiago/Screenshot_2.png",
+      "/portfolio/OdontologiaSantiago/Screenshot_3.png",
+      "/portfolio/OdontologiaSantiago/Screenshot_4.png",
+    ],
+    challenge: "Darle a un consultorio odontológico una presencia digital que transmita cercanía y profesionalismo, facilitando que los pacientes reserven turnos sin fricción.",
+    solution: "Desarrollamos una landing cálida y clara con presentación de tratamientos, equipo profesional y un flujo de reserva de turnos directo desde el sitio.",
+    year: 2026,
   },
 ];
 
