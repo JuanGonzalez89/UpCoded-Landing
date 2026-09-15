@@ -71,7 +71,7 @@ export default function NavSection({ dict, lang }: { dict?: Record<string, strin
         >
           <Link
             className="flex items-center gap-2.5 text-[1.0625rem] font-semibold tracking-tight text-on-surface"
-            href="/"
+            href={`/${lang ?? 'es'}`}
           >
             <Image
               src="/portfolio/logo_upcoded/Logo_Upcoded_192x192.png"

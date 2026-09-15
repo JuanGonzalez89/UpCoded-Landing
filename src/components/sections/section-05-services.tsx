@@ -45,7 +45,9 @@ const services: Service[] = [
   },
 ];
 
-export default function ServicesSection() {
+export default function ServicesSection({ dict, lang = 'es' }: { dict?: { eyebrow?: string; title?: string; description?: string; more?: string; items?: Service[] }; lang?: string }) {
+  const copy = dict ?? { eyebrow: '// Servicios', title: 'Tres disciplinas.\nUn equipo.', description: 'Desarrollo, automatización y diseño web en un solo lugar.', more: 'Saber más', items: services };
+  const items = copy.items ?? services;
   return (
     <section className="px-margin-mobile py-24 md:px-margin-desktop lg:py-32" id="servicios">
       <div className="mx-auto max-w-container-max">
@@ -53,27 +55,27 @@ export default function ServicesSection() {
           <div>
             <FadeInView>
               <p className="mb-6 font-mono text-[12px] uppercase tracking-widest text-primary">
-                // Servicios
+                {copy.eyebrow}
               </p>
             </FadeInView>
             <FadeInView delay={100}>
               <h2 className="m-0 text-[clamp(36px,5.4vw,72px)] font-medium leading-none tracking-tighter text-on-surface">
-                Tres disciplinas.<br />Un equipo.
+                {(copy.title ?? '').split('\n').map((line, i) => <span key={line}>{i > 0 && <br />}{line}</span>)}
               </h2>
             </FadeInView>
           </div>
           <FadeInView delay={200}>
             <p className="m-0 max-w-[480px] text-[1.0625rem] leading-relaxed text-on-surface-variant">
-              Desarrollo, automatización y diseño web en un solo lugar. Sin intermediarios, sin perder el hilo. Tu proyecto en manos del mismo equipo de principio a fin.
+              {copy.description}
             </p>
           </FadeInView>
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {services.map((service, i) => (
+          {items.map((service, i) => (
             <FadeInView key={service.id} delay={i * 100}>
               <Link
-                href={service.href}
+                href={`/${lang}${service.href}`}
                 className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-outline bg-surface-container p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-[0_10px_40px_-10px_rgba(20,184,166,0.1)] lg:p-10"
               >
                 {/* Giant Outline Number Background */}
@@ -102,7 +104,7 @@ export default function ServicesSection() {
                   </p>
                   
                   <div className="mt-auto flex items-center gap-2 font-mono text-[13px] font-medium tracking-wide text-primary transition-transform duration-300 group-hover:translate-x-2">
-                    Saber más
+                    {copy.more}
                     <PiArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </div>

@@ -1,6 +1,6 @@
 import { FadeInView } from '@/components/ui/fade-in-view';
 
-const differences = [
+const defaultDifferences = [
   {
     title: 'Entrega en semanas',
     description:
@@ -23,13 +23,14 @@ const differences = [
   },
 ] as const;
 
-export default function DifferenceSection() {
+export default function DifferenceSection({ dict }: { dict?: { title?: string; items?: readonly { title: string; description: string }[] } }) {
+  const differences = dict?.items ?? defaultDifferences;
   return (
     <section className="px-margin-mobile py-24 md:px-margin-desktop lg:py-32">
       <div className="mx-auto grid max-w-container-max grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-4">
           <h2 className="text-headline-lg text-on-surface lg:sticky lg:top-[108px]">
-            Velocidad real. Sin sacrificar calidad.
+            {dict?.title ?? 'Velocidad real. Sin sacrificar calidad.'}
           </h2>
         </div>
 

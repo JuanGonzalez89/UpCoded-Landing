@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { PiCheck } from 'react-icons/pi';
 import { FadeInView } from '@/components/ui/fade-in-view';
 
-const plans = [
+const defaultPlans = [
   {
     title: 'Presencia Web',
     price: 'USD 300',
@@ -38,13 +38,15 @@ const plans = [
   },
 ] as const;
 
-export default function PricingSection() {
+export default function PricingSection({ dict }: { dict?: { title?: string; description?: string; from?: string; featured?: string; choose?: string; plans?: readonly { title: string; price: string; features: readonly string[] }[] } }) {
+  const copy = dict ?? {};
+  const plans: readonly { title: string; price: string; features: readonly string[]; featured?: boolean }[] = copy.plans ?? defaultPlans;
   return (
     <section className="px-margin-mobile py-24 md:px-margin-desktop lg:py-32" id="precios">
       <div className="mx-auto max-w-container-max">
         <div className="max-w-measure">
-          <h2 className="text-headline-lg text-on-surface">Transparencia desde el día 1</h2>
-          <p className="mt-5 text-body-md text-on-surface-variant">Precios claros, sin sorpresas.</p>
+          <h2 className="text-headline-lg text-on-surface">{copy.title ?? 'Transparencia desde el día 1'}</h2>
+          <p className="mt-5 text-body-md text-on-surface-variant">{copy.description ?? 'Precios claros, sin sorpresas.'}</p>
         </div>
 
         <div className="mt-14 grid grid-cols-1 items-stretch gap-4 lg:grid-cols-3">
@@ -65,7 +67,7 @@ export default function PricingSection() {
                     className="mb-3 h-[13px] font-mono text-label-caps uppercase text-accent-ink"
                     aria-hidden={!plan.featured}
                   >
-                    {plan.featured ? 'Más elegido' : ''}
+                    {plan.featured ? (copy.featured ?? 'Más elegido') : ''}
                   </p>
                   <h3
                     className={`text-headline-md ${plan.featured ? 'text-on-ink' : 'text-on-surface'}`}
@@ -83,7 +85,7 @@ export default function PricingSection() {
                         plan.featured ? 'text-on-ink-variant' : 'text-on-surface-variant'
                       }`}
                     >
-                      desde
+                      {copy.from ?? 'desde'}
                     </span>
                   </p>
                 </div>
@@ -119,7 +121,7 @@ export default function PricingSection() {
                     }`}
                     href="#contacto"
                   >
-                    Elegir plan
+                      {copy.choose ?? 'Elegir plan'}
                   </Link>
                 </div>
               </div>

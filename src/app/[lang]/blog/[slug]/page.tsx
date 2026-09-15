@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getBlogPostBySlug, getBlogPosts, getAllBlogPosts } from '@/lib/blog';
+import { getBlogPostBySlug, getAllBlogPosts } from '@/lib/blog';
 import Link from 'next/link';
 import { PiArrowLeft } from 'react-icons/pi';
 import ReactMarkdown from 'react-markdown';
@@ -117,12 +117,12 @@ export default async function BlogPostPage({ params }: { params: { slug: string,
           </header>
 
           {/* GEO Optimized Body */}
-          <div className="prose dark:prose-invert prose-lg max-w-none prose-headings:font-medium prose-headings:tracking-tight prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-pre:border prose-pre:border-outline prose-pre:bg-surface-dim">
+          <div className="prose-upcoded max-w-none">
             <ReactMarkdown>{post.content}</ReactMarkdown>
           </div>
         </div>
       </article>
-      <FooterSection />
+      <FooterSection lang={params.lang} />
     </>
   );
 }

@@ -19,16 +19,16 @@ export default async function HomePage({ params }: { params: { lang: 'es' | 'en'
       <NavSection dict={dict.nav} lang={params.lang} />
       <main id="contenido">
         <HeroSection dict={dict.hero} />
-        <StatsSection />
-        <ServicesSection />
-        <WorkSection lang={params.lang} />
-        <ResultsSection />
-        <DifferenceSection />
-        <ProcessSection />
-        <PricingSection />
-        <ContactSection />
+        <StatsSection dict={dict.stats} />
+        <ServicesSection dict={dict.servicesSection} lang={params.lang} />
+        <WorkSection lang={params.lang} dict={dict.work} />
+        <ResultsSection dict={dict.results} />
+        <DifferenceSection dict={dict.difference} />
+        <ProcessSection dict={dict.process} />
+        <PricingSection dict={dict.pricing} />
+        <ContactSection dict={dict.contact} />
       </main>
-      <FooterSection />
+      <FooterSection lang={params.lang} dict={dict.footer} />
     </>
   );
 }

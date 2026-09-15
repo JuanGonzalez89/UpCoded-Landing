@@ -1,213 +1,25 @@
 import fs from 'node:fs';
-import { PiArrowUpRight } from 'react-icons/pi';
 import path from 'node:path';
-
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-
+import { PiArrowUpRight } from 'react-icons/pi';
 import { getProjectBySlug, projects } from '@/data/projects';
 import { LOCALES, buildAlternates, localizedUrl, toLocale } from '@/lib/seo';
+import { getDictionary } from '@/dictionaries';
 import NavSection from '@/components/sections/section-02-nav';
 import FooterSection from '@/components/sections/section-12-footer';
 
-type PortfolioPageProps = {
-  params: {
-    slug: string;
-    lang: string;
-  };
+const enProjects: Record<string, { client: string; summary: string; result: string; challenge: string; solution: string }> = {
+  'invert-ia': { client: 'Fintech · Argentina', summary: 'Investment platform with a modern interface and optimized onboarding flow.', result: 'Production site with optimized performance on Vercel. Delivered in 4 weeks.', challenge: 'Build an investment platform that communicates trust and professionalism from the first scroll.', solution: 'A clean Next.js interface focused on conversion, minimal load times and financial credibility.' },
+  'ecommerce-mvp': { client: 'Retail · Argentina', summary: 'Online store MVP with a product catalog and complete purchase flow.', result: 'Functional MVP launched in 3 weeks.', challenge: 'Launch a functional e-commerce experience quickly without sacrificing usability.', solution: 'A Next.js MVP with catalog, cart and checkout ready to scale with a real payment gateway.' },
+  'jara-asociados': { client: 'Legal · Argentina', summary: 'Institutional landing page for a law firm focused on client acquisition.', result: 'Delivered in 2 weeks with local SEO optimized.', challenge: 'Create a web presence that communicates authority and trust for an established law firm.', solution: 'An institutional landing page with practice areas, team and contact form optimized for local SEO.' },
+  'patagonia-motors': { client: 'Automotive · Argentina', summary: 'Dealership landing page with vehicle catalog and enquiry form.', result: 'Live catalog website delivered in 2 weeks with optimized SEO.', challenge: 'Create a modern digital presence that builds trust and makes it easy for buyers to enquire.', solution: 'A landing page with vehicle catalog, product pages and a direct enquiry form, optimized for conversion.' },
+  'havas-argentina': { client: 'Advertising agency · Argentina', summary: 'Onboarding landing page for new Havas Argentina employees and collaborators.', result: 'Centralized digital onboarding flow. Delivered in 3 weeks.', challenge: 'Centralize onboarding for an international advertising agency in one clear interface.', solution: 'A step-by-step Next.js onboarding experience with sections for each type of new joiner.' },
+  'odontologia-santiago': { client: 'Healthcare · Dentistry · Argentina', summary: 'Dental practice landing page focused on online appointments and patient trust.', result: 'Live site with integrated appointment booking. Delivered in 2 weeks.', challenge: 'Give a dental practice a warm, professional presence while making appointments frictionless.', solution: 'A clear, welcoming landing page with treatments, team and a direct booking flow.' },
 };
-
-function imageExists(imagePath: string) {
-  return fs.existsSync(path.join(process.cwd(), 'public', imagePath));
-}
-
-export function generateStaticParams() {
-  // Un caso de estudio por idioma: sin esto solo se prerenderiza una variante
-  // y la otra queda fuera del build estatico.
-  return LOCALES.flatMap((lang) =>
-    projects.map((project) => ({ lang, slug: project.slug })),
-  );
-}
-
-export async function generateMetadata({ params }: PortfolioPageProps): Promise<Metadata> {
-  const project = getProjectBySlug(params.slug);
-
-  if (!project) {
-    return {
-      title: 'Portfolio | UpCoded',
-      description: 'Proyecto no encontrado.',
-    };
-  }
-
-  const locale = toLocale(params.lang);
-
-  return {
-    title: `${project.title} | Caso de estudio | UpCoded`,
-    description: `${project.summary} Desarrollado por UpCoded, agencia de desarrollo web en Argentina.`,
-    alternates: buildAlternates(locale, `portfolio/${project.slug}`),
-    openGraph: {
-      title: `${project.title} | UpCoded Portfolio`,
-      description: project.summary,
-      url: localizedUrl(locale, `portfolio/${project.slug}`),
-      images: project.previewImage
-        ? [{ url: project.previewImage, width: 1200, height: 630 }]
-        : [],
-    },
-  };
-}
-
-export default function PortfolioCaseStudyPage({ params }: PortfolioPageProps) {
-  const project = getProjectBySlug(params.slug);
-
-  if (!project) {
-    notFound();
-  }
-
-  const caseStudySchema = {
-    '@context': 'https://schema.org',
-    '@type': 'CreativeWork',
-    name: project.title,
-    description: project.summary,
-    creator: {
-      '@type': 'Organization',
-      name: 'UpCoded',
-      url: 'https://upcoded.dev',
-    },
-    url: `https://upcoded.dev/portfolio/${project.slug}`,
-    ...(project.liveUrl && { sameAs: project.liveUrl }),
-  };
-
-  const screenshots = project.images.filter(imageExists);
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }}
-      />
-      <NavSection />
-
-      <main id="contenido" className="pt-[68px]">
-        <article>
-          <header className="mx-auto max-w-container-max px-margin-mobile py-20 md:px-margin-desktop lg:py-24">
-            <nav
-              aria-label="Miga de pan"
-              className="flex items-center gap-2 font-mono text-label-caps uppercase text-on-surface-variant"
-            >
-              <Link className="transition-colors duration-200 ease-upcoded hover:text-primary" href="/">
-                Inicio
-              </Link>
-              <span aria-hidden>/</span>
-              <Link
-                className="transition-colors duration-200 ease-upcoded hover:text-primary"
-                href="/#portfolio"
-              >
-                Trabajo
-              </Link>
-            </nav>
-
-            <p className="mt-10 font-mono text-label-caps uppercase text-on-surface-variant">
-              {project.client}
-            </p>
-            <h1 className="mt-4 max-w-measure text-display-lg text-on-surface">{project.title}</h1>
-            <p className="mt-6 max-w-measure text-body-md text-on-surface-variant">
-              {project.summary}
-            </p>
-
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              {project.stack.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-md bg-primary-tint px-2.5 py-1.5 font-mono text-label-caps uppercase text-primary"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-
-            {project.liveUrl ? (
-              <a
-                className="mt-8 inline-flex min-h-[52px] items-center justify-center gap-2 rounded-md border border-outline-strong px-7 text-base font-medium text-on-surface transition-colors duration-200 ease-upcoded hover:border-primary hover:text-primary active:scale-[0.98]"
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Visitar el sitio
-                <PiArrowUpRight aria-hidden size={16} />
-              </a>
-            ) : null}
-          </header>
-
-          <section className="border-y border-outline-variant bg-surface-container-low">
-            <div className="mx-auto max-w-container-max px-margin-mobile py-10 md:px-margin-desktop lg:py-12">
-              <h2 className="font-mono text-label-caps uppercase text-on-surface-variant">
-                Resultado
-              </h2>
-              <p className="mt-3 max-w-measure text-headline-md text-on-surface">{project.result}</p>
-            </div>
-          </section>
-
-          <div className="mx-auto grid max-w-container-max grid-cols-1 gap-10 px-margin-mobile py-20 md:px-margin-desktop lg:grid-cols-2 lg:gap-14 lg:py-24">
-            <section>
-              <h2 className="text-headline-md text-on-surface">El desafío</h2>
-              <p className="mt-4 max-w-measure text-body-md text-on-surface-variant">
-                {project.challenge}
-              </p>
-            </section>
-            <section>
-              <h2 className="text-headline-md text-on-surface">La solución</h2>
-              <p className="mt-4 max-w-measure text-body-md text-on-surface-variant">
-                {project.solution}
-              </p>
-            </section>
-          </div>
-
-          {screenshots.length > 0 ? (
-            <section className="mx-auto max-w-container-max px-margin-mobile pb-20 md:px-margin-desktop lg:pb-24">
-              <h2 className="text-headline-md text-on-surface">Capturas del proyecto</h2>
-              <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
-                {screenshots.map((imagePath, i) => (
-                  <div
-                    key={imagePath}
-                    className="overflow-hidden rounded-lg border border-outline-variant bg-surface-container"
-                  >
-                    <Image
-                      src={imagePath}
-                      alt={`Pantalla ${i + 1} del sitio de ${project.title}`}
-                      width={1200}
-                      height={800}
-                      className="h-auto w-full object-cover"
-                      sizes="(min-width: 768px) 50vw, 100vw"
-                    />
-                  </div>
-                ))}
-              </div>
-            </section>
-          ) : null}
-
-          <section className="on-ink bg-ink px-margin-mobile py-24 text-on-ink md:px-margin-desktop">
-            <div className="mx-auto max-w-container-max">
-              <h2 className="max-w-measure text-headline-lg text-on-ink">
-                ¿Tenés un proyecto similar?
-              </h2>
-              <p className="mt-5 max-w-measure text-body-md text-on-ink-variant">
-                Contanos qué necesitás y te respondemos en menos de 24 horas con una propuesta
-                concreta.
-              </p>
-              <Link
-                className="mt-8 inline-flex min-h-[52px] items-center justify-center rounded-md bg-on-ink px-7 text-base font-medium text-ink transition-colors duration-200 ease-upcoded hover:bg-accent-ink active:scale-[0.98]"
-                href="/#contacto"
-              >
-                Hablemos
-              </Link>
-            </div>
-          </section>
-        </article>
-      </main>
-
-      <FooterSection />
-    </>
-  );
-}
+function imageExists(imagePath: string) { return fs.existsSync(path.join(process.cwd(), 'public', imagePath)); }
+export function generateStaticParams() { return LOCALES.flatMap((lang) => projects.map((project) => ({ lang, slug: project.slug }))); }
+export async function generateMetadata({ params }: { params: { slug: string; lang: string } }): Promise<Metadata> { const project = getProjectBySlug(params.slug); if (!project) return { title: 'Portfolio | UpCoded' }; const en = toLocale(params.lang) === 'en'; const view = en ? enProjects[project.slug] : project; return { title: `${project.title} | ${en ? 'Case study' : 'Caso de estudio'} | UpCoded`, description: view.summary, alternates: buildAlternates(toLocale(params.lang), `portfolio/${project.slug}`), openGraph: { title: `${project.title} | UpCoded Portfolio`, description: view.summary, url: localizedUrl(toLocale(params.lang), `portfolio/${project.slug}`) } }; }
+export default async function PortfolioCaseStudyPage({ params }: { params: { slug: string; lang: 'es' | 'en' } }) { const project = getProjectBySlug(params.slug); if (!project) notFound(); const d = await getDictionary(params.lang); const en = params.lang === 'en'; const view = en ? { ...project, ...(enProjects[project.slug] ?? {}) } : project; const base = `/${params.lang}`; const screenshots = project.images.filter(imageExists); return <><NavSection dict={d.nav} lang={params.lang} /><main id="contenido" className="pt-[68px]"><article><header className="mx-auto max-w-container-max px-margin-mobile py-20 md:px-margin-desktop"><nav className="flex items-center gap-2 font-mono text-label-caps uppercase text-on-surface-variant"><Link href={base}>{d.common.home}</Link><span>/</span><Link href={`${base}/#portfolio`}>{d.common.work}</Link></nav><p className="mt-10 font-mono text-label-caps uppercase text-on-surface-variant">{view.client}</p><h1 className="mt-4 max-w-measure text-display-lg text-on-surface">{view.title}</h1><p className="mt-6 max-w-measure text-body-md text-on-surface-variant">{view.summary}</p><div className="mt-10 flex flex-wrap gap-3">{project.stack.map((item) => <span key={item} className="rounded-md bg-primary-tint px-2.5 py-1.5 font-mono text-label-caps uppercase text-primary">{item}</span>)}</div>{project.liveUrl && <a className="mt-8 inline-flex min-h-[52px] items-center gap-2 rounded-md border border-outline-strong px-7 text-base text-on-surface" href={project.liveUrl} target="_blank" rel="noopener noreferrer">{en ? 'Visit website' : 'Visitar el sitio'}<PiArrowUpRight size={16} /></a>}</header><section className="border-y border-outline-variant bg-surface-container-low"><div className="mx-auto max-w-container-max px-margin-mobile py-10 md:px-margin-desktop"><h2 className="font-mono text-label-caps uppercase text-on-surface-variant">{en ? 'Result' : 'Resultado'}</h2><p className="mt-3 max-w-measure text-headline-md text-on-surface">{view.result}</p></div></section><div className="mx-auto grid max-w-container-max gap-10 px-margin-mobile py-20 md:px-margin-desktop lg:grid-cols-2"><section><h2 className="text-headline-md text-on-surface">{en ? 'The challenge' : 'El desafío'}</h2><p className="mt-4 text-body-md text-on-surface-variant">{view.challenge}</p></section><section><h2 className="text-headline-md text-on-surface">{en ? 'The solution' : 'La solución'}</h2><p className="mt-4 text-body-md text-on-surface-variant">{view.solution}</p></section></div>{screenshots.length > 0 && <section className="mx-auto max-w-container-max px-margin-mobile pb-20 md:px-margin-desktop"><h2 className="text-headline-md text-on-surface">{en ? 'Project screenshots' : 'Capturas del proyecto'}</h2><div className="mt-8 grid gap-4 md:grid-cols-2">{screenshots.map((imagePath, i) => <div key={imagePath} className="overflow-hidden rounded-lg border border-outline-variant bg-surface-container"><Image src={imagePath} alt={`${en ? 'Screenshot' : 'Pantalla'} ${i + 1} ${project.title}`} width={1200} height={800} className="h-auto w-full object-cover" /></div>)}</div></section>}<section className="on-ink bg-ink px-margin-mobile py-24 text-on-ink md:px-margin-desktop"><div className="mx-auto max-w-container-max"><h2 className="text-headline-lg">{en ? 'Have a similar project?' : '¿Tenés un proyecto similar?'}</h2><p className="mt-5 max-w-measure text-body-md text-on-ink-variant">{en ? 'Tell us what you need and we will reply within 24 hours with a concrete proposal.' : 'Contanos qué necesitás y te respondemos en menos de 24 horas con una propuesta concreta.'}</p><Link className="mt-8 inline-flex min-h-[52px] rounded-md bg-on-ink px-7 py-4 text-base text-ink" href={`${base}/#contacto`}>{d.common.contact}</Link></div></section></article></main><FooterSection lang={params.lang} dict={d.footer} /></>; }

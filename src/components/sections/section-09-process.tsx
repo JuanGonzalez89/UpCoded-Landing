@@ -1,6 +1,6 @@
 import { FadeInView } from '@/components/ui/fade-in-view';
 
-const steps = [
+const defaultSteps = [
   {
     title: 'Discovery',
     description: 'Entendemos tu negocio, objetivos y definimos el alcance técnico.',
@@ -19,7 +19,8 @@ const steps = [
   },
 ] as const;
 
-export default function ProcessSection() {
+export default function ProcessSection({ dict }: { dict?: { title?: string; items?: readonly { title: string; description: string }[] } }) {
+  const steps = dict?.items ?? defaultSteps;
   return (
     <section
       className="border-y border-outline-variant bg-surface-container-low px-margin-mobile py-24 md:px-margin-desktop lg:py-32"
@@ -27,7 +28,7 @@ export default function ProcessSection() {
     >
       <div className="mx-auto max-w-container-max">
         <h2 className="max-w-measure text-headline-lg text-on-surface">
-          De la idea al lanzamiento en 4 pasos
+          {dict?.title ?? 'De la idea al lanzamiento en 4 pasos'}
         </h2>
 
         {/* La regla superior de cada paso forma una linea continua: eso es la secuencia. */}

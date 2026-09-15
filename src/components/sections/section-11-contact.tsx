@@ -18,6 +18,12 @@ const placeholders: Record<Field, string> = {
   message: '¿Qué estás buscando construir?',
 };
 
+type ContactCopy = {
+  title?: string; description?: string; labels?: Record<Field, string>; placeholders?: Record<Field, string>;
+  errors?: { name?: string; email?: string; invalidEmail?: string; message?: string };
+  hours?: string; success?: string; successDescription?: string; another?: string; sending?: string; submit?: string; sendError?: string;
+};
+
 function validate(form: Record<Field, string>): Errors {
   const errors: Errors = {};
   if (!form.name.trim()) errors.name = 'Necesitamos un nombre para responderte.';
@@ -30,7 +36,7 @@ function validate(form: Record<Field, string>): Errors {
   return errors;
 }
 
-export default function ContactSection() {
+export default function ContactSection({ dict }: { dict?: ContactCopy }) {
   const [form, setForm] = useState<Record<Field, string>>({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -83,10 +89,9 @@ export default function ContactSection() {
     >
       <div className="mx-auto grid max-w-container-max grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
         <div className="lg:col-span-5">
-          <h2 className="text-[clamp(32px,4vw,56px)] font-medium leading-tight tracking-tight text-on-surface">¿Listo para subir<br />de nivel?</h2>
+          <h2 className="text-[clamp(32px,4vw,56px)] font-medium leading-tight tracking-tight text-on-surface">{dict?.title ?? '¿Listo para subir de nivel?'}</h2>
           <p className="mt-5 max-w-measure text-body-md text-on-surface-variant">
-            Dejanos tus datos y nos pondremos en contacto en menos de 24 horas para discutir
-            cómo podemos ayudarte a construir tu próximo proyecto.
+            {dict?.description ?? 'Dejanos tus datos y nos pondremos en contacto en menos de 24 horas para discutir cómo podemos ayudarte a construir tu próximo proyecto.'}
           </p>
 
           <dl className="mt-10 space-y-4 border-t border-outline pt-8">
@@ -105,7 +110,7 @@ export default function ContactSection() {
             <div className="flex items-center gap-3">
               <dt className="sr-only">Horario</dt>
               <PiClock aria-hidden size={18} className="shrink-0 text-primary" />
-              <dd className="text-body-md text-on-surface">Lunes a viernes, 9am a 6pm (ART)</dd>
+              <dd className="text-body-md text-on-surface">{dict?.hours ?? 'Lunes a viernes, 9am a 6pm (ART)'}</dd>
             </div>
           </dl>
         </div>
@@ -114,16 +119,16 @@ export default function ContactSection() {
           {status === 'success' ? (
             <div className="flex flex-col items-start gap-4 py-8">
               <PiCheckCircle aria-hidden size={36} className="text-primary" />
-              <h3 className="text-headline-md text-on-surface">Mensaje enviado.</h3>
+              <h3 className="text-headline-md text-on-surface">{dict?.success ?? 'Mensaje enviado.'}</h3>
               <p className="text-body-md text-on-surface-variant">
-                Te respondemos en menos de 24 horas.
+                {dict?.successDescription ?? 'Te respondemos en menos de 24 horas.'}
               </p>
               <button
                 type="button"
                 onClick={() => setStatus('idle')}
                 className="mt-2 text-[0.9375rem] font-medium text-primary underline underline-offset-4"
               >
-                Enviar otro mensaje
+                {dict?.another ?? 'Enviar otro mensaje'}
               </button>
             </div>
           ) : (
@@ -134,7 +139,7 @@ export default function ContactSection() {
                     className="mb-2 block text-body-sm font-medium text-on-surface"
                     htmlFor={field}
                   >
-                    {labels[field]}
+                    {dict?.labels?.[field] ?? labels[field]}
                   </label>
 
                   {field === 'message' ? (
@@ -142,7 +147,7 @@ export default function ContactSection() {
                       id={field}
                       value={form[field]}
                       onChange={handleChange}
-                      placeholder={placeholders[field]}
+                      placeholder={dict?.placeholders?.[field] ?? placeholders[field]}
                       rows={4}
                       aria-invalid={Boolean(errors[field])}
                       aria-describedby={errors[field] ? `${field}-error` : undefined}
@@ -155,7 +160,7 @@ export default function ContactSection() {
                       autoComplete={field === 'email' ? 'email' : 'name'}
                       value={form[field]}
                       onChange={handleChange}
-                      placeholder={placeholders[field]}
+                      placeholder={dict?.placeholders?.[field] ?? placeholders[field]}
                       aria-invalid={Boolean(errors[field])}
                       aria-describedby={errors[field] ? `${field}-error` : undefined}
                       className={fieldClasses(field)}
@@ -172,8 +177,7 @@ export default function ContactSection() {
 
               {status === 'error' ? (
                 <p className="rounded-md bg-error-container px-3.5 py-3 text-body-sm text-on-error-container">
-                  No pudimos enviar el mensaje. Probá de nuevo o escribinos a
-                  upcodednow@gmail.com.
+                  {dict?.sendError ?? 'No pudimos enviar el mensaje. Probá de nuevo o escribinos a upcodednow@gmail.com.'}
                 </p>
               ) : null}
 
@@ -182,7 +186,7 @@ export default function ContactSection() {
                 disabled={status === 'loading'}
                 className="flex min-h-[52px] w-full items-center justify-center rounded-md bg-primary px-6 text-base font-medium text-on-primary transition-colors duration-200 ease-upcoded hover:bg-primary-container active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {status === 'loading' ? 'Enviando...' : 'Quiero una propuesta gratuita'}
+                {status === 'loading' ? (dict?.sending ?? 'Enviando...') : (dict?.submit ?? 'Quiero una propuesta gratuita')}
               </button>
             </form>
           )}
