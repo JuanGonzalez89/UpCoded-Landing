@@ -9,6 +9,7 @@ export type BlogPost = {
   description: string;
   category: string;
   author: string;
+  keywords?: string[];
   content: string;
   lang: string;
 };
@@ -41,6 +42,7 @@ export function getBlogPosts(lang: string): BlogPost[] {
         description: matterResult.data.description,
         category: matterResult.data.category,
         author: matterResult.data.author,
+        keywords: matterResult.data.keywords,
         content: matterResult.content,
         lang,
       };

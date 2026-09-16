@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: { params: { slug: string, lan
   return {
     title: `${post.title} | UpCoded Blog`,
     description: post.description,
+    keywords: post.keywords,
     alternates: buildAlternates(locale, `blog/${post.slug}`),
     openGraph: {
       title: post.title,
