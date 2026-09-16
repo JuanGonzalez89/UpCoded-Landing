@@ -4,8 +4,20 @@ import type { NextRequest } from 'next/server';
 const locales = ['es', 'en'];
 const defaultLocale = 'es';
 
+// URL publicada por una versión anterior del blog. No tiene una pieza de
+// contenido equivalente en el sitio actual, por lo que no la redirigimos a
+// una página genérica: 410 le indica a Google que debe retirarla del índice.
+const retiredPaths = new Set(['/blog/que-es-landing-page-negocio']);
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  if (retiredPaths.has(pathname)) {
+    return new NextResponse(null, {
+      status: 410,
+      headers: { 'X-Robots-Tag': 'noindex' },
+    });
+  }
 
   // Assets, api e internals de Next no llevan prefijo de idioma.
   if (
