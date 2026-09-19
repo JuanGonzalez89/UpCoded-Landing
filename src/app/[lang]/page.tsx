@@ -10,12 +10,31 @@ import PricingSection from '@/components/sections/section-10-pricing';
 import ContactSection from '@/components/sections/section-11-contact';
 import FooterSection from '@/components/sections/section-12-footer';
 import { getDictionary } from '@/dictionaries';
+import { localizedUrl } from '@/lib/seo';
 
 export default async function HomePage({ params }: { params: { lang: 'es' | 'en' } }) {
   const dict = await getDictionary(params.lang);
+  const en = params.lang === 'en';
+
+  // Solo la home declara este WebPage: en el layout se repetia en todas las
+  // paginas con url=https://upcoded.dev y contradecia sus canonicals.
+  const webPageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${localizedUrl(params.lang)}#webpage`,
+    url: localizedUrl(params.lang),
+    name: en ? 'Web Development Agency in Argentina | UpCoded' : 'Agencia de Desarrollo Web en Argentina | UpCoded',
+    isPartOf: { '@id': 'https://upcoded.dev/#website' },
+    about: { '@id': 'https://upcoded.dev/#organization' },
+    inLanguage: en ? 'en' : 'es-AR',
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
+      />
       <NavSection dict={dict.nav} lang={params.lang} />
       <main id="contenido">
         <HeroSection dict={dict.hero} />

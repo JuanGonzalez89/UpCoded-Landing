@@ -175,33 +175,13 @@ const jsonLd = {
     {
       '@type': 'WebSite',
       '@id': 'https://upcoded.dev/#website',
-      url: 'https://upcoded.dev',
+      url: 'https://upcoded.dev/es',
       name: 'UpCoded',
       description: 'Agencia de desarrollo web en Argentina',
       publisher: { '@id': 'https://upcoded.dev/#organization' },
-      inLanguage: 'es-AR',
+      inLanguage: ['es-AR', 'en'],
       // Sin SearchAction: el sitio no tiene buscador interno, y la plantilla
       // /?q={search_term_string} terminaba siendo rastreada como URL literal.
-    },
-    {
-      '@type': 'WebPage',
-      '@id': 'https://upcoded.dev/#webpage',
-      url: 'https://upcoded.dev',
-      name: 'Agencia de Desarrollo Web en Argentina | UpCoded',
-      isPartOf: { '@id': 'https://upcoded.dev/#website' },
-      about: { '@id': 'https://upcoded.dev/#organization' },
-      inLanguage: 'es-AR',
-      breadcrumb: {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Inicio',
-            item: 'https://upcoded.dev',
-          },
-        ],
-      },
     },
   ],
 };
