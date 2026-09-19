@@ -40,6 +40,23 @@ export function buildAlternates(lang: string, path = ''): Metadata['alternates']
   };
 }
 
+/**
+ * BreadcrumbList con URLs canonicas (con prefijo de idioma).
+ * `path` de cada item va sin prefijo y sin barra inicial; '' es la home.
+ */
+export function breadcrumbJsonLd(lang: string, items: { name: string; path: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: localizedUrl(lang, item.path),
+    })),
+  };
+}
+
 /** URL absoluta con prefijo de idioma, para openGraph.url y JSON-LD. */
 export function localizedUrl(lang: string, path = ''): string {
   const locale = toLocale(lang);

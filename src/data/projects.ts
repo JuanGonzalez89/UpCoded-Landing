@@ -54,9 +54,9 @@ export const projects: Project[] = [
   {
     slug: "jara-asociados",
     title: "Jara y Asociados",
-    client: "Legal · Argentina",
+    client: "Inmobiliario · Consorcios · Argentina",
     stack: ["Next.js", "Tailwind CSS", "Vercel"],
-    summary: "Landing institucional para estudio jurídico con foco en captación de clientes.",
+    summary: "Landing institucional para una administración de consorcios y fideicomisos inmobiliarios, con foco en captación de clientes.",
     result: "Entregada en 2 semanas, con SEO local optimizado",
     liveUrl: "https://jara-y-asociados-landing.vercel.app",
     previewImage: "/portfolio/JaraYAsociados/JaraYAsociados_Preview.png",
@@ -66,8 +66,8 @@ export const projects: Project[] = [
       "/portfolio/JaraYAsociados/Screenshot_3.png",
       "/portfolio/JaraYAsociados/Screenshot_4.png",
     ],
-    challenge: "Diseñar una presencia web que transmita autoridad y confianza para un estudio jurídico con años de trayectoria.",
-    solution: "Landing institucional con secciones de especialidades, equipo y formulario de contacto, optimizada para SEO local.",
+    challenge: "Diseñar una presencia web que transmita autoridad y confianza para una administración de consorcios y fideicomisos inmobiliarios con más de 40 años de trayectoria.",
+    solution: "Landing institucional con secciones de servicios, edificios administrados, equipo y formulario de contacto, optimizada para SEO local.",
     year: 2025,
   },
   {
