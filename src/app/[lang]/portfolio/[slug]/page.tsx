@@ -9,6 +9,7 @@ import { getProjectBySlug, projects } from '@/data/projects';
 import { caseDetails, enProjects, type ServiceSlug } from '@/data/project-details';
 import { LOCALES, breadcrumbJsonLd, buildAlternates, localizedUrl, toLocale } from '@/lib/seo';
 import { getDictionary } from '@/dictionaries';
+import { cn } from '@/lib/utils';
 import NavSection from '@/components/sections/section-02-nav';
 import FooterSection from '@/components/sections/section-12-footer';
 
@@ -123,7 +124,7 @@ export default async function PortfolioCaseStudyPage({
               {project.stack.map((item) => (
                 <span
                   key={item}
-                  className="rounded-md bg-primary-tint px-2.5 py-1.5 font-mono text-label-caps uppercase text-primary"
+                  className="rounded-md bg-primary-container px-2.5 py-1.5 font-mono text-label-caps uppercase text-primary"
                 >
                   {item}
                 </span>
@@ -142,47 +143,53 @@ export default async function PortfolioCaseStudyPage({
             )}
           </header>
 
-          <section className="border-y border-outline-variant bg-surface-container-low">
-            <div className="mx-auto max-w-container-max px-margin-mobile py-10 md:px-margin-desktop">
+          <section className="bg-surface-container">
+            <div className="mx-auto max-w-container-max px-margin-mobile py-14 md:px-margin-desktop">
               <h2 className="font-mono text-label-caps uppercase text-on-surface-variant">
                 {en ? 'Result' : 'Resultado'}
               </h2>
-              <p className="mt-3 max-w-measure text-headline-md text-on-surface">{view.result}</p>
+              <p className="mt-4 max-w-measure text-headline-lg text-on-surface">{view.result}</p>
             </div>
           </section>
 
-          <div className="mx-auto grid max-w-container-max gap-10 px-margin-mobile py-20 md:px-margin-desktop lg:grid-cols-2">
-            <section>
-              <h2 className="text-headline-md text-on-surface">{en ? 'The challenge' : 'El desafío'}</h2>
-              <p className="mt-4 text-body-md text-on-surface-variant">{view.challenge}</p>
-            </section>
-            <section>
-              <h2 className="text-headline-md text-on-surface">{en ? 'The solution' : 'La solución'}</h2>
-              <p className="mt-4 text-body-md text-on-surface-variant">{view.solution}</p>
-            </section>
-          </div>
+          <div className="mx-auto max-w-container-max space-y-8 px-margin-mobile py-20 md:px-margin-desktop">
+            <div className="rounded-2xl border border-outline bg-surface-container p-8 lg:p-12">
+              <div className="grid gap-10 lg:grid-cols-2">
+                <section>
+                  <p className="font-mono text-label-caps uppercase text-primary">01</p>
+                  <h2 className="mt-3 text-headline-md text-on-surface">{en ? 'The challenge' : 'El desafío'}</h2>
+                  <p className="mt-4 text-body-md text-on-surface-variant">{view.challenge}</p>
+                </section>
+                <section>
+                  <p className="font-mono text-label-caps uppercase text-primary">02</p>
+                  <h2 className="mt-3 text-headline-md text-on-surface">{en ? 'The solution' : 'La solución'}</h2>
+                  <p className="mt-4 text-body-md text-on-surface-variant">{view.solution}</p>
+                </section>
+              </div>
+            </div>
 
-          {localized && (
-            <section className="border-y border-outline-variant bg-surface-container-low">
-              <div className="mx-auto grid max-w-container-max gap-10 px-margin-mobile py-20 md:px-margin-desktop lg:grid-cols-2">
-                <div>
-                  <h2 className="text-headline-md text-on-surface">{labels.features}</h2>
-                  <ul className="mt-6 space-y-4">
-                    {localized.features.map((feature) => (
-                      <li key={feature} className="flex gap-3 text-body-md text-on-surface-variant">
-                        <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h2 className="text-headline-md text-on-surface">{labels.approach}</h2>
-                  <p className="mt-6 text-body-md text-on-surface-variant">{localized.approach}</p>
+            {localized && (
+              <div className="rounded-2xl border border-outline bg-surface-container p-8 lg:p-12">
+                <div className="grid gap-10 lg:grid-cols-2 lg:divide-x lg:divide-outline">
+                  <div>
+                    <h2 className="text-headline-md text-on-surface">{labels.features}</h2>
+                    <ul className="mt-6 space-y-4">
+                      {localized.features.map((feature) => (
+                        <li key={feature} className="flex gap-3 text-body-md text-on-surface-variant">
+                          <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="lg:pl-10">
+                    <h2 className="text-headline-md text-on-surface">{labels.approach}</h2>
+                    <p className="mt-6 text-body-md text-on-surface-variant">{localized.approach}</p>
+                  </div>
                 </div>
               </div>
-            </section>
-          )}
+            )}
+          </div>
 
           {testimonial && (
             <section className="mx-auto max-w-container-max px-margin-mobile pt-20 md:px-margin-desktop">
@@ -203,8 +210,16 @@ export default async function PortfolioCaseStudyPage({
                 {screenshots.map((imagePath, i) => (
                   <div
                     key={imagePath}
-                    className="overflow-hidden rounded-lg border border-outline-variant bg-surface-container"
+                    className={cn(
+                      'overflow-hidden rounded-2xl border border-outline bg-surface-dim',
+                      i === 0 && 'md:col-span-2',
+                    )}
                   >
+                    <div className="flex items-center gap-1.5 border-b border-outline px-4 py-3">
+                      <span className="h-2.5 w-2.5 rounded-full bg-outline-strong" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-outline-strong" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-outline-strong" />
+                    </div>
                     <Image
                       src={imagePath}
                       alt={`${en ? 'Screenshot' : 'Pantalla'} ${i + 1} ${project.title}`}
@@ -260,7 +275,7 @@ export default async function PortfolioCaseStudyPage({
           <section className="on-ink bg-ink px-margin-mobile py-24 text-on-ink md:px-margin-desktop">
             <div className="mx-auto max-w-container-max">
               <h2 className="text-headline-lg">{en ? 'Have a similar project?' : '¿Tenés un proyecto similar?'}</h2>
-              <p className="mt-5 max-w-measure text-body-md text-on-ink-variant">
+              <p className="mt-5 max-w-measure text-body-md text-on-ink/70">
                 {en
                   ? 'Tell us what you need and we will reply within 24 hours with a concrete proposal.'
                   : 'Contanos qué necesitás y te respondemos en menos de 24 horas con una propuesta concreta.'}

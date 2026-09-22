@@ -132,6 +132,30 @@ const config: Config = {
         // Curva unica del sitio. Sin ease-in-out por defecto.
         upcoded: 'cubic-bezier(0.32, 0.72, 0, 1)',
       },
+
+      /**
+       * Glow ambiental del hero: dos blobs que derivan lento detras del H1.
+       * CSS puro (transform + opacity), sin canvas ni libs de animacion.
+       */
+      keyframes: {
+        'glow-drift-a': {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '50%': { transform: 'translate(40px, 24px) scale(1.08)' },
+        },
+        'glow-drift-b': {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '50%': { transform: 'translate(-32px, -28px) scale(1.05)' },
+        },
+        'fade-scale-in': {
+          '0%': { opacity: '0', transform: 'scale(0.98)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+      },
+      animation: {
+        'glow-drift-a': 'glow-drift-a 16s ease-in-out infinite',
+        'glow-drift-b': 'glow-drift-b 20s ease-in-out infinite',
+        'fade-scale-in': 'fade-scale-in 0.4s cubic-bezier(0.32, 0.72, 0, 1)',
+      },
     },
   },
   plugins: [
