@@ -5,6 +5,7 @@ import ServicesSection from '@/components/sections/section-05-services';
 import WorkSection from '@/components/sections/section-06-work';
 import ResultsSection from '@/components/sections/section-07-results';
 import DifferenceSection from '@/components/sections/section-08-difference';
+import FoundersSection from '@/components/sections/section-08b-founders';
 import ProcessSection from '@/components/sections/section-09-process';
 import PricingSection from '@/components/sections/section-10-pricing';
 import ContactSection from '@/components/sections/section-11-contact';
@@ -43,6 +44,7 @@ export default async function HomePage({ params }: { params: { lang: 'es' | 'en'
         <WorkSection lang={params.lang} dict={dict.work} />
         <ResultsSection dict={dict.results} />
         <DifferenceSection dict={dict.difference} />
+        <FoundersSection dict={dict.founders} />
         <ProcessSection dict={dict.process} />
         <PricingSection dict={dict.pricing} />
         <ContactSection dict={dict.contact} />
