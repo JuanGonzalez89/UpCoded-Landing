@@ -31,7 +31,7 @@ export default function WorkSection({
               </p>
             </FadeInView>
             <FadeInView delay={100}>
-              <h2 className="m-0 max-w-[760px] text-[clamp(36px,5.4vw,72px)] font-medium leading-none tracking-tighter text-on-surface">
+              <h2 className="m-0 max-w-[760px] text-balance text-[clamp(36px,5.4vw,72px)] font-medium leading-none tracking-tighter text-on-surface">
                 {dict?.title ?? 'Trabajo seleccionado.'}
               </h2>
             </FadeInView>

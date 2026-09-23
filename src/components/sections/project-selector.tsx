@@ -40,34 +40,37 @@ export function ProjectSelector({
 
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-[240px_1fr_300px] lg:items-start lg:gap-8">
-      {/* Lista: chips en mobile, lista vertical en desktop */}
-      <div
-        role="tablist"
-        aria-label="Proyectos"
-        className="flex flex-wrap gap-2 lg:flex-col lg:flex-nowrap lg:gap-1"
-      >
-        {projects.map((project, index) => {
-          const isActive = index === activeIndex;
-          return (
-            <button
-              key={project.slug}
-              type="button"
-              role="tab"
-              aria-selected={isActive}
-              onClick={() => setActiveIndex(index)}
-              onKeyDown={(event) => selectByKeyboard(event, index)}
-              className={cn(
-                'rounded-full border px-4 py-2 text-left text-sm font-medium transition-colors duration-200',
-                'lg:rounded-none lg:border-0 lg:border-l-2 lg:px-4 lg:py-2.5 lg:text-lg lg:tracking-tight',
-                isActive
-                  ? 'border-primary text-primary lg:border-l-primary lg:text-on-surface'
-                  : 'border-outline text-on-surface-variant hover:border-on-surface-variant hover:text-on-surface lg:border-l-outline lg:hover:border-l-on-surface-variant',
-              )}
-            >
-              {project.title}
-            </button>
-          );
-        })}
+      {/* Lista: carrusel horizontal en mobile (evita 3 filas de chips), lista vertical en desktop */}
+      <div className="relative lg:contents">
+        <div
+          role="tablist"
+          aria-label="Proyectos"
+          className="flex snap-x snap-mandatory gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-col lg:flex-nowrap lg:gap-1 lg:overflow-visible lg:pb-0 lg:snap-none"
+        >
+          {projects.map((project, index) => {
+            const isActive = index === activeIndex;
+            return (
+              <button
+                key={project.slug}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setActiveIndex(index)}
+                onKeyDown={(event) => selectByKeyboard(event, index)}
+                className={cn(
+                  'shrink-0 snap-start rounded-full border px-4 py-2 text-left text-sm font-medium transition-colors duration-200',
+                  'lg:rounded-none lg:border-0 lg:border-l-2 lg:px-4 lg:py-2.5 lg:text-lg lg:tracking-tight',
+                  isActive
+                    ? 'border-primary text-primary lg:border-l-primary lg:text-on-surface'
+                    : 'border-outline text-on-surface-variant hover:border-on-surface-variant hover:text-on-surface lg:border-l-outline lg:hover:border-l-on-surface-variant',
+                )}
+              >
+                {project.title}
+              </button>
+            );
+          })}
+        </div>
+        <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-background to-transparent lg:hidden" />
       </div>
 
       {/* Preview: frame tipo browser con la captura del sitio activo */}

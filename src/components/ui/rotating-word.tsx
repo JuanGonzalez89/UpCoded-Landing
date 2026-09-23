@@ -2,7 +2,15 @@
 
 import { useEffect, useState } from 'react';
 
-export function RotatingWord({ words, intervalMs = 2800 }: { words: string[]; intervalMs?: number }) {
+export function RotatingWord({
+  words,
+  intervalMs = 2800,
+  cursorClassName,
+}: {
+  words: string[];
+  intervalMs?: number;
+  cursorClassName?: string;
+}) {
   const [index, setIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState<number | null>(null);
 
@@ -33,6 +41,7 @@ export function RotatingWord({ words, intervalMs = 2800 }: { words: string[]; in
           {words[prevIndex]}
         </span>
       )}
+      {cursorClassName && <span className={cursorClassName}>_</span>}
     </span>
   );
 }
