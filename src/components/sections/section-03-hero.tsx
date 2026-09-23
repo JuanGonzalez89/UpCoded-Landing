@@ -1,7 +1,20 @@
 import Link from 'next/link';
 import { FadeInView } from '@/components/ui/fade-in-view';
+import { RotatingWord } from '@/components/ui/rotating-word';
 
-export default function HeroSection({ dict }: { dict: Record<string, string> }) {
+type HeroDict = {
+  badge: string;
+  title1: string;
+  title2: string;
+  title3: string;
+  title3Alt?: string[];
+  description: string;
+  cta_primary: string;
+  cta_secondary: string;
+};
+
+export default function HeroSection({ dict }: { dict: HeroDict }) {
+  const rotatingWords = [dict.title3, ...(dict.title3Alt ?? [])];
   return (
     <section className="relative flex min-h-[calc(100vh-68px)] flex-col items-start justify-center overflow-hidden">
 
@@ -22,7 +35,7 @@ export default function HeroSection({ dict }: { dict: Record<string, string> }) 
 
         <FadeInView delay={100}>
           <h1 className="m-0 text-[clamp(56px,9vw,130px)] font-medium leading-[0.9] tracking-[-0.04em] text-on-surface">
-            {dict.title1}<br /> {dict.title2}<br /> <span className="text-on-surface-variant">{dict.title3}<span className="text-primary animate-pulse">_</span></span>
+            {dict.title1}<br /> {dict.title2}<br /> <span className="text-on-surface-variant"><RotatingWord words={rotatingWords} /><span className="text-primary animate-cursor-blink">_</span></span>
           </h1>
         </FadeInView>
 

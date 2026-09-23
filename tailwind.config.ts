@@ -150,11 +150,26 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'scale(0.98)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
         },
+        'word-slide-out': {
+          '0%': { transform: 'translateY(0)', opacity: '1' },
+          '100%': { transform: 'translateY(-100%)', opacity: '0' },
+        },
+        'word-slide-in': {
+          '0%': { transform: 'translateY(100%)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        'cursor-blink': {
+          '0%, 49%': { opacity: '1' },
+          '50%, 100%': { opacity: '0' },
+        },
       },
       animation: {
         'glow-drift-a': 'glow-drift-a 16s ease-in-out infinite',
         'glow-drift-b': 'glow-drift-b 20s ease-in-out infinite',
         'fade-scale-in': 'fade-scale-in 0.4s cubic-bezier(0.32, 0.72, 0, 1)',
+        'word-slide-out': 'word-slide-out 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards',
+        'word-slide-in': 'word-slide-in 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards',
+        'cursor-blink': 'cursor-blink 1s step-end infinite',
       },
     },
   },
