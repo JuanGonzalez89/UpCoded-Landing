@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
+import { SmoothScroll } from '@/components/smooth-scroll';
 import { ThemeProvider } from '@/components/theme-provider';
 import { LOCALES, SITE_URL, buildAlternates, localizedUrl, toLocale } from '@/lib/seo';
 // @ts-ignore: global CSS is handled by Next.js
@@ -200,6 +201,7 @@ export default function RootLayout({
       </head>
       <body className="bg-background font-sans text-body-md text-on-background">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <SmoothScroll />
           <a className="skip-link" href="#contenido">
             Ir al contenido
           </a>
