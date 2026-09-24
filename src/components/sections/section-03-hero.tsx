@@ -34,7 +34,7 @@ export default function HeroSection({ dict }: { dict: HeroDict }) {
         </FadeInView>
 
         <FadeInView delay={100}>
-          <h1 className="m-0 text-[clamp(56px,9vw,130px)] font-medium leading-[0.9] tracking-[-0.04em] text-on-surface">
+          <h1 className="m-0 text-[clamp(56px,9vw,130px)] font-medium leading-[1.02] tracking-[-0.04em] text-on-surface">
             {dict.title1}<br /> {dict.title2}<br /> <span className="text-on-surface-variant"><RotatingWord words={rotatingWords} cursorClassName="text-primary animate-cursor-blink" /></span>
           </h1>
         </FadeInView>

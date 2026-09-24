@@ -32,7 +32,7 @@ export function RotatingWord({
   }, [prevIndex]);
 
   return (
-    <span className="relative inline-block overflow-hidden align-bottom">
+    <span className="relative -mb-[0.2em] inline-block overflow-hidden pb-[0.2em] align-bottom">
       <span key={`in-${index}`} className="motion-safe:animate-word-slide-in">
         {words[index]}
       </span>
