@@ -25,24 +25,27 @@ export default function HeroSection({ dict, lang }: { dict: HeroDict; lang?: str
         {/* Buenos Aires de noche: vista aérea del Obelisco sobre la 9 de Julio.
             Foto: Pexels (licencia libre, id 22718708). Recolorida a tonos fríos para
             que el teal siga siendo el único acento. */}
-        <div className="absolute inset-y-0 left-0 w-full [mask-image:linear-gradient(to_bottom,black_90%,transparent_100%)] lg:left-[22%] lg:[mask-composite:intersect] lg:[mask-image:linear-gradient(to_right,transparent_0%,black_30%),linear-gradient(to_bottom,black_90%,transparent_100%)]">
+        {/* La foto se agranda desde el borde izquierdo para que el Obelisco quede a la derecha,
+            sin dejar huecos: cubre todo el ancho y alto del hero. */}
+        <div className="absolute inset-0 origin-top-left lg:scale-[1.3]">
           <Image
             src="/hero-baires-aerea.webp"
             alt=""
             fill
             priority
             quality={80}
-            sizes="100vw"
-            className="motion-safe:animate-hero-drift object-cover object-[50%_9%] brightness-[1.25] contrast-[1.08]"
+            sizes="(min-width: 1024px) 130vw, 100vw"
+            className="motion-safe:animate-hero-drift object-cover object-[50%_9%] brightness-[1.2] contrast-[1.08]"
           />
         </div>
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background/80 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-background to-transparent" />
         {/* Halo teal detrás del Obelisco */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_28%_45%_at_73%_32%,rgb(var(--primary)/0.22),transparent_70%)] max-lg:bg-[radial-gradient(ellipse_60%_35%_at_50%_25%,rgb(var(--primary)/0.2),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_28%_45%_at_73%_32%,rgb(var(--primary)/0.18),transparent_70%)] max-lg:bg-[radial-gradient(ellipse_60%_35%_at_50%_25%,rgb(var(--primary)/0.18),transparent_70%)]" />
         {/* Velo para que el titular se lea sobre la foto */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/65 via-[68%] to-transparent" />
         <div className="motion-safe:animate-glow-drift-a absolute -left-40 -top-40 h-[560px] w-[560px] rounded-full bg-primary/10 blur-[120px]" />
         <div className="motion-safe:animate-glow-drift-b absolute -right-32 top-1/4 h-[480px] w-[480px] rounded-full bg-primary/[0.07] blur-[130px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-background to-background" />
       </div>
 
       <div className="relative mx-auto flex w-full max-w-[1200px] flex-col items-start px-margin-mobile py-24 text-left md:px-margin-desktop md:py-32">
