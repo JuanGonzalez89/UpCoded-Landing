@@ -33,7 +33,7 @@ export default function HeroSection({ dict, lang }: { dict: HeroDict; lang?: str
             alt=""
             fill
             priority
-            quality={80}
+            quality={90}
             sizes="(min-width: 1024px) 130vw, 100vw"
             className="motion-safe:animate-hero-drift object-cover object-[50%_9%] brightness-[1.2] contrast-[1.08]"
           />
