@@ -282,7 +282,7 @@ export default async function PortfolioCaseStudyPage({
               </p>
               <Link
                 className="mt-8 inline-flex min-h-[52px] rounded-md bg-on-ink px-7 py-4 text-base text-ink"
-                href={`${base}/#contacto`}
+                href={`${base}/${en ? 'start-project' : 'iniciar-proyecto'}`}
               >
                 {d.common.contact}
               </Link>

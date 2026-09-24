@@ -19,6 +19,13 @@ export function middleware(request: NextRequest) {
     });
   }
 
+  // El formulario guiado (UC-01) usa slug por idioma: /es/iniciar-proyecto y
+  // /en/start-project. Normalizamos la variante cruzada con un 308.
+  if (pathname === '/en/iniciar-proyecto' || pathname === '/es/start-project') {
+    const target = pathname === '/en/iniciar-proyecto' ? '/en/start-project' : '/es/iniciar-proyecto';
+    return NextResponse.redirect(new URL(target, request.url), 308);
+  }
+
   // Assets, api e internals de Next no llevan prefijo de idioma.
   if (
     pathname.startsWith('/_next') ||

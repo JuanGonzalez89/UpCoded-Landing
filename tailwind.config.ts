@@ -146,6 +146,10 @@ const config: Config = {
           '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
           '50%': { transform: 'translate(-32px, -28px) scale(1.05)' },
         },
+        'hero-drift': {
+          '0%': { transform: 'scale(1.04) translate3d(0, 0, 0)' },
+          '100%': { transform: 'scale(1.10) translate3d(-1.5%, -1%, 0)' },
+        },
         'fade-scale-in': {
           '0%': { opacity: '0', transform: 'scale(0.98)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
@@ -166,6 +170,7 @@ const config: Config = {
       animation: {
         'glow-drift-a': 'glow-drift-a 16s ease-in-out infinite',
         'glow-drift-b': 'glow-drift-b 20s ease-in-out infinite',
+        'hero-drift': 'hero-drift 28s ease-in-out infinite alternate',
         'fade-scale-in': 'fade-scale-in 0.4s cubic-bezier(0.32, 0.72, 0, 1)',
         'word-slide-out': 'word-slide-out 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards',
         'word-slide-in': 'word-slide-in 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards',

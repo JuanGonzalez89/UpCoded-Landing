@@ -63,3 +63,9 @@ export function localizedUrl(lang: string, path = ''): string {
   const suffix = path ? `/${path.replace(/^\/+|\/+$/g, '')}` : '';
   return `${SITE_URL}/${locale}${suffix}`;
 }
+
+/** Ruta localizada del formulario guiado de proyecto (UC-01). */
+export function startProjectPath(lang: string | undefined): string {
+  const locale = toLocale(lang);
+  return `/${locale}/${locale === 'en' ? 'start-project' : 'iniciar-proyecto'}`;
+}
