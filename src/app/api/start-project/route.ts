@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
+import { isServiceId, isStageId, SERVICE_OPTIONS, STAGE_OPTIONS } from '@/lib/lead-options';
 
 type LeadPayload = {
   name?: unknown;
@@ -17,30 +18,6 @@ type LeadPayload = {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const WHATSAPP_RE = /^\+?[\d\s().-]{6,20}$/;
-
-// Opciones válidas de "¿Qué necesitás resolver?" y "¿En qué etapa está el proyecto?",
-// en los dos idiomas. El cliente las manda tal cual las muestra.
-const SERVICE_VALUES = new Set([
-  'Web que genere consultas',
-  'Automatizar un proceso',
-  'Sistema o MVP',
-  'No estoy seguro todavía',
-  'A website that generates leads',
-  'Automate a process',
-  'A system or MVP',
-  'Not sure yet',
-]);
-
-const STAGE_VALUES = new Set([
-  'Tengo una idea',
-  'Quiero mejorar algo existente',
-  'Necesito empezar pronto',
-  'Estoy evaluando opciones',
-  'I have an idea',
-  'I want to improve something existing',
-  'I need to start soon',
-  "I'm evaluating options",
-]);
 
 const MIN_FORM_SECONDS = 4;
 
@@ -126,8 +103,8 @@ export async function POST(req: NextRequest) {
   if (company.length < 2 || company.length > 160) return invalid('invalid_company');
   if (!WHATSAPP_RE.test(whatsapp)) return invalid('invalid_whatsapp');
   if (email && (email.length > 160 || !EMAIL_RE.test(email))) return invalid('invalid_email');
-  if (!SERVICE_VALUES.has(service)) return invalid('invalid_service');
-  if (!STAGE_VALUES.has(stage)) return invalid('invalid_stage');
+  if (!isServiceId(service)) return invalid('invalid_service');
+  if (!isStageId(stage)) return invalid('invalid_stage');
   if (message.length < 8 || message.length > 2000) return invalid('invalid_message');
 
   const origin = req.headers.get('referer') ?? (lang === 'en' ? '/en/start-project' : '/es/iniciar-proyecto');
@@ -160,7 +137,7 @@ export async function POST(req: NextRequest) {
       from: process.env.RESEND_FROM || 'UpCoded Contacto <onboarding@resend.dev>',
       to: 'upcodednow@gmail.com',
       replyTo: email || 'upcodednow@gmail.com',
-      subject: oneLine(`Nuevo proyecto: ${service} — ${name} | UpCoded`),
+      subject: oneLine(`Nuevo proyecto: ${SERVICE_OPTIONS[service]} — ${name} | UpCoded`),
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background: #131314; padding: 32px; border-radius: 8px; border: 1px solid #3c494d;">
@@ -171,8 +148,8 @@ export async function POST(req: NextRequest) {
                 ['Empresa / Proyecto', lead.company],
                 ['WhatsApp', lead.whatsapp],
                 ['Email', lead.email ?? '—'],
-                ['Servicio de interés', lead.service],
-                ['Etapa del proyecto', lead.stage],
+                ['Servicio de interés', SERVICE_OPTIONS[lead.service]],
+                ['Etapa del proyecto', STAGE_OPTIONS[lead.stage]],
                 ['Mensaje', lead.message],
                 ['Origen', lead.origin],
                 ['Id', lead.id],

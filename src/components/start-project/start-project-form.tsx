@@ -18,7 +18,7 @@ type StartProjectDict = {
     question: string;
     hint?: string;
     placeholder?: string;
-    options?: readonly string[];
+    options?: readonly { id: string; label: string }[];
   }[];
   errors: {
     name: string;
@@ -300,12 +300,12 @@ export function StartProjectForm({ dict, lang }: { dict: StartProjectDict; lang:
                 {current.type === 'options' ? (
                   <div className="grid gap-3">
                     {(stepDef.options ?? []).map((option) => {
-                      const selected = values[current.field] === option;
+                      const selected = values[current.field] === option.id;
                       return (
                         <button
-                          key={option}
+                          key={option.id}
                           type="button"
-                          onClick={() => setValue(current.field, option)}
+                          onClick={() => setValue(current.field, option.id)}
                           aria-pressed={selected}
                           className={cn(
                             'flex min-h-[56px] items-center gap-3 rounded-md border px-4 text-left text-base transition-all duration-200 ease-upcoded',
@@ -322,7 +322,7 @@ export function StartProjectForm({ dict, lang }: { dict: StartProjectDict; lang:
                           >
                             {selected ? <span className="h-2 w-2 rounded-full bg-on-primary" /> : null}
                           </span>
-                          {option}
+                          {option.label}
                         </button>
                       );
                     })}
