@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { FadeInView } from '@/components/ui/fade-in-view';
 import { RotatingWord } from '@/components/ui/rotating-word';
@@ -21,6 +22,24 @@ export default function HeroSection({ dict, lang }: { dict: HeroDict; lang?: str
 
       {/* Glow ambiental: la pantalla como unica fuente de luz. Sin fotos, sin 3D. */}
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        {/* Buenos Aires de noche: vista aérea del Obelisco sobre la 9 de Julio.
+            Foto: Pexels (licencia libre, id 22718708). Recolorida a tonos fríos para
+            que el teal siga siendo el único acento. */}
+        <div className="absolute inset-y-0 left-0 w-full [mask-image:linear-gradient(to_bottom,black_90%,transparent_100%)] lg:left-[22%] lg:[mask-composite:intersect] lg:[mask-image:linear-gradient(to_right,transparent_0%,black_30%),linear-gradient(to_bottom,black_90%,transparent_100%)]">
+          <Image
+            src="/hero-baires-aerea.webp"
+            alt=""
+            fill
+            priority
+            quality={80}
+            sizes="100vw"
+            className="motion-safe:animate-hero-drift object-cover object-[50%_9%] brightness-[1.25] contrast-[1.08]"
+          />
+        </div>
+        {/* Halo teal detrás del Obelisco */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_28%_45%_at_73%_32%,rgb(var(--primary)/0.22),transparent_70%)] max-lg:bg-[radial-gradient(ellipse_60%_35%_at_50%_25%,rgb(var(--primary)/0.2),transparent_70%)]" />
+        {/* Velo para que el titular se lea sobre la foto */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
         <div className="motion-safe:animate-glow-drift-a absolute -left-40 -top-40 h-[560px] w-[560px] rounded-full bg-primary/10 blur-[120px]" />
         <div className="motion-safe:animate-glow-drift-b absolute -right-32 top-1/4 h-[480px] w-[480px] rounded-full bg-primary/[0.07] blur-[130px]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-background to-background" />
