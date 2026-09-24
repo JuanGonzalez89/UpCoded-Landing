@@ -13,45 +13,42 @@ type Service = {
 const services: Service[] = [
   {
     id: '01',
-    title: 'Aplicaciones Web',
-    description:
-      'Sistemas completos que manejan usuarios, datos y lógicas de negocio complejas. Desde la idea hasta el deploy en producción.',
+    title: 'Aplicaciones de Gestión Interna',
+    description: 'Creamos herramientas de optimizacion personalizadas para gestionar tu negocio de forma eficiente.',
     href: '/servicios/aplicaciones-web-a-medida',
-    tags: ['React', 'Next.js', 'Postgres'],
+    tags: []
   },
   {
     id: '02',
     title: 'Automatizaciones',
-    description:
-      'Conectamos tus herramientas para eliminar el trabajo manual. Bots, sincronización de datos y flujos de trabajo autónomos.',
+    description: 'Conectamos tus herramientas para eliminar el trabajo manual. Bots, sincronización de datos y flujos de trabajo autónomos.',
     href: '/servicios/automatizaciones',
-    tags: ['Python', 'APIs', 'Workflows'],
+    tags: []
   },
   {
     id: '03',
     title: 'Sitios y Landings',
     description:
-      'Páginas ultrarrápidas optimizadas para conversión y posicionamiento orgánico. Diseño único e interactivo.',
+      'Hacemos de tu negocio, una pagina web adaptada a tus necesidades para aumentar tus visitas y ventas.',
     href: '/servicios/landing-pages-profesionales',
-    tags: ['UX/UI', 'Framer', 'SEO'],
+    tags: []
   },
   {
     id: '04',
-    title: 'Soporte y Evolución',
-    description:
-      'Mantenimiento técnico continuo, optimización de performance y nuevas features para que tu plataforma nunca quede obsoleta.',
+    title: 'Mantenimiento y Evolución',
+    description: 'Nuestra relación no termina con la entrega. Ofrecemos soporte continuo, actualizaciones y nuevas funcionalidades para que tu proyecto siga creciendo junto a tu negocio.',
     href: '/servicios/desarrollo-web-argentina',
-    tags: ['Cloud', 'DevOps', 'Scale'],
+    tags: []
   },
 ];
 
 export default function ServicesSection({ dict, lang = 'es' }: { dict?: { eyebrow?: string; title?: string; description?: string; more?: string; items?: Service[] }; lang?: string }) {
-  const copy = dict ?? { eyebrow: '// Servicios', title: 'Tres disciplinas.\nUn equipo.', description: 'Desarrollo, automatización y diseño web en un solo lugar.', more: 'Saber más', items: services };
+  const copy = dict ?? { eyebrow: '//¿Qué hacemos? ', title: 'Nuestros servicios', description: 'Desarrollo, automatización y diseño web en un solo lugar.', more: 'Saber más', items: services };
   const items = copy.items ?? services;
   return (
     <section className="px-margin-mobile py-24 md:px-margin-desktop lg:py-32" id="servicios">
       <div className="mx-auto max-w-container-max">
-        <div className="mb-20 grid grid-cols-1 items-end gap-8 md:grid-cols-2 md:gap-16">
+        <div className="mb-20 grid grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-16">
           <div>
             <FadeInView>
               <p className="mb-6 font-mono text-[12px] uppercase tracking-widest text-primary">
@@ -64,7 +61,7 @@ export default function ServicesSection({ dict, lang = 'es' }: { dict?: { eyebro
               </h2>
             </FadeInView>
           </div>
-          <FadeInView delay={200}>
+          <FadeInView delay={200} className="md:pt-10">
             <p className="m-0 max-w-[480px] text-[1.0625rem] leading-relaxed text-on-surface-variant">
               {copy.description}
             </p>
@@ -94,15 +91,15 @@ export default function ServicesSection({ dict, lang = 'es' }: { dict?: { eyebro
                       </span>
                     ))}
                   </div>
-                  
+
                   <h3 className="mb-4 text-3xl font-medium tracking-tight text-on-surface transition-colors duration-300 group-hover:text-primary">
                     {service.title}
                   </h3>
-                  
+
                   <p className="mb-8 max-w-[400px] text-[1.0625rem] leading-relaxed text-on-surface-variant">
                     {service.description}
                   </p>
-                  
+
                   <div className="mt-auto flex items-center gap-2 font-mono text-[13px] font-medium tracking-wide text-primary transition-transform duration-300 group-hover:translate-x-2">
                     {copy.more}
                     <PiArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />

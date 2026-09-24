@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { PiListBold, PiXBold, PiSun, PiMoon, PiTranslate } from 'react-icons/pi';
+import { startProjectPath } from '@/lib/seo';
 
 export default function NavSection({ dict, lang }: { dict?: Record<string, string>, lang?: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -100,7 +101,7 @@ export default function NavSection({ dict, lang }: { dict?: Record<string, strin
             })}
             <a
               className="rounded-full border border-outline bg-surface-dim px-6 py-2.5 text-[0.875rem] font-medium text-on-surface transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_0_15px_rgba(20,184,166,0.15)] active:scale-[0.98]"
-              href={`/${lang ?? 'es'}/#contacto`}
+              href={startProjectPath(lang)}
             >
               {dict?.contact ?? 'Hablemos'}
             </a>
@@ -182,7 +183,7 @@ export default function NavSection({ dict, lang }: { dict?: Record<string, strin
             })}
             <a
               className="mt-8 flex min-h-[52px] items-center justify-center rounded-full border border-outline bg-surface-dim px-6 text-base font-medium text-on-surface transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_0_15px_rgba(20,184,166,0.15)] active:scale-[0.98]"
-              href={`/${lang ?? 'es'}/#contacto`}
+              href={startProjectPath(lang)}
               onClick={() => setMenuOpen(false)}
             >
               {dict?.contact ?? 'Hablemos'}

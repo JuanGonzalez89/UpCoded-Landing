@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { FadeInView } from '@/components/ui/fade-in-view';
 import { ProjectSelector } from '@/components/sections/project-selector';
 import { projects } from '@/data/projects';
+import { startProjectPath } from '@/lib/seo';
 
 export default function WorkSection({
   lang,
@@ -54,7 +55,7 @@ export default function WorkSection({
             </div>
             <Link
               className="inline-flex min-h-[52px] shrink-0 items-center justify-center rounded-full bg-primary px-8 text-base font-medium text-on-primary transition-opacity duration-200 hover:opacity-85 active:scale-[0.98]"
-              href="#contacto"
+              href={startProjectPath(lang)}
             >
               {dict?.cta ?? 'Hablemos'}
             </Link>

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { PiInstagramLogo, PiLinkedinLogo, PiXLogo } from 'react-icons/pi';
+import { startProjectPath } from '@/lib/seo';
 
 const social = [
   { label: 'Instagram', href: 'https://www.instagram.com/upcoded/', Icon: PiInstagramLogo },
@@ -15,7 +16,7 @@ export default function FooterSection({ lang = 'es', dict }: { lang?: string; di
     { label: lang === 'en' ? 'Process' : 'Proceso', href: `/${lang}/#proceso` },
     { label: lang === 'en' ? 'Pricing' : 'Precios', href: `/${lang}/#precios` },
     { label: 'Blog', href: `/${lang}/blog` },
-    { label: lang === 'en' ? 'Contact' : 'Contacto', href: `/${lang}/#contacto` },
+    { label: lang === 'en' ? 'Contact' : 'Contacto', href: startProjectPath(lang) },
   ];
 
   return (

@@ -1,6 +1,8 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { FadeInView } from '@/components/ui/fade-in-view';
 import { RotatingWord } from '@/components/ui/rotating-word';
+import { startProjectPath } from '@/lib/seo';
 
 type HeroDict = {
   badge: string;
@@ -13,28 +15,49 @@ type HeroDict = {
   cta_secondary: string;
 };
 
-export default function HeroSection({ dict }: { dict: HeroDict }) {
+export default function HeroSection({ dict, lang }: { dict: HeroDict; lang?: string }) {
   const rotatingWords = [dict.title3, ...(dict.title3Alt ?? [])];
   return (
     <section className="relative flex min-h-[calc(100vh-68px)] flex-col items-start justify-center overflow-hidden">
 
-      {/* Glow ambiental: la pantalla como unica fuente de luz. Sin fotos, sin 3D. */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      {/* Imagen de fondo difuminada / atmosférica estilo South Projects */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <Image
+          src="/hero-bg.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="scale-105 object-cover object-center brightness-[0.42] contrast-[1.1] saturate-[0.75] blur-[2px]"
+        />
+
+        {/* Gradiente superior para fundir con la barra de navegación */}
+        <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-background via-background/60 to-transparent" />
+
+        {/* Gradiente inferior para fundir con la siguiente sección */}
+        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-background via-background/90 to-transparent" />
+
+        {/* Viñeta radial oscura para enfocar el centro y oscurecer los bordes */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.1)_0%,rgba(0,0,0,0.85)_100%)]" />
+
+        {/* Tinte general oscuro para que el texto resalte al 100% */}
+        <div className="absolute inset-0 bg-background/25" />
+
+        {/* Glow ambiental sutil */}
         <div className="motion-safe:animate-glow-drift-a absolute -left-40 -top-40 h-[560px] w-[560px] rounded-full bg-primary/10 blur-[120px]" />
         <div className="motion-safe:animate-glow-drift-b absolute -right-32 top-1/4 h-[480px] w-[480px] rounded-full bg-primary/[0.07] blur-[130px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-background to-background" />
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-[1200px] flex-col items-start px-margin-mobile py-24 text-left md:px-margin-desktop md:py-32">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1200px] flex-col items-start px-margin-mobile py-24 text-left md:px-margin-desktop md:py-32">
 
         <FadeInView delay={0}>
-          <span className="mb-8 inline-flex items-center rounded-full border border-outline bg-surface/60 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-on-surface-variant">
+          <span className="mb-8 inline-flex items-center rounded-full border border-outline bg-surface/60 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-on-surface-variant backdrop-blur-sm">
             {dict.badge}
           </span>
         </FadeInView>
 
         <FadeInView delay={100}>
-          <h1 className="m-0 text-[clamp(56px,9vw,130px)] font-medium leading-[1.02] tracking-[-0.04em] text-on-surface">
+          <h1 className="m-0 text-[clamp(56px,9vw,130px)] font-medium leading-[0.9] tracking-[-0.04em] text-on-surface">
             {dict.title1}<br /> {dict.title2}<br /> <span className="text-on-surface-variant"><RotatingWord words={rotatingWords} cursorClassName="text-primary animate-cursor-blink" /></span>
           </h1>
         </FadeInView>
@@ -49,7 +72,7 @@ export default function HeroSection({ dict }: { dict: HeroDict }) {
           <div className="mt-10 flex flex-wrap items-center justify-start gap-4">
             <Link
               className="inline-flex h-[52px] items-center justify-center rounded-full border border-primary bg-primary/10 px-8 text-[0.9375rem] font-medium text-primary shadow-[0_0_20px_rgba(20,184,166,0.1)] transition-all duration-300 hover:bg-primary/20 hover:shadow-[0_0_30px_rgba(20,184,166,0.2)] active:scale-[0.98]"
-              href="#contacto"
+              href={startProjectPath(lang)}
             >
               {dict.cta_primary}
             </Link>

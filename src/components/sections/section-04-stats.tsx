@@ -7,7 +7,7 @@ import { FadeInView } from '@/components/ui/fade-in-view';
  */
 const defaultStats = [
   { figure: '+20', label: 'Proyectos entregados' },
-  { figure: '10+', label: 'Rubros: fintech, inmobiliario, retail, automotriz, logística, salud, e-commerce y publicidad' },
+  { figure: '+10', label: 'Rubros: fintech, inmobiliario, retail, automotriz, logística, salud, e-commerce y publicidad' },
   { figure: '3', label: 'Países: Argentina, España y Estados Unidos' },
   { figure: '100%', label: 'Trato directo con quien programa' },
 ] as const;
