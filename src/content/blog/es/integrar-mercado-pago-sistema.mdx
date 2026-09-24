@@ -1,21 +1,58 @@
 ---
-title: "Cómo integrar cobros con Mercado Pago en tu sistema"
+title: "Cómo cobrar con Mercado Pago dentro de tu propio sistema o tienda"
 date: "2026-07-28"
-description: "Evita errores humanos al cobrar. La integración hace que tu sistema le avise a la terminal de cobro exactamente el monto."
+description: "Cómo integrar Mercado Pago a un sistema o web propia: qué medios de pago aceptar, cómo confirmar cada cobro automáticamente y qué errores evitar."
 category: "Finanzas"
 author: "UpCoded Team"
+keywords: ["integrar mercado pago", "cobros online mercado pago", "mercado pago en sistema propio", "checkout mercado pago"]
 ---
 
-## La Solución a tu Problema (BLUF)
-El mayor desafío de los dueños de negocios hoy en día no es conseguir clientes, sino poder atenderlos bien y organizar los números sin volverse locos. Un **software a medida o sistema de gestión simple** soluciona esto automatizando las tareas manuales que te roban tiempo todos los días, permitiéndote tener el control de tu negocio desde tu celular.
+Cobrar con un link o pasar el CBU por WhatsApp funciona hasta que vendés un poco más. Ahí empiezan los problemas: comprobantes que hay que revisar a mano, clientes que dicen que ya pagaron y pedidos que no se sabe si están cobrados. **Integrar Mercado Pago** en tu sistema o tienda hace que el pago se confirme solo y el pedido cambie de estado sin que tengas que tocar nada.
 
-## ¿Por qué seguir haciéndolo a mano?
-Muchos comercios y empresas arrancan anotando todo en cuadernos o usando un Excel. Pero cuando empiezas a crecer, pasan cosas como:
-*   Un cliente te escribe por WhatsApp pidiendo un turno o precio, y tardas horas en responder.
-*   Alguien te compra un producto, pero resulta que ya no tenías stock en el depósito.
-*   Llega fin de mes y no sabes exactamente cuánta ganancia limpia te quedó.
+## Qué se logra con una integración
 
-## Cómo te ayuda la tecnología
-Implementar una solución simple, ya sea un **chatbot para WhatsApp**, un **sistema de turnos online**, o un **software de caja y stock**, cambia las reglas del juego. 
+El cliente elige cómo pagar (tarjeta, dinero en cuenta, cuotas, transferencia), paga, y tu sistema se entera al instante. El pedido pasa a "pagado", se descuenta el stock, se le manda un aviso al cliente y, si corresponde, se genera la factura. Todo sin que nadie mire el celular para chequear.
 
-No necesitas entender de tecnología ni programación. Nosotros nos encargamos de que la herramienta sea tan fácil de usar como mandar un mensaje, para que tú y tus empleados puedan empezar a usarla el mismo día sin capacitaciones largas ni complicaciones.
+## Formas de cobrar
+
+**Checkout de Mercado Pago.** El cliente paga en una pantalla de Mercado Pago y vuelve a tu sitio. Es lo más rápido de implementar y transmite confianza porque la gente conoce la marca.
+
+**Pago dentro de tu propia página.** El formulario de pago aparece en tu sitio, sin redirigir. Requiere más trabajo pero da una experiencia más fluida.
+
+**Links de pago.** Sirven para cobros puntuales, como un presupuesto o una seña, y también se pueden generar desde el sistema.
+
+**Suscripciones.** Para cobros mensuales, como cuotas de un gimnasio o un servicio recurrente.
+
+## Lo que hay que resolver bien
+
+**Confirmación automática.** Mercado Pago avisa a tu sistema cuando se aprueba o rechaza un pago. Ese aviso tiene que procesarse siempre, incluso si el cliente cierra el navegador antes de volver.
+
+**Pagos pendientes.** Hay medios de pago que tardan en acreditarse. El sistema tiene que mostrar el pedido como "pendiente" y actualizarlo cuando llegue.
+
+**Reembolsos y contracargos.** Tienen que poder gestionarse y quedar registrados.
+
+**Seguridad.** Los datos de tarjeta nunca deberían pasar por tu servidor. Los maneja Mercado Pago.
+
+## Las comisiones
+
+Cada medio de pago y plazo de acreditación tiene su comisión. Conviene revisarlas y decidir si las absorbés o las trasladás al precio. Hacelo antes de armar el sistema, porque cambia cómo se calculan los totales.
+
+Si necesitás que el cobro se conecte con tu stock, tu facturación o tus clientes, [lo armamos dentro de un sistema a medida](/es/servicios/aplicaciones-web-a-medida).
+
+## Preguntas frecuentes
+
+### ¿Necesito una cuenta especial?
+
+Necesitás una cuenta de Mercado Pago con los datos de tu negocio verificados.
+
+### ¿Cuánto tarda la integración?
+
+Un checkout básico se implementa en pocos días. Con stock, facturación y reportes, más.
+
+### ¿Puedo aceptar otros medios además de Mercado Pago?
+
+Sí. Se pueden sumar transferencias u otros procesadores para que el cliente elija.
+
+## Que el cobro deje de ser una tarea
+
+Si hoy revisás comprobantes a mano, esa es la primera tarea para automatizar. [Contanos cómo cobrás](/es/#contacto) y te decimos cómo integrarlo.
