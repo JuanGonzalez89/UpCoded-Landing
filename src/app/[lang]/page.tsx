@@ -8,6 +8,7 @@ import DifferenceSection from '@/components/sections/section-08-difference';
 import FoundersSection from '@/components/sections/section-08b-founders';
 import ProcessSection from '@/components/sections/section-09-process';
 import PricingSection from '@/components/sections/section-10-pricing';
+import FaqSection from '@/components/sections/section-10b-faq';
 import ContactSection from '@/components/sections/section-11-contact';
 import FooterSection from '@/components/sections/section-12-footer';
 import { getDictionary } from '@/dictionaries';
@@ -38,7 +39,7 @@ export default async function HomePage({ params }: { params: { lang: 'es' | 'en'
       />
       <NavSection dict={dict.nav} lang={params.lang} />
       <main id="contenido">
-        <HeroSection dict={dict.hero} />
+        <HeroSection dict={dict.hero} lang={params.lang} />
         <StatsSection dict={dict.stats} />
         <ServicesSection dict={dict.servicesSection} lang={params.lang} />
         <WorkSection lang={params.lang} dict={dict.work} />
@@ -46,8 +47,9 @@ export default async function HomePage({ params }: { params: { lang: 'es' | 'en'
         <DifferenceSection dict={dict.difference} />
         <FoundersSection dict={dict.founders} />
         <ProcessSection dict={dict.process} />
-        <PricingSection dict={dict.pricing} />
-        <ContactSection dict={dict.contact} />
+        <PricingSection dict={dict.pricing} lang={params.lang} />
+        <FaqSection dict={dict.faq} />
+        <ContactSection dict={dict.contact} lang={params.lang} />
       </main>
       <FooterSection lang={params.lang} dict={dict.footer} />
     </>

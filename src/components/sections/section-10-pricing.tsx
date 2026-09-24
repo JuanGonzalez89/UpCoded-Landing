@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { PiCheck } from 'react-icons/pi';
 import { FadeInView } from '@/components/ui/fade-in-view';
+import { startProjectPath } from '@/lib/seo';
 
 const defaultPlans = [
   {
@@ -38,7 +39,7 @@ const defaultPlans = [
   },
 ] as const;
 
-export default function PricingSection({ dict }: { dict?: { title?: string; description?: string; from?: string; featured?: string; choose?: string; plans?: readonly { title: string; price: string; features: readonly string[] }[] } }) {
+export default function PricingSection({ dict, lang }: { dict?: { title?: string; description?: string; from?: string; featured?: string; choose?: string; plans?: readonly { title: string; price: string; features: readonly string[] }[] }; lang?: string }) {
   const copy = dict ?? {};
   const plans: readonly { title: string; price: string; features: readonly string[]; featured?: boolean }[] = copy.plans ?? defaultPlans;
   return (
@@ -119,7 +120,7 @@ export default function PricingSection({ dict }: { dict?: { title?: string; desc
                         ? 'bg-on-ink text-ink hover:bg-accent-ink'
                         : 'border border-outline-strong text-on-surface hover:border-primary hover:text-primary'
                     }`}
-                    href="#contacto"
+                    href={startProjectPath(lang)}
                   >
                       {copy.choose ?? 'Elegir plan'}
                   </Link>

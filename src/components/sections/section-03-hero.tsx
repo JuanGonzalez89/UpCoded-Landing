@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { FadeInView } from '@/components/ui/fade-in-view';
 import { RotatingWord } from '@/components/ui/rotating-word';
+import { startProjectPath } from '@/lib/seo';
 
 type HeroDict = {
   badge: string;
@@ -13,7 +14,7 @@ type HeroDict = {
   cta_secondary: string;
 };
 
-export default function HeroSection({ dict }: { dict: HeroDict }) {
+export default function HeroSection({ dict, lang }: { dict: HeroDict; lang?: string }) {
   const rotatingWords = [dict.title3, ...(dict.title3Alt ?? [])];
   return (
     <section className="relative flex min-h-[calc(100vh-68px)] flex-col items-start justify-center overflow-hidden">
@@ -49,7 +50,7 @@ export default function HeroSection({ dict }: { dict: HeroDict }) {
           <div className="mt-10 flex flex-wrap items-center justify-start gap-4">
             <Link
               className="inline-flex h-[52px] items-center justify-center rounded-full border border-primary bg-primary/10 px-8 text-[0.9375rem] font-medium text-primary shadow-[0_0_20px_rgba(20,184,166,0.1)] transition-all duration-300 hover:bg-primary/20 hover:shadow-[0_0_30px_rgba(20,184,166,0.2)] active:scale-[0.98]"
-              href="#contacto"
+              href={startProjectPath(lang)}
             >
               {dict.cta_primary}
             </Link>
