@@ -40,7 +40,7 @@ export async function generateMetadata({
   return {
   title: 'Agencia de Desarrollo Web en Argentina | UpCoded',
   description:
-    'Agencia de desarrollo web en Argentina. Creamos sitios, apps y automatizaciones a medida. Modernos, rápidos y pensados para tu negocio.',
+    'Agencia de desarrollo web en Argentina. Sitios, sistemas y automatizaciones a medida para que tu negocio consiga más clientes y trabaje menos a mano.',
   keywords: [
     'agencia desarrollo web argentina',
     'desarrollo web react nextjs',
@@ -56,7 +56,7 @@ export async function generateMetadata({
   openGraph: {
     title: 'Agencia de Desarrollo Web en Argentina | UpCoded',
     description:
-      'Creamos sitios, apps y automatizaciones a medida. Modernos, rápidos y pensados para tu negocio.',
+      'Sitios, sistemas y automatizaciones a medida para conseguir más clientes y trabajar menos a mano.',
     url: localizedUrl(locale),
     siteName: 'UpCoded',
     images: [
@@ -74,7 +74,7 @@ export async function generateMetadata({
     card: 'summary_large_image',
     title: 'Agencia de Desarrollo Web en Argentina | UpCoded',
     description:
-      'Creamos sitios, apps y automatizaciones a medida.',
+      'Sitios, sistemas y automatizaciones para conseguir más clientes.',
     images: ['/og-image.png'],
   },
   robots: {
@@ -105,7 +105,7 @@ const jsonLd = {
         height: 512,
       },
       description:
-        'Agencia de desarrollo web en Argentina. Creamos sitios, apps y automatizaciones a medida para tu negocio.',
+        'Agencia de desarrollo web en Argentina. Sitios, sistemas y automatizaciones a medida para que tu negocio consiga más clientes.',
       foundingDate: '2024',
       address: {
         '@type': 'PostalAddress',
@@ -134,7 +134,7 @@ const jsonLd = {
               '@type': 'Service',
               name: 'Sitios Web y Landing Pages',
               description:
-                'Páginas ultrarrápidas optimizadas para conversión. Diseño único con tecnología de primer nivel.',
+                'Páginas que aparecen en Google y convierten visitas en consultas.',
             },
             priceSpecification: {
               '@type': 'PriceSpecification',
@@ -148,7 +148,7 @@ const jsonLd = {
               '@type': 'Service',
               name: 'Aplicaciones Web a Medida',
               description:
-                'Plataformas completas con lógica compleja, bases de datos y paneles de administración.',
+                'Sistemas a medida para ordenar clientes, ventas y stock en un solo lugar.',
             },
             priceSpecification: {
               '@type': 'PriceSpecification',
@@ -162,7 +162,7 @@ const jsonLd = {
               '@type': 'Service',
               name: 'Automatizaciones',
               description:
-                'Conexión entre tus herramientas, procesos automáticos y tareas programadas.',
+                'Bots y conexiones entre tus herramientas para dejar de hacer tareas repetitivas a mano.',
             },
             priceSpecification: {
               '@type': 'PriceSpecification',
