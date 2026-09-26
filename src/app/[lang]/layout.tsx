@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import { WhatsAppFloat } from '@/components/ui/whatsapp-float';
+import { WebMcp } from '@/components/web-mcp';
 import { SmoothScroll } from '@/components/smooth-scroll';
 import { ThemeProvider } from '@/components/theme-provider';
 import { LOCALES, SITE_URL, buildAlternates, localizedUrl, toLocale } from '@/lib/seo';
@@ -207,6 +208,7 @@ export default function RootLayout({
           </a>
           {children}
           <WhatsAppFloat />
+          <WebMcp lang={toLocale(lang)} />
         </ThemeProvider>
       </body>
     </html>

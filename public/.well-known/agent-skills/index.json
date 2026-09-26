@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "request-project-quote",
+      "type": "skill-md",
+      "description": "Enviar una solicitud de proyecto o presupuesto a UpCoded en nombre de una persona que lo pidió.",
+      "url": "/.well-known/agent-skills/request-project-quote/SKILL.md",
+      "digest": "sha256:d8ceee24cd7e92cf825cf384ac40e946e09c7e132b25fedfa329b0d2735f3237"
+    }
+  ]
+}

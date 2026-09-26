@@ -26,6 +26,20 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(target, request.url), 308);
   }
 
+  // Agentes: Accept: text/markdown devuelve la página convertida a markdown.
+  if (
+    request.method === 'GET' &&
+    request.headers.get('accept')?.includes('text/markdown') &&
+    !pathname.startsWith('/_next') &&
+    !pathname.startsWith('/api') &&
+    !pathname.includes('.')
+  ) {
+    const url = request.nextUrl.clone();
+    url.pathname = '/api/markdown';
+    url.search = `?path=${encodeURIComponent(pathname)}`;
+    return NextResponse.rewrite(url);
+  }
+
   // Assets, api e internals de Next no llevan prefijo de idioma.
   if (
     pathname.startsWith('/_next') ||

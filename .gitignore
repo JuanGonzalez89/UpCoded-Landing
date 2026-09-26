@@ -18,3 +18,5 @@ tsconfig.tsbuildinfo
 
 # fuentes de video pesadas (no versionar)
 video-src/
+
+!public/.well-known/**/*.md
