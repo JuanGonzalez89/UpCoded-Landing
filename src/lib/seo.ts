@@ -22,20 +22,28 @@ export function toLocale(value: string | undefined): Locale {
  *
  * `path` va sin prefijo de idioma y sin barra inicial. '' es la home.
  */
-export function buildAlternates(lang: string, path = ''): Metadata['alternates'] {
+export function buildAlternates(
+  lang: string,
+  path = '',
+  availableLocales: readonly Locale[] = LOCALES,
+): Metadata['alternates'] {
   const locale = toLocale(lang);
   const suffix = path ? `/${path.replace(/^\/+|\/+$/g, '')}` : '';
 
   const languages = Object.fromEntries(
-    LOCALES.map((l) => [l, `${SITE_URL}/${l}${suffix}`]),
-  ) as Record<Locale, string>;
+    availableLocales.map((l) => [l, `${SITE_URL}/${l}${suffix}`]),
+  ) as Partial<Record<Locale, string>>;
+
+  const defaultLocale = availableLocales.includes(DEFAULT_LOCALE)
+    ? DEFAULT_LOCALE
+    : availableLocales[0] ?? locale;
 
   return {
     canonical: `${SITE_URL}/${locale}${suffix}`,
     languages: {
       ...languages,
       // Sin coincidencia de idioma, Google sirve la version por defecto (es).
-      'x-default': `${SITE_URL}/${DEFAULT_LOCALE}${suffix}`,
+      'x-default': `${SITE_URL}/${defaultLocale}${suffix}`,
     },
   };
 }

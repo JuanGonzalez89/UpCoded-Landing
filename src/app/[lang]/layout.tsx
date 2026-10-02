@@ -37,27 +37,48 @@ export async function generateMetadata({
   params: { lang: string };
 }): Promise<Metadata> {
   const locale = toLocale(params.lang);
+  const seo = locale === 'en'
+    ? {
+        title: 'Web Development Agency in Argentina | UpCoded',
+        description:
+          'Web development agency in Argentina. Custom websites, business systems and automations built to win clients and reduce manual work.',
+        shortDescription:
+          'Custom websites, business systems and automations built to win clients and reduce manual work.',
+        keywords: [
+          'web development agency argentina',
+          'custom web applications argentina',
+          'business automation argentina',
+          'nextjs development agency',
+          'upcoded',
+        ],
+      }
+    : {
+        title: 'Agencia de Desarrollo Web en Argentina | UpCoded',
+        description:
+          'Agencia de desarrollo web en Argentina. Sitios, sistemas y automatizaciones a medida para que tu negocio consiga más clientes y trabaje menos a mano.',
+        shortDescription:
+          'Sitios, sistemas y automatizaciones a medida para conseguir más clientes y trabajar menos a mano.',
+        keywords: [
+          'agencia desarrollo web argentina',
+          'desarrollo web react nextjs',
+          'aplicaciones web a medida',
+          'empresa desarrollo web argentina',
+          'diseño web profesional argentina',
+          'desarrollo web buenos aires',
+          'automatización web argentina',
+          'upcoded',
+        ],
+      };
 
   return {
-  title: 'Agencia de Desarrollo Web en Argentina | UpCoded',
-  description:
-    'Agencia de desarrollo web en Argentina. Sitios, sistemas y automatizaciones a medida para que tu negocio consiga más clientes y trabaje menos a mano.',
-  keywords: [
-    'agencia desarrollo web argentina',
-    'desarrollo web react nextjs',
-    'aplicaciones web a medida',
-    'empresa desarrollo web argentina',
-    'diseño web profesional argentina',
-    'desarrollo web buenos aires',
-    'automatización web argentina',
-    'upcoded',
-  ],
+  title: seo.title,
+  description: seo.description,
+  keywords: seo.keywords,
   metadataBase: new URL(SITE_URL),
   alternates: buildAlternates(locale),
   openGraph: {
-    title: 'Agencia de Desarrollo Web en Argentina | UpCoded',
-    description:
-      'Sitios, sistemas y automatizaciones a medida para conseguir más clientes y trabajar menos a mano.',
+    title: seo.title,
+    description: seo.shortDescription,
     url: localizedUrl(locale),
     siteName: 'UpCoded',
     images: [
@@ -65,7 +86,7 @@ export async function generateMetadata({
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'UpCoded - Agencia de Desarrollo Web en Argentina',
+        alt: locale === 'en' ? 'UpCoded - Web Development Agency in Argentina' : 'UpCoded - Agencia de Desarrollo Web en Argentina',
       },
     ],
     locale: locale === 'en' ? 'en_US' : 'es_AR',
@@ -73,9 +94,8 @@ export async function generateMetadata({
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Agencia de Desarrollo Web en Argentina | UpCoded',
-    description:
-      'Sitios, sistemas y automatizaciones para conseguir más clientes.',
+    title: seo.title,
+    description: seo.shortDescription,
     images: ['/og-image.png'],
   },
   robots: {
